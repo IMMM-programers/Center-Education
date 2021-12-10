@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createUser, editUser, deleteUser, getStudents } = require('../controllers/users');
+const { createUser, editUser, deleteUser, getStudents, getProfile } = require('../controllers/users');
 
 // @route  POST api/users + /createUser
 // @desc   Register user
@@ -19,6 +19,10 @@ router.patch(
 // @route  GET api/users + /Students
 // @desc   get all Students
 router.get('/Students', getStudents);
+
+// @route  GET api/users + /Profile
+// @desc   get user profile
+router.get('/Profile/:email', getProfile);
 
 
 // @route  delete api/users + /deleteUser

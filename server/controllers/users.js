@@ -83,3 +83,13 @@ module.exports.getStudents = async (req, res) => {
     res.status(500).send('Server error');
   }
 };
+
+module.exports.getProfile = async (req, res) => {
+  try {
+    const {email} = req.params;
+    let data = await User.findOne({ email }).select('-password');
+    res.json(data);
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+};
