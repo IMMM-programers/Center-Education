@@ -1,14 +1,14 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+// Middleware
+app.use(express.json({ extended: false }));
+app.use(cors());
 
 // MongoDB
 const connectDB = require("./database/index");
 connectDB();
 
-// Middleware
-app.use(express.json({ extended: false }));
-app.use(cors());
 
 // Defining Routes
 app.use("/api/users", require("./routes/users"));

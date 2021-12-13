@@ -28,11 +28,6 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-.container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-}
 .card {
   overflow: hidden;
   border: none;
@@ -75,7 +70,7 @@ body {
   top: 10px;
   padding-left: 15px;
   /* margin-top: 50px; */
-  color: var(--color-2);
+  color: var(--color-1);
 }
 .form-input input:hover,
 .form-input span i:hover {
@@ -94,7 +89,7 @@ body {
 }
 .form-box button {
   margin-top: 10px;
-  border: none;
+  border: 1px solid var(--main-color);
   cursor: pointer;
   border-radius: 50px;
   background-color: var(--main-color);
@@ -122,20 +117,25 @@ body {
 }
 .form-box .btn-social {
   color: var(--white-900);
-  border: none;
   font-weight: bold;
+  display: block;
 }
 .form-box .btn-facebook {
   background-color: var(--color-1);
   padding: 6px 0;
+  border: 1px solid var(--color-1);
 }
 .form-box .btn-google {
   background-color: #da3f34;
   padding: 6px 0;
+  border: 1px solid #da3f34;
+
 }
 .form-box .btn-twitter {
   background-color: #33ccff;
   padding: 6px 0;
+  border: 1px solid #33ccff;
+
 }
 .form-box .btn-facebook:hover {
   background-color: var(--white-800);
@@ -145,10 +145,10 @@ body {
 .form-box .btn-google:hover {
   background-color: var(--white-800);
   color: #da3f34;
-  border: 1px solid var(--main-color);
+  border: 1px solid #da3f34;
 }
 .form-box .btn-twitter:hover {
   background-color: var(--white-800);
   color: #33ccff;
-  border: 1px solid var(--main-color);
+  border: 1px solid #33ccff;
 }
