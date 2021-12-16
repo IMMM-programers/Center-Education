@@ -4,7 +4,7 @@ import { RiHomeLine, RiFileCopyLine } from 'react-icons/ri'
 import { FaWallet } from 'react-icons/fa'
 import { AiOutlinePieChart } from 'react-icons/ai'
 // import Badge from './Badge'
-import AvatarImage from '../../img/img1.webp'
+import AvatarImage from '../../img/pp.jpeg'
 import { darkThemeColor } from '../../utils'
 
 function Sidebar() {
@@ -12,7 +12,7 @@ function Sidebar() {
     <Container>
       <ProfileContainer>
         <Avatar src={AvatarImage} />
-        <Name>Kishan Sheth</Name>
+        <Name>Mohammed</Name>
         {/* <Badge content="Pro Level" /> */}
       </ProfileContainer>
       <LinksContainer>
@@ -44,14 +44,14 @@ function Sidebar() {
 }
 
 const Container = styled.div`
-  width: 280px;
+  width: 25%;
   height: 100% !important;
   border-radius: 2rem;
-  background-color: #091322;
+  background-color: #172e88;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 40px;
+  margin: 20px;
   gap: 3rem;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     width: 280px;
@@ -68,7 +68,7 @@ const ProfileContainer = styled.div`
 
 const Avatar = styled.img`
   height: 7rem;
-  border-radius: 6rem;
+  border-radius: 50%;
   margin-top: 20%;
 `
 
@@ -95,11 +95,11 @@ const Links = styled.ul`
 `
 
 const Link = styled.li`
-  margin-left: 25%;
+  margin-left: 15%;
   margin-bottom: 2rem;
   display: flex;
   gap: 1rem;
-  color: #e4e4e4;
+  color: #fff;
   cursor: pointer;
   h3 {
     font-weight: 300;
@@ -113,7 +113,7 @@ const Link = styled.li`
 
 const ContactContainer = styled.div`
   width: 60%;
-  background-color: #091322;
+  background-color: #172e88;
   color: #c4c4c4;
   height: 15%;
   margin: 30px auto;
