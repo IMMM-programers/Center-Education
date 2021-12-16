@@ -14,7 +14,7 @@
   --shadow-black-100: 0 5px 15px rgba(0, 0, 0, 0.1);
   --shadow-black-300: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
-body {
+.sign-in {
   height: 100vh;
   background-color: var(--color-5);
   display: flex;
