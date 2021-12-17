@@ -15,16 +15,36 @@ Coded by www.creative-tim.com
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import App from "App";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Soft UI Context Provider
 import { MaterialUIControllerProvider } from "context";
+import Home from "components/Home";
+import LogOut from "layouts/authentication/sign-in";
+import App from "App";
+// import routes from "routes";
+
+// const getRoutes = (allRoutes) =>
+//   allRoutes.map((route) => {
+//     if (route.collapse) {
+//       return getRoutes(route.collapse);
+//     }
+
+//     if (route.route) {
+//       return <Route path={route.route} element={route.component} key={route.key} />;
+//     }
+
+//     return null;
+//   });
 
 ReactDOM.render(
   <BrowserRouter>
     <MaterialUIControllerProvider>
-      <App />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<App />} />
+        <Route path="/authentication/Log-out" element={<LogOut />} />
+      </Routes>
     </MaterialUIControllerProvider>
   </BrowserRouter>,
   document.getElementById("root")

@@ -62,7 +62,7 @@ const routes = [
     name: "Teachers",
     key: "Teachers",
     icon: <Icon fontSize="small">account_circle</Icon>,
-    route: "/Teachers",
+    route: "/dashboard/Teachers",
     component: <Teachers />,
   },
   // {
