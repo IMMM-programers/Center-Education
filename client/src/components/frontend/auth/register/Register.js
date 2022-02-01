@@ -1,47 +1,60 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./sign-up.css";
-import axios from 'axios';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from 'react'
+import './sign-up.css'
+import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faEnvelope,
   faLock,
   faUser,
   faPhone,
-} from "@fortawesome/free-solid-svg-icons";
-import img1 from "../../img/img1.webp";
+} from '@fortawesome/free-solid-svg-icons'
+import img1 from '../../../../assets/images/sign-up.png'
 
-class SignUp extends React.Component {
-  state = {
-    name: "",
-    email: "",
-    password: "",
-    phoneNumber: "",
-  };
+import { Link, useHistory } from 'react-router-dom'
+import swal from 'sweetalert'
 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+function Register() {
+  const history = useHistory()
+  const [registerInput, setRegister] = useState({
+    name: '',
+    email: '',
+    password: '',
+    phonenumber: '',
+    error_list: [],
+  })
+
+  const handleInput = (e) => {
+    e.persist()
+    setRegister({ ...registerInput, [e.target.name]: e.target.value })
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    const { name, email, password, phoneNumber } = this.state;
-    const type = "Student";
-    axios
-      .post("/api/users/createUser", { name, email, password, phoneNumber, type })
-      .then((response) => {
-        // localStorage.setItem("token", response.data.token);
-        console.log(response.data);
+  const registerSubmit = (e) => {
+    e.preventDefault()
+
+    const data = {
+      name: registerInput.name,
+      email: registerInput.email,
+      password: registerInput.password,
+    }
+
+    axios.get('/sanctum/csrf-cookie').then((response) => {
+      axios.post(`/api/register`, data).then((res) => {
+        if (res.data.status === 200) {
+          localStorage.setItem('auth_token', res.data.token)
+          localStorage.setItem('auth_name', res.data.username)
+          swal('Success', res.data.message, 'success')
+          history.push('/')
+        } else {
+          setRegister({
+            ...registerInput,
+            error_list: res.data.validation_errors,
+          })
+        }
       })
-      .catch((err) => {
-        console.error(err);
-      });
+    })
   }
-
-  render() {
-    return (
+  return (
+    <div className="mainRegister">
       <div className="container">
         <div className="row px-3">
           <div className="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
@@ -50,10 +63,7 @@ class SignUp extends React.Component {
             </div>
             <div className="card-body">
               <h4 className="title text-center mt-4">Create a new account</h4>
-              <form
-                onSubmit={this.handleSubmit.bind(this)}
-                className="form-box px-3"
-              >
+              <form onSubmit={registerSubmit} className="form-box px-3">
                 <div className="form-input">
                   <span>
                     <FontAwesomeIcon icon={faUser} />
@@ -62,8 +72,8 @@ class SignUp extends React.Component {
                     type="text"
                     name="name"
                     placeholder="Name"
-                    value={this.state.name}
-                    onChange={this.handleChange.bind(this)}
+                    value={registerInput.name}
+                    onChange={handleInput}
                   />
                 </div>
                 <div className="form-input">
@@ -74,9 +84,8 @@ class SignUp extends React.Component {
                     type="email"
                     name="email"
                     placeholder="Email"
-                    tabindex="10"
-                    value={this.state.email}
-                    onChange={this.handleChange.bind(this)}
+                    value={registerInput.email}
+                    onChange={handleInput}
                   />
                 </div>
                 <div className="form-input">
@@ -87,8 +96,8 @@ class SignUp extends React.Component {
                     type="password"
                     name="password"
                     placeholder="Password"
-                    value={this.state.password}
-                    onChange={this.handleChange.bind(this)}
+                    value={registerInput.password}
+                    onChange={handleInput}
                   />
                 </div>
                 <div className="form-input">
@@ -96,16 +105,16 @@ class SignUp extends React.Component {
                     <FontAwesomeIcon icon={faPhone} />
                   </span>
                   <input
-                    type="text"
+                    type="number"
                     name="phoneNumber"
                     placeholder="Number Your Phone"
-                    value={this.state.phoneNumber}
-                    onChange={this.handleChange.bind(this)}
+                    value={registerInput.phonenumber}
+                    onChange={handleInput}
                   />
                 </div>
                 <div className="mb-3">
                   <button
-                    tabindex="submit"
+                    type="submit"
                     className="btn btn-block text-uppercase"
                   >
                     Register
@@ -115,25 +124,28 @@ class SignUp extends React.Component {
                 <div className="text-center my-3">or register by</div>
                 <div className="row mb-3">
                   <div className="col-4">
-                    <a
+                    <Link
                       href="#"
                       className="btn btn-block btn-social btn-facebook"
                     >
                       facebook
-                    </a>
+                    </Link>
                   </div>
                   <div className="col-4">
-                    <a href="#" className="btn btn-block btn-social btn-google">
+                    <Link
+                      href="#"
+                      className="btn btn-block btn-social btn-google"
+                    >
                       google
-                    </a>
+                    </Link>
                   </div>
                   <div className="col-4">
-                    <a
+                    <Link
                       href="#"
                       className="btn btn-block btn-social btn-twitter"
                     >
                       twitter
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <hr className="my-4" />
@@ -149,8 +161,8 @@ class SignUp extends React.Component {
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  )
 }
 
-export default SignUp;
+export default Register
