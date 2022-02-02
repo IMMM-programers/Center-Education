@@ -177,7 +177,7 @@ export default function App() {
       )}
       {layout === "vr" && <Configurator />}
       <Routes>
-        {/* {getRoutes(routes)} */}
+        {getRoutes(routes)}
         <Route path="/" element={<Dashboard />} />
         <Route path="/Teachers" element={<Teachers />} />
       </Routes>
