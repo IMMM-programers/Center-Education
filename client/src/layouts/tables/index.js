@@ -41,9 +41,9 @@ import Dialog from "@mui/material/Dialog";
 import TextField from "@mui/material/TextField";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
 
 function Tables() {
-  const { columns, rows } = teachersTableData();
   // const { columns: pColumns, rows: pRows } = projectsTableData();
   const [controller] = useMaterialUIController();
   const { sidenavColor } = controller;
@@ -57,6 +57,46 @@ function Tables() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const [inputValues, setInputValues] = React.useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+    teachers: [],
+  });
+  const { columns, rows } = teachersTableData(inputValues.teachers);
+
+  const { firstName, lastName, email, password, phoneNumber } = inputValues;
+
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setInputValues({ ...inputValues, [name]: value });
+  };
+
+  const addTeacher = () => {
+    const t = { name: `${firstName} ${lastName}`, email, password, phoneNumber, type: "Teacher" };
+    axios
+      .post("/api/users/createUser", t)
+      .then(() => {
+        handleClose();
+      })
+      .catch(() => {
+        handleClose();
+      });
+  };
+
+  React.useEffect(() => {
+    axios
+      .get("/api/users/Teachers")
+      .then((res) => {
+        setInputValues({ ...inputValues, teachers: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <DashboardLayout>
@@ -131,6 +171,7 @@ function Tables() {
         >
           Add New Teacher
         </MDButton>
+        {/* Popup code */}
         <Dialog open={open} onClose={handleClose} aria-labelledby="draggable-dialog-title">
           <Grid>
             <Card style={{ maxWidth: 450, padding: "20px 5px", margin: "0 auto" }}>
@@ -143,8 +184,11 @@ function Tables() {
                     <Grid xs={12} sm={6} item>
                       <TextField
                         placeholder="Enter first name"
+                        name="firstName"
                         label="First Name"
                         variant="outlined"
+                        value={firstName}
+                        onChange={handleOnChange}
                         fullWidth
                         required
                       />
@@ -152,6 +196,9 @@ function Tables() {
                     <Grid xs={12} sm={6} item>
                       <TextField
                         placeholder="Enter last name"
+                        name="lastName"
+                        value={lastName}
+                        onChange={handleOnChange}
                         label="Last Name"
                         variant="outlined"
                         fullWidth
@@ -162,6 +209,9 @@ function Tables() {
                       <TextField
                         type="email"
                         placeholder="Enter email"
+                        name="email"
+                        value={email}
+                        onChange={handleOnChange}
                         label="Email"
                         variant="outlined"
                         fullWidth
@@ -172,6 +222,9 @@ function Tables() {
                       <TextField
                         type="password"
                         placeholder="Enter password"
+                        name="password"
+                        value={password}
+                        onChange={handleOnChange}
                         label="Password"
                         variant="outlined"
                         fullWidth
@@ -182,6 +235,9 @@ function Tables() {
                       <TextField
                         type="number"
                         placeholder="Enter phone number"
+                        name="phoneNumber"
+                        value={phoneNumber}
+                        onChange={handleOnChange}
                         label="Phone"
                         variant="outlined"
                         fullWidth
@@ -189,12 +245,12 @@ function Tables() {
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <MDButton type="submit" variant="contained" color="success" fullWidth>
+                      <MDButton variant="contained" color="success" fullWidth onClick={addTeacher}>
                         Submit
                       </MDButton>
                     </Grid>
                     <Grid item xs={12}>
-                      <MDButton type="submit" variant="contained" color="warning" fullWidth>
+                      <MDButton variant="contained" color="warning" fullWidth onClick={handleClose}>
                         Cancel
                       </MDButton>
                     </Grid>

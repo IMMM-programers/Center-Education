@@ -5,14 +5,14 @@ const User = require("../models/User");
 
 module.exports.createUser = async (req, res) => {
   const { name, email, password, phoneNumber, type } = req.body;
-
+  console.log("hello");
   try {
     // See if user exists
     let user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({ errors: [{ msg: "User already exists" }] });
     }
-
+    
     // make new user
     user = new User({
       name,
@@ -78,6 +78,15 @@ module.exports.deleteUser = (req, res) => {
 module.exports.getStudents = async (req, res) => {
   try {
     let users = await User.find({ type: 'Student' }).select('-password');
+    res.json(users);
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+};
+
+module.exports.getTeachers = async (req, res) => {
+  try {
+    let users = await User.find({ type: 'Teacher' }).select('-password');
     res.json(users);
   } catch (error) {
     res.status(500).send('Server error');

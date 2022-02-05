@@ -13,14 +13,19 @@ import MDBadge from "components/MDBadge";
 // import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
 // import logoJira from "assets/images/small-logos/logo-jira.svg";
 // import logoInvesion from "assets/images/small-logos/logo-invision.svg";
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
+// import team2 from "assets/images/team-2.jpg";
+// import team3 from "assets/images/team-3.jpg";
 // import team4 from "assets/images/team-4.jpg";
 
+// export default function data({props}) {
 export default function data() {
-  const User = ({ image, name, email }) => (
+  const User = ({ name, email }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <MDAvatar src={image} name={name} size="sm" />
+      <MDAvatar
+        src="https://cdn-icons-png.flaticon.com/512/2784/2784445.png"
+        name={name}
+        size="sm"
+      />
       <MDBox ml={2} lineHeight={1}>
         <MDTypography display="block" variant="button" fontWeight="medium">
           {name}
@@ -30,6 +35,34 @@ export default function data() {
     </MDBox>
   );
 
+  // const a = props.map((e) => {
+  //   return {
+  //     user: (
+  //       <User
+  //         image="https://cdn-icons-png.flaticon.com/512/2784/2784445.png"
+  //         name={e.name}
+  //         email={e.email}
+  //       />
+  //     ),
+  //     courses: 2,
+  //     status: (
+  //       <MDBox ml={-1}>
+  //         <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
+  //       </MDBox>
+  //     ),
+  //     phone_number: (
+  //       <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+  //         0592145632
+  //       </MDTypography>
+  //     ),
+  //     action: (
+  //       <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+  //         Delete
+  //       </MDTypography>
+  //     ),
+  //   };
+  // });
+  // console.log(a);
   // const Job = ({ title, description }) => (
   //   <MDBox lineHeight={1} textAlign="left">
   //     <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
@@ -50,30 +83,17 @@ export default function data() {
 
     rows: [
       {
-        user: <User image={team2} name="John Michael" email="john@creative-tim.com" />,
+        user: (
+          <User
+            image="https://cdn-icons-png.flaticon.com/512/2784/2784445.png"
+            name="John Michael"
+            email="john@creative-tim.com"
+          />
+        ),
         courses: 2,
         status: (
           <MDBox ml={-1}>
             <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
-          </MDBox>
-        ),
-        phone_number: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            0592145632
-          </MDTypography>
-        ),
-        action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Delete
-          </MDTypography>
-        ),
-      },
-      {
-        user: <User image={team3} name="mohamed" email="john@creative-tim.com" />,
-        courses: 2,
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
           </MDBox>
         ),
         phone_number: (
