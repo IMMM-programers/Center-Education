@@ -5,6 +5,7 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
+import axios from "axios";
 
 // Images
 // import logoXD from "assets/images/small-logos/logo-xd.svg";
@@ -35,6 +36,17 @@ export default function data(props) {
     </MDBox>
   );
 
+  const deleteTeacher = (email) => {
+    axios
+      .delete(`/api/users/deleteUser/${email}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const a = [];
   props.forEach((e) => {
     a.push({
@@ -45,19 +57,30 @@ export default function data(props) {
           email={e.email}
         />
       ),
-      courses: 2,
+      courses: e.coursesNum,
       status: (
         <MDBox ml={-1}>
-          <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
+          {e.status === 0 ? (
+            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
+          ) : (
+            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
+          )}
         </MDBox>
       ),
       phone_number: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          0592145632
+          {e.phoneNumber}
         </MDTypography>
       ),
       action: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+        <MDTypography
+          component="a"
+          href="#"
+          variant="caption"
+          color="text"
+          fontWeight="medium"
+          onClick={() => deleteTeacher(e.email)}
+        >
           Delete
         </MDTypography>
       ),

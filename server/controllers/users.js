@@ -5,7 +5,6 @@ const User = require("../models/User");
 
 module.exports.createUser = async (req, res) => {
   const { name, email, password, phoneNumber, type } = req.body;
-  console.log("hello");
   try {
     // See if user exists
     let user = await User.findOne({ email });
