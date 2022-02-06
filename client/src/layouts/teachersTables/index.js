@@ -31,7 +31,7 @@ import DataTable from "examples/Tables/DataTable";
 // import { styled } from "@mui/material/styles";
 
 // Data
-import teachersTableData from "layouts/tables/data/teachersTableData";
+import teachersTableData from "layouts/teachersTables/data/teachersTableData";
 import MDButton from "components/MDButton";
 // import projectsTableData from "layouts/tables/data/projectsTableData";
 import { useMaterialUIController } from "context";

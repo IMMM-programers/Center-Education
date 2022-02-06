@@ -38,7 +38,8 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 import Dashboard from "layouts/dashboard";
-import Teachers from "layouts/tables";
+import Teachers from "layouts/teachersTables";
+import Ads from "layouts/adsTables";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -180,6 +181,7 @@ export default function App() {
         {getRoutes(routes)}
         <Route path="/" element={<Dashboard />} />
         <Route path="/Teachers" element={<Teachers />} />
+        <Route path="/Ads" element={<Ads />} />
       </Routes>
     </ThemeProvider>
   );
