@@ -1,10 +1,9 @@
 const Ads = require("../models/Ads");
 module.exports.createAds = (req, res) => {
-  let { title, image, video, categoryName } = req.body;
+  let { title, image, categoryName } = req.body;
   const ad = new Ads({
     title,
     image,
-    video,
     categoryName,
   });
   ad.save()

@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema({
   type: { type: String, required: true },
   status: { type: Number, default: 0 },
   coursesNum: { type: Number, default: 0 },
+  ads: { type: [Object], default: [] },
 });
 
 module.exports = mongoose.model("Users", UserSchema);

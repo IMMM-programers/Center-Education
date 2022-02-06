@@ -3,9 +3,9 @@
 // Soft UI Dashboard React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
-import MDBadge from "components/MDBadge";
-import axios from "axios";
+// import MDAvatar from "components/MDAvatar";
+// import MDBadge from "components/MDBadge";
+// import axios from "axios";
 
 // Images
 // import logoXD from "assets/images/small-logos/logo-xd.svg";
@@ -20,56 +20,54 @@ import axios from "axios";
 
 // export default function data({props}) {
 export default function data(props) {
-  const User = ({ name, email }) => (
-    <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <MDAvatar
-        src="https://cdn-icons-png.flaticon.com/512/2784/2784445.png"
-        name={name}
-        size="sm"
-      />
-      <MDBox ml={2} lineHeight={1}>
-        <MDTypography display="block" variant="button" fontWeight="medium">
-          {name}
-        </MDTypography>
-        <MDTypography variant="caption">{email}</MDTypography>
-      </MDBox>
-    </MDBox>
-  );
+  // const User = ({ name, email }) => (
+  //   <MDBox display="flex" alignItems="center" lineHeight={1}>
+  //     <MDAvatar
+  //       src="https://cdn-icons-png.flaticon.com/512/2784/2784445.png"
+  //       name={name}
+  //       size="sm"
+  //     />
+  //     <MDBox ml={2} lineHeight={1}>
+  //       <MDTypography display="block" variant="button" fontWeight="medium">
+  //         {name}
+  //       </MDTypography>
+  //       <MDTypography variant="caption">{email}</MDTypography>
+  //     </MDBox>
+  //   </MDBox>
+  // );
 
-  const deleteTeacher = (email) => {
-    axios
-      .delete(`/api/users/deleteUser/${email}`)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const deleteTeacher = (email) => {
+  //   axios
+  //     .delete(`/api/users/deleteUser/${email}`)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const a = [];
   props.forEach((e) => {
     a.push({
-      user: (
-        <User
-          image="https://cdn-icons-png.flaticon.com/512/2784/2784445.png"
-          name={e.name}
-          email={e.email}
-        />
-      ),
-      courses: e.coursesNum,
-      status: (
-        <MDBox ml={-1}>
-          {e.status === 0 ? (
-            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
-          ) : (
-            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
-          )}
+      title: (
+        <MDBox lineHeight={1}>
+          <MDTypography display="block" variant="button" fontWeight="medium">
+            {e.title}
+          </MDTypography>
         </MDBox>
       ),
-      phone_number: (
-        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          {e.phoneNumber}
+      image: (
+        <MDTypography
+          component="a"
+          href="#"
+          variant="caption"
+          color="text"
+          fontWeight="medium"
+          style={{ color: "#328CED" }}
+          // onClick={() => deleteTeacher(e.email)}
+        >
+          Show
         </MDTypography>
       ),
       action: (
@@ -79,7 +77,8 @@ export default function data(props) {
           variant="caption"
           color="text"
           fontWeight="medium"
-          onClick={() => deleteTeacher(e.email)}
+          style={{ color: "#F53E36" }}
+          // onClick={() => deleteTeacher(e.email)}
         >
           Delete
         </MDTypography>
@@ -97,11 +96,9 @@ export default function data(props) {
 
   return {
     columns: [
-      { Header: "user", accessor: "user", width: "45%", align: "left" },
-      { Header: "courses", accessor: "courses", align: "left" },
-      { Header: "status", accessor: "status", align: "center" },
-      { Header: "phone_number", accessor: "phone_number", align: "center" },
-      { Header: "action", accessor: "action", align: "center" },
+      { Header: "title", accessor: "title", width: "50%", align: "left" },
+      { Header: "image", accessor: "image", align: "left", width: "23%" },
+      { Header: "action", accessor: "action", width: "23%", align: "left" },
     ],
 
     rows: a,

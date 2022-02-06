@@ -37,10 +37,10 @@ import MDButton from "components/MDButton";
 import { useMaterialUIController } from "context";
 
 // Dialog Teacher
-import Dialog from "@mui/material/Dialog";
-import TextField from "@mui/material/TextField";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+// import Dialog from "@mui/material/Dialog";
+// import TextField from "@mui/material/TextField";
+// import CardContent from "@mui/material/CardContent";
+// import Typography from "@mui/material/Typography";
 import axios from "axios";
 
 function Tables() {
@@ -48,50 +48,50 @@ function Tables() {
   const [controller] = useMaterialUIController();
   const { sidenavColor } = controller;
 
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
   const [inputValues, setInputValues] = React.useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    phoneNumber: "",
-    teachers: [],
+    //   firstName: "",
+    //   lastName: "",
+    //   email: "",
+    //   password: "",
+    //   phoneNumber: "",
+    ads: [],
   });
-  const { columns, rows } = adsTableData(inputValues.teachers);
+  const { columns, rows } = adsTableData(inputValues.ads);
 
-  const { firstName, lastName, email, password, phoneNumber } = inputValues;
+  // const { firstName, lastName, email, password, phoneNumber } = inputValues;
 
-  const handleOnChange = (event) => {
-    const { name, value } = event.target;
-    setInputValues({ ...inputValues, [name]: value });
-  };
+  // const handleOnChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setInputValues({ ...inputValues, [name]: value });
+  // };
 
-  const addTeacher = () => {
-    const t = { name: `${firstName} ${lastName}`, email, password, phoneNumber, type: "Teacher" };
-    axios
-      .post("/api/users/createUser", t)
-      .then(() => {
-        handleClose();
-      })
-      .catch(() => {
-        handleClose();
-      });
-  };
+  // const addTeacher = () => {
+  //   const t = { name: `${firstName} ${lastName}`, email, password, phoneNumber, type: "Teacher" };
+  //   axios
+  //     .post("/api/users/createUser", t)
+  //     .then(() => {
+  //       handleClose();
+  //     })
+  //     .catch(() => {
+  //       handleClose();
+  //     });
+  // };
 
   React.useEffect(() => {
     axios
-      .get("/api/users/Teachers")
+      .get("/api/users/Profile/m@gmail.com") // need to change
       .then((res) => {
-        setInputValues({ ...inputValues, teachers: res.data });
+        setInputValues({ ...inputValues, ads: res.data.ads });
       })
       .catch((err) => {
         console.log(err);
@@ -116,7 +116,7 @@ function Tables() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Teachers Table
+                  Ads Table
                 </MDTypography>
               </MDBox>
 
@@ -167,12 +167,12 @@ function Tables() {
           rel="noreferrer"
           variant="gradient"
           color={sidenavColor}
-          onClick={handleClickOpen}
+          // onClick={handleClickOpen}
         >
-          Add New Teacher
+          Add New Ad
         </MDButton>
         {/* Popup code */}
-        <Dialog open={open} onClose={handleClose} aria-labelledby="draggable-dialog-title">
+        {/* <Dialog open={open} onClose={handleClose} aria-labelledby="draggable-dialog-title">
           <Grid>
             <Card style={{ maxWidth: 450, padding: "20px 5px", margin: "0 auto" }}>
               <CardContent>
@@ -259,7 +259,7 @@ function Tables() {
               </CardContent>
             </Card>
           </Grid>
-        </Dialog>
+        </Dialog> */}
       </MDBox>
       <Footer />
     </DashboardLayout>
