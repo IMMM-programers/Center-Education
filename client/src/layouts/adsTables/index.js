@@ -37,10 +37,11 @@ import MDButton from "components/MDButton";
 import { useMaterialUIController } from "context";
 
 // Dialog Teacher
-// import Dialog from "@mui/material/Dialog";
-// import TextField from "@mui/material/TextField";
-// import CardContent from "@mui/material/CardContent";
-// import Typography from "@mui/material/Typography";
+import Dialog from "@mui/material/Dialog";
+import TextField from "@mui/material/TextField";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+
 import axios from "axios";
 
 function Tables() {
@@ -48,15 +49,15 @@ function Tables() {
   const [controller] = useMaterialUIController();
   const { sidenavColor } = controller;
 
-  // const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const [inputValues, setInputValues] = React.useState({
     //   firstName: "",
@@ -167,85 +168,49 @@ function Tables() {
           rel="noreferrer"
           variant="gradient"
           color={sidenavColor}
-          // onClick={handleClickOpen}
+          onClick={handleClickOpen}
         >
           Add New Ad
         </MDButton>
         {/* Popup code */}
-        {/* <Dialog open={open} onClose={handleClose} aria-labelledby="draggable-dialog-title">
+        <Dialog open={open} onClose={handleClose} aria-labelledby="draggable-dialog-title">
           <Grid>
             <Card style={{ maxWidth: 450, padding: "20px 5px", margin: "0 auto" }}>
               <CardContent>
                 <Typography gutterBottom variant="h5" pb={3}>
-                  Add Teacher
+                  Add Ad
                 </Typography>
                 <form>
                   <Grid container spacing={1}>
-                    <Grid xs={12} sm={6} item>
+                    <Grid item xs={12} mb={2}>
                       <TextField
-                        placeholder="Enter first name"
-                        name="firstName"
-                        label="First Name"
+                        type="text"
+                        placeholder="Enter Title"
+                        name="title"
+                        // value={email}
+                        // onChange={handleOnChange}
+                        label="Titel"
                         variant="outlined"
-                        value={firstName}
-                        onChange={handleOnChange}
                         fullWidth
+                        // sx={{ mt: 3 }}
                         required
                       />
                     </Grid>
-                    <Grid xs={12} sm={6} item>
+                    <Grid item xs={12} mb={2}>
                       <TextField
-                        placeholder="Enter last name"
-                        name="lastName"
-                        value={lastName}
-                        onChange={handleOnChange}
-                        label="Last Name"
-                        variant="outlined"
-                        fullWidth
-                        required
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        type="email"
-                        placeholder="Enter email"
-                        name="email"
-                        value={email}
-                        onChange={handleOnChange}
-                        label="Email"
+                        type="text"
+                        placeholder="Enter Image URL"
+                        name="image"
+                        // value={password}
+                        // onChange={handleOnChange}
+                        label="Image URL"
                         variant="outlined"
                         fullWidth
                         required
                       />
                     </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        type="password"
-                        placeholder="Enter password"
-                        name="password"
-                        value={password}
-                        onChange={handleOnChange}
-                        label="Password"
-                        variant="outlined"
-                        fullWidth
-                        required
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        type="number"
-                        placeholder="Enter phone number"
-                        name="phoneNumber"
-                        value={phoneNumber}
-                        onChange={handleOnChange}
-                        label="Phone"
-                        variant="outlined"
-                        fullWidth
-                        required
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <MDButton variant="contained" color="success" fullWidth onClick={addTeacher}>
+                    <Grid item xs={12} mb={1}>
+                      <MDButton variant="contained" color="success" fullWidth>
                         Submit
                       </MDButton>
                     </Grid>
@@ -259,7 +224,7 @@ function Tables() {
               </CardContent>
             </Card>
           </Grid>
-        </Dialog> */}
+        </Dialog>
       </MDBox>
       <Footer />
     </DashboardLayout>

@@ -1,14 +1,9 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./sign-up.css";
-import axios from 'axios';
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faLock,
-  faUser,
-  faPhone,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faLock, faUser, faPhone } from "@fortawesome/free-solid-svg-icons";
 import img1 from "../../img/img1.webp";
 
 class SignUp extends React.Component {
@@ -50,10 +45,7 @@ class SignUp extends React.Component {
             </div>
             <div className="card-body">
               <h4 className="title text-center mt-4">Create a new account</h4>
-              <form
-                onSubmit={this.handleSubmit.bind(this)}
-                className="form-box px-3"
-              >
+              <form onSubmit={this.handleSubmit.bind(this)} className="form-box px-3">
                 <div className="form-input">
                   <span>
                     <FontAwesomeIcon icon={faUser} />
@@ -104,10 +96,7 @@ class SignUp extends React.Component {
                   />
                 </div>
                 <div className="mb-3">
-                  <button
-                    tabindex="submit"
-                    className="btn btn-block text-uppercase"
-                  >
+                  <button tabindex="submit" className="btn btn-block text-uppercase">
                     Register
                   </button>
                 </div>
@@ -115,10 +104,7 @@ class SignUp extends React.Component {
                 <div className="text-center my-3">or register by</div>
                 <div className="row mb-3">
                   <div className="col-4">
-                    <a
-                      href="#"
-                      className="btn btn-block btn-social btn-facebook"
-                    >
+                    <a href="#" className="btn btn-block btn-social btn-facebook">
                       facebook
                     </a>
                   </div>
@@ -128,10 +114,7 @@ class SignUp extends React.Component {
                     </a>
                   </div>
                   <div className="col-4">
-                    <a
-                      href="#"
-                      className="btn btn-block btn-social btn-twitter"
-                    >
+                    <a href="#" className="btn btn-block btn-social btn-twitter">
                       twitter
                     </a>
                   </div>

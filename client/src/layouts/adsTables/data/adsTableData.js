@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
 
+import * as React from "react";
+
 // Soft UI Dashboard React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+import MDButton from "components/MDButton";
 // import MDAvatar from "components/MDAvatar";
 // import MDBadge from "components/MDBadge";
 // import axios from "axios";
@@ -17,6 +20,12 @@ import MDTypography from "components/MDTypography";
 // import team2 from "assets/images/team-2.jpg";
 // import team3 from "assets/images/team-3.jpg";
 // import team4 from "assets/images/team-4.jpg";
+
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 // export default function data({props}) {
 export default function data(props) {
@@ -47,6 +56,16 @@ export default function data(props) {
   //     });
   // };
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const a = [];
   props.forEach((e) => {
     a.push({
@@ -58,17 +77,46 @@ export default function data(props) {
         </MDBox>
       ),
       image: (
-        <MDTypography
-          component="a"
-          href="#"
-          variant="caption"
-          color="text"
-          fontWeight="medium"
-          style={{ color: "#328CED" }}
-          // onClick={() => deleteTeacher(e.email)}
-        >
-          Show
-        </MDTypography>
+        <MDBox>
+          <MDTypography
+            component="a"
+            href="#"
+            variant="caption"
+            color="text"
+            fontWeight="medium"
+            style={{ color: "#328CED" }}
+            onClick={handleClickOpen}
+          >
+            Show
+          </MDTypography>
+          <Dialog open={open} onClose={handleClose}>
+            <DialogTitle>Ad Details</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                <MDTypography component="h6" href="#" variant="h6" fontWeight="medium">
+                  To subscribe to this website, please enter your email address here. We will send
+                  updates occasionally.
+                </MDTypography>
+              </DialogContentText>
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiMxqFiYQ4S-GGwI1EywQeRRy6dJ0AO4KJcw&usqp=CAU"
+                alt="{item.title}"
+                loading="lazy"
+                width="100%"
+                height="100%"
+                style={{ marginTop: "15px" }}
+              />
+            </DialogContent>
+            <DialogActions>
+              <MDButton
+                onClick={handleClose}
+                style={{ backgroundColor: "#F53E36", color: "white" }}
+              >
+                Cansel
+              </MDButton>
+            </DialogActions>
+          </Dialog>
+        </MDBox>
       ),
       action: (
         <MDTypography
