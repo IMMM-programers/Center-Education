@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createUser, editUser, deleteUser, getStudents, getProfile, getTeachers } = require('../controllers/users');
+const { createUser, editUser, deleteUser, getStudents, getProfile, getTeachers, addAds, deleteAds } = require('../controllers/users');
 
 // @route  POST api/users + /createUser
 // @desc   Register user
@@ -34,6 +34,20 @@ router.get('/Profile/:email', getProfile);
 router.delete(
   '/deleteUser/:email',
   deleteUser,
+);
+
+// @route  PATCH api/users + /addAds
+// @desc   Edit Ads
+router.patch(
+  '/addAds/:email',
+  addAds,
+);
+
+// @route  delete api/users + /deleteAds
+// @desc   Delete Ads
+router.delete(
+  '/deleteAds/:i',
+  deleteAds,
 );
 
 module.exports = router;

@@ -60,37 +60,33 @@ function Tables() {
   };
 
   const [inputValues, setInputValues] = React.useState({
-    //   firstName: "",
-    //   lastName: "",
-    //   email: "",
-    //   password: "",
-    //   phoneNumber: "",
+    title: "",
+    imageUrl: "",
     ads: [],
   });
-  const { columns, rows } = adsTableData(inputValues.ads);
+  const { title, imageUrl, ads } = inputValues;
+  const { columns, rows } = adsTableData(ads);
 
-  // const { firstName, lastName, email, password, phoneNumber } = inputValues;
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setInputValues({ ...inputValues, [name]: value });
+  };
 
-  // const handleOnChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setInputValues({ ...inputValues, [name]: value });
-  // };
-
-  // const addTeacher = () => {
-  //   const t = { name: `${firstName} ${lastName}`, email, password, phoneNumber, type: "Teacher" };
-  //   axios
-  //     .post("/api/users/createUser", t)
-  //     .then(() => {
-  //       handleClose();
-  //     })
-  //     .catch(() => {
-  //       handleClose();
-  //     });
-  // };
+  const addAd = () => {
+    const ad = { title, imageUrl };
+    axios
+      .patch(`/api/users/addAds/m@gmail.com`, ad) // need to be dynamic
+      .then(() => {
+        handleClose();
+      })
+      .catch(() => {
+        handleClose();
+      });
+  };
 
   React.useEffect(() => {
     axios
-      .get("/api/users/Profile/m@gmail.com") // need to change
+      .get("/api/users/Profile/m@gmail.com") // need to be dynamic
       .then((res) => {
         setInputValues({ ...inputValues, ads: res.data.ads });
       })
@@ -187,8 +183,8 @@ function Tables() {
                         type="text"
                         placeholder="Enter Title"
                         name="title"
-                        // value={email}
-                        // onChange={handleOnChange}
+                        value={title}
+                        onChange={handleOnChange}
                         label="Titel"
                         variant="outlined"
                         fullWidth
@@ -200,9 +196,9 @@ function Tables() {
                       <TextField
                         type="text"
                         placeholder="Enter Image URL"
-                        name="image"
-                        // value={password}
-                        // onChange={handleOnChange}
+                        name="imageUrl"
+                        value={imageUrl}
+                        onChange={handleOnChange}
                         label="Image URL"
                         variant="outlined"
                         fullWidth
@@ -210,7 +206,7 @@ function Tables() {
                       />
                     </Grid>
                     <Grid item xs={12} mb={1}>
-                      <MDButton variant="contained" color="success" fullWidth>
+                      <MDButton variant="contained" color="success" fullWidth onClick={addAd}>
                         Submit
                       </MDButton>
                     </Grid>
