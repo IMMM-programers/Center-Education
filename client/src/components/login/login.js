@@ -32,30 +32,16 @@ class Login extends React.Component {
                   <span>
                     <FontAwesomeIcon icon={faEnvelope} />
                   </span>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    tabindex="10"
-                    required
-                  />
+                  <input type="email" name="email" placeholder="Email" tabindex="10" required />
                 </div>
                 <div className="form-input">
                   <span>
-                  <FontAwesomeIcon icon={faLock} />
+                    <FontAwesomeIcon icon={faLock} />
                   </span>
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    required
-                  />
+                  <input type="password" name="password" placeholder="Password" required />
                 </div>
                 <div className="mb-3">
-                  <button
-                    tabindex="submit"
-                    className="btn btn-block text-uppercase"
-                  >
+                  <button tabindex="submit" className="btn btn-block text-uppercase">
                     Login
                   </button>
                 </div>
@@ -67,10 +53,7 @@ class Login extends React.Component {
                 <div className="text-center my-3">or login with</div>
                 <div className="row mb-3">
                   <div className="col-4">
-                    <a
-                      href=""
-                      className="btn btn-block btn-social btn-facebook"
-                    >
+                    <a href="" className="btn btn-block btn-social btn-facebook">
                       facebook
                     </a>
                   </div>

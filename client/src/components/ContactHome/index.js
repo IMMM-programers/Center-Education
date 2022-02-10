@@ -10,13 +10,15 @@ import TextField from "@mui/material/TextField";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 
 import NearMeIcon from "@mui/icons-material/NearMe";
+import EmailIcon from "@mui/icons-material/Email";
+import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 
 export default function PartCourse() {
   return (
-    <Box sx={{ py: 10, px: 13, mb: 10 }} bgcolor="#f0f1f9">
+    <Box sx={{ py: 10, px: 12, mt: 14 }} bgcolor="#f0f1f9">
       <Grid container columnSpacing={{ xs: 1, sm: 2, md: 1 }}>
         <Grid item xs={12} align="center">
-          <Typography variant="h4" component="h4" sx={{ fontWeight: 600, mb: 4 }}>
+          <Typography variant="h4" component="h4" sx={{ fontWeight: 600, mb: 8 }}>
             Contact <span style={{ color: "#172e88" }}>Us</span>
           </Typography>
         </Grid>
@@ -60,15 +62,15 @@ export default function PartCourse() {
                 }}
                 variant="circular"
               >
-                <NearMeIcon sx={{ fontSize: 28 }} />
+                <EmailIcon sx={{ fontSize: 28 }} />
               </Avatar>
             </Grid>
             <Grid item xs={10} sx={{}}>
               <Typography variant="h6" component="h6" sx={{ fontSize: 18, color: "#3152a3" }}>
-                Company Location
+                Write to us at
               </Typography>
               <Typography variant="p" component="p" sx={{ fontSize: 16, color: "#7a7a7a" }}>
-                199 xyz gali, New Delhi
+                info@gamil.com
               </Typography>
             </Grid>
           </Grid>
@@ -84,15 +86,15 @@ export default function PartCourse() {
                 }}
                 variant="circular"
               >
-                <NearMeIcon sx={{ fontSize: 28 }} />
+                <PhoneInTalkIcon sx={{ fontSize: 28 }} />
               </Avatar>
             </Grid>
             <Grid item xs={10} sx={{}}>
               <Typography variant="h6" component="h6" sx={{ fontSize: 18, color: "#3152a3" }}>
-                Company Location
+                Call us on
               </Typography>
               <Typography variant="p" component="p" sx={{ fontSize: 16, color: "#7a7a7a" }}>
-                199 xyz gali, New Delhi
+                (+970) 59584316
               </Typography>
             </Grid>
           </Grid>
@@ -105,8 +107,9 @@ export default function PartCourse() {
                   id="outlined-basic"
                   label="Full Name"
                   variant="outlined"
+                  hiddenLabel
                   sx={{ width: "100%", bgcolor: "white" }}
-                  style={{ borderRadius: "8px" }}
+                  // style={{ borderRadius: "30px", border: `1px solid blue` }}
                 />
               </Grid>
               <Grid item xs={6}>
