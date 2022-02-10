@@ -39,10 +39,11 @@ Coded by www.creative-tim.com
 import Dashboard from "layouts/dashboard";
 import Teachers from "layouts/teachersTables";
 import Ads from "layouts/adsTables";
+import SignIn from "layouts/authentication/sign-in";
 // import RTL from "layouts/rtl";
 // import Notifications from "layouts/notifications";
 // import Profile from "layouts/profile";
-import LogOut from "layouts/authentication/sign-in";
+// import LogOut from "layouts/authentication/sign-in";
 // import SignUp from "layouts/authentication/sign-up";
 
 // @mui icons
@@ -73,6 +74,14 @@ const routes = [
     route: "/dashboard/Ads",
     component: <Ads />,
   },
+  {
+    type: "collapse",
+    name: "Sign In",
+    key: "sign-in",
+    icon: <Icon fontSize="small">login</Icon>,
+    route: "/dashboard/authentication/sign-in",
+    component: <SignIn />,
+  },
   // {
   //   type: "collapse",
   //   name: "RTL",
@@ -97,14 +106,14 @@ const routes = [
   //   route: "/profile",
   //   component: <Profile />,
   // },
-  {
-    type: "collapse",
-    name: "Log out",
-    key: "Log-out",
-    icon: <Icon fontSize="small">logout</Icon>,
-    route: "/authentication/Log-out",
-    component: <LogOut />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Log out",
+  //   key: "Log-out",
+  //   icon: <Icon fontSize="small">logout</Icon>,
+  //   route: "/authentication/Log-out",
+  //   component: <LogOut />,
+  // },
   // {
   //   type: "collapse",
   //   name: "Sign Up",

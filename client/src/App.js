@@ -40,6 +40,7 @@ import brandDark from "assets/images/logo-ct-dark.png";
 import Dashboard from "layouts/dashboard";
 import Teachers from "layouts/teachersTables";
 import Ads from "layouts/adsTables";
+import SignIn from "layouts/authentication/sign-in";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -182,6 +183,7 @@ export default function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/Teachers" element={<Teachers />} />
         <Route path="/Ads" element={<Ads />} />
+        <Route path="/authentication/sign-in" element={<SignIn />} />
       </Routes>
     </ThemeProvider>
   );
