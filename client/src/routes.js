@@ -40,11 +40,11 @@ import Dashboard from "layouts/dashboard";
 import Teachers from "layouts/teachersTables";
 import Ads from "layouts/adsTables";
 import SignIn from "layouts/authentication/sign-in";
+import SignUp from "layouts/authentication/sign-up";
 // import RTL from "layouts/rtl";
 // import Notifications from "layouts/notifications";
 // import Profile from "layouts/profile";
 // import LogOut from "layouts/authentication/sign-in";
-// import SignUp from "layouts/authentication/sign-up";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -82,6 +82,14 @@ const routes = [
     route: "/dashboard/authentication/sign-in",
     component: <SignIn />,
   },
+  {
+    type: "collapse",
+    name: "Sign Up",
+    key: "sign-up",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/authentication/sign-up",
+    component: <SignUp />,
+  },
   // {
   //   type: "collapse",
   //   name: "RTL",
@@ -113,14 +121,6 @@ const routes = [
   //   icon: <Icon fontSize="small">logout</Icon>,
   //   route: "/authentication/Log-out",
   //   component: <LogOut />,
-  // },
-  // {
-  //   type: "collapse",
-  //   name: "Sign Up",
-  //   key: "sign-up",
-  //   icon: <Icon fontSize="small">assignment</Icon>,
-  //   route: "/authentication/sign-up",
-  //   component: <SignUp />,
   // },
 ];
 

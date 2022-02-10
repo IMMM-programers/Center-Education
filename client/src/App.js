@@ -41,6 +41,7 @@ import Dashboard from "layouts/dashboard";
 import Teachers from "layouts/teachersTables";
 import Ads from "layouts/adsTables";
 import SignIn from "layouts/authentication/sign-in";
+import SignUp from "layouts/authentication/sign-up";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -184,6 +185,7 @@ export default function App() {
         <Route path="/Teachers" element={<Teachers />} />
         <Route path="/Ads" element={<Ads />} />
         <Route path="/authentication/sign-in" element={<SignIn />} />
+        <Route path="/authentication/sign-up" element={<SignUp />} />
       </Routes>
     </ThemeProvider>
   );
