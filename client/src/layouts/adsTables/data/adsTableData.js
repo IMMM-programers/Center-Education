@@ -5,10 +5,10 @@ import * as React from "react";
 // Soft UI Dashboard React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+// import MDButton from "components/MDButton";
 // import MDAvatar from "components/MDAvatar";
 // import MDBadge from "components/MDBadge";
-// import axios from "axios";
+import axios from "axios";
 
 // Images
 // import logoXD from "assets/images/small-logos/logo-xd.svg";
@@ -21,53 +21,34 @@ import MDButton from "components/MDButton";
 // import team3 from "assets/images/team-3.jpg";
 // import team4 from "assets/images/team-4.jpg";
 
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+// import Dialog from "@mui/material/Dialog";
+// import DialogActions from "@mui/material/DialogActions";
+// import DialogContent from "@mui/material/DialogContent";
+// import DialogContentText from "@mui/material/DialogContentText";
+// import DialogTitle from "@mui/material/DialogTitle";
 
-// export default function data({props}) {
+import Image from "components/ShowImage";
+
 export default function data(props) {
-  // const User = ({ name, email }) => (
-  //   <MDBox display="flex" alignItems="center" lineHeight={1}>
-  //     <MDAvatar
-  //       src="https://cdn-icons-png.flaticon.com/512/2784/2784445.png"
-  //       name={name}
-  //       size="sm"
-  //     />
-  //     <MDBox ml={2} lineHeight={1}>
-  //       <MDTypography display="block" variant="button" fontWeight="medium">
-  //         {name}
-  //       </MDTypography>
-  //       <MDTypography variant="caption">{email}</MDTypography>
-  //     </MDBox>
-  //   </MDBox>
-  // );
+  const [inputValues, setInputValues] = React.useState({
+    title: "",
+    image: "",
+    visibility: "hidden",
+  });
 
-  // const deleteTeacher = (email) => {
-  //   axios
-  //     .delete(`/api/users/deleteUser/${email}`)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
+  const deleteAds = (i) => {
+    axios
+      .delete(`/api/users/deleteAds/${i}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const a = [];
-  props.forEach((e) => {
+  props.forEach((e, ind) => {
     a.push({
       title: (
         <MDBox lineHeight={1}>
@@ -85,37 +66,36 @@ export default function data(props) {
             color="text"
             fontWeight="medium"
             style={{ color: "#328CED" }}
-            onClick={handleClickOpen}
+            onClick={() =>
+              setInputValues({
+                ...inputValues,
+                visibility: "visible",
+                title: e.title,
+                image: e.imageUrl,
+              })
+            }
           >
             Show
           </MDTypography>
-          <Dialog open={open} onClose={handleClose}>
+          <Image
+            visibility={inputValues.visibility}
+            picture={inputValues.image}
+            title={inputValues.title}
+          />
+          {/* <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Ad Details</DialogTitle>
             <DialogContent>
-              <DialogContentText>
-                <MDTypography component="h6" href="#" variant="h6" fontWeight="medium">
-                  To subscribe to this website, please enter your email address here. We will send
-                  updates occasionally.
-                </MDTypography>
-              </DialogContentText>
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiMxqFiYQ4S-GGwI1EywQeRRy6dJ0AO4KJcw&usqp=CAU"
-                alt="{item.title}"
-                loading="lazy"
-                width="100%"
-                height="100%"
-                style={{ marginTop: "15px" }}
-              />
+              <Image />
             </DialogContent>
             <DialogActions>
               <MDButton
                 onClick={handleClose}
                 style={{ backgroundColor: "#F53E36", color: "white" }}
               >
-                Cansel
+                Cancel
               </MDButton>
             </DialogActions>
-          </Dialog>
+          </Dialog> */}
         </MDBox>
       ),
       action: (
@@ -126,7 +106,7 @@ export default function data(props) {
           color="text"
           fontWeight="medium"
           style={{ color: "#F53E36" }}
-          // onClick={() => deleteTeacher(e.email)}
+          onClick={() => deleteAds(ind)}
         >
           Delete
         </MDTypography>

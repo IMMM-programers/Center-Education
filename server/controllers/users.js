@@ -11,7 +11,7 @@ module.exports.createUser = async (req, res) => {
     if (user) {
       return res.status(400).json({ errors: [{ msg: "User already exists" }] });
     }
-    
+
     // make new user
     user = new User({
       name,
@@ -65,39 +65,62 @@ module.exports.editUser = async (req, res) => {
 
 module.exports.deleteUser = (req, res) => {
   const { email } = req.params;
-	User.deleteOne({email})
-	.then(()=>{
-		res.send("deleting done")
-	})
-	.catch((err)=>{
-		res.send("Error in delete: " + err.message)
-	})
+  User.deleteOne({ email })
+    .then(() => {
+      res.send("deleting done");
+    })
+    .catch((err) => {
+      res.send("Error in delete: " + err.message);
+    });
 };
 
 module.exports.getStudents = async (req, res) => {
   try {
-    let users = await User.find({ type: 'Student' }).select('-password');
+    let users = await User.find({ type: "Student" }).select("-password");
     res.json(users);
   } catch (error) {
-    res.status(500).send('Server error');
+    res.status(500).send("Server error");
   }
 };
 
 module.exports.getTeachers = async (req, res) => {
   try {
-    let users = await User.find({ type: 'Teacher' }).select('-password');
+    let users = await User.find({ type: "Teacher" }).select("-password");
     res.json(users);
   } catch (error) {
-    res.status(500).send('Server error');
+    res.status(500).send("Server error");
   }
 };
 
 module.exports.getProfile = async (req, res) => {
   try {
-    const {email} = req.params;
-    let data = await User.findOne({ email }).select('-password');
+    const { email } = req.params;
+    let data = await User.findOne({ email }).select("-password");
     res.json(data);
   } catch (error) {
-    res.status(500).send('Server error');
+    res.status(500).send("Server error");
+  }
+};
+
+
+module.exports.addAds = async (req, res) => {
+  try {
+    const { email } = req.params;
+    await User.updateOne({ email }, { $push: { ads: req.body } });
+    res.send("success in adding ads");
+  } catch (error) {
+    res.send("Error in updating" + error.message);
+  }
+};
+
+module.exports.deleteAds = async (req, res) => {
+  try {
+    const { i } = req.params;
+    const {ads} = await User.findOne({type: "Admin"});
+    ads.splice(i,1)
+    await User.updateOne({ type: "Admin" }, { $set: { ads } });
+    res.send("success in deleting ads");
+  } catch (error) {
+    res.send("Error in updating" + error.message);
   }
 };
