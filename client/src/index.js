@@ -19,6 +19,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // Soft UI Context Provider
 import { MaterialUIControllerProvider } from "context";
 import Home from "layouts/home";
+import Login from "components/login/login";
+import SignUp from "components/signUp/signUp";
 import LogOut from "layouts/authentication/sign-in";
 import App from "App";
 // import routes from "routes";
@@ -41,6 +43,8 @@ ReactDOM.render(
     <MaterialUIControllerProvider>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/SignUp" element={<SignUp />} />
         <Route path="/dashboard/*" element={<App />} />
         <Route path="/authentication/Log-out" element={<LogOut />} />
       </Routes>
