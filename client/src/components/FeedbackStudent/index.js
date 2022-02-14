@@ -1,8 +1,8 @@
 import React from "react";
 import Carousel from "react-elastic-carousel";
-import Item from "./Item";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Item from "./Item";
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },

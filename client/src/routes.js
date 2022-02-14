@@ -39,6 +39,7 @@ Coded by www.creative-tim.com
 import Dashboard from "layouts/dashboard";
 import Teachers from "layouts/teachersTables";
 import Ads from "layouts/adsTables";
+import Message from "layouts/messageTables";
 // import RTL from "layouts/rtl";
 // import Notifications from "layouts/notifications";
 // import Profile from "layouts/profile";
@@ -72,6 +73,14 @@ const routes = [
     icon: <Icon fontSize="small">leaderboard</Icon>,
     route: "/dashboard/Ads",
     component: <Ads />,
+  },
+  {
+    type: "collapse",
+    name: "Message",
+    key: "Message",
+    icon: <Icon fontSize="small">leaderboard</Icon>,
+    route: "/dashboard/Messages",
+    component: <Message />,
   },
   // {
   //   type: "collapse",
