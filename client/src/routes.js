@@ -55,7 +55,7 @@ const routes = [
     name: "Dashboard",
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
+    route: "/dashboard/admin",
     component: <Dashboard />,
   },
   {
@@ -63,7 +63,7 @@ const routes = [
     name: "Teachers",
     key: "Teachers",
     icon: <Icon fontSize="small">account_circle</Icon>,
-    route: "/dashboard/Teachers",
+    route: "/dashboard/admin/Teachers",
     component: <Teachers />,
   },
   {
@@ -71,7 +71,7 @@ const routes = [
     name: "Ads",
     key: "Ads",
     icon: <Icon fontSize="small">leaderboard</Icon>,
-    route: "/dashboard/Ads",
+    route: "/dashboard/admin/Ads",
     component: <Ads />,
   },
   {
@@ -79,7 +79,7 @@ const routes = [
     name: "Message",
     key: "Message",
     icon: <Icon fontSize="small">leaderboard</Icon>,
-    route: "/dashboard/Messages",
+    route: "/dashboard/admin/Messages",
     component: <Message />,
   },
   // {

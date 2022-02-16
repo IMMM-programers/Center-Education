@@ -3,8 +3,8 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -31,32 +32,44 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-
-    axios.post(`api/loginUser`, data).then((res) => {
-      if (res.data.status === 400) {
-        console.log("dfhj");
-      }
-    });
-
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  const navigate = useNavigate();
 
   const [inputValues, setInputValues] = React.useState({
     email: "",
     password: "",
   });
 
+  const { email, password } = inputValues;
+
+  const q = () => "Don't have an account? Sign Up";
+
   const handleOnChange = (event) => {
-    event.persist();
     const { name, value } = event.target;
     setInputValues({ ...inputValues, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { token, type } = await (
+        await axios.post("/api/auth/loginUser", { email, password })
+      ).data;
+      localStorage.setItem("token", token);
+      if (type === "Admin") {
+        navigate("/dashboard/admin");
+      } else if (type === "Teacher") {
+        navigate("/dashboard/teacher");
+      } else {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+      // swal("OoOps!", " Invalid email or password.", "error");
+      setInputValues({
+        email: "",
+        password: "",
+      });
+    }
   };
 
   return (
@@ -87,13 +100,13 @@ export default function SignInSide() {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <Avatar sx={{ m: 3, bgcolor: "secondary.main" }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form" noValidate sx={{ mt: 3 }}>
               <TextField
                 margin="normal"
                 required
@@ -103,7 +116,7 @@ export default function SignInSide() {
                 name="email"
                 autoComplete="email"
                 autoFocus
-                value={inputValues.email}
+                value={email}
                 onChange={handleOnChange}
               />
               <TextField
@@ -115,31 +128,31 @@ export default function SignInSide() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                value={inputValues.password}
+                value={password}
                 onChange={handleOnChange}
               />
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
-              />
+              /> */}
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                // onClick={handleLogin}
+                onClick={handleSubmit}
               >
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
+                {/* <Grid item xs>
                   <Link href="/" variant="body2">
                     Forgot password?
                   </Link>
-                </Grid>
+                </Grid> */}
                 <Grid item>
-                  <Link href="/" variant="body2">
-                    Don&apost have an account? Sign Up
+                  <Link href="/SignUp" variant="body2">
+                    {q()}
                   </Link>
                 </Grid>
               </Grid>

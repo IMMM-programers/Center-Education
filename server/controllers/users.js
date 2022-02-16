@@ -11,7 +11,6 @@ module.exports.createUser = async (req, res) => {
     if (user) {
       return res.status(400).json({ errors: [{ msg: "User already exists" }] });
     }
-
     // make new user
     user = new User({
       name,
@@ -56,10 +55,10 @@ module.exports.editUser = async (req, res) => {
     if (req.body.password) {
       req.body.password = await bcrypt.hash(req.body.password, 10);
     }
-    await User.updateOne({email}, req.body);
-    res.send('success in updating user');
+    await User.updateOne({ email }, req.body);
+    res.send("success in updating user");
   } catch (error) {
-    res.send('Error in updating' + error.message);
+    res.send("Error in updating" + error.message);
   }
 };
 
@@ -102,7 +101,6 @@ module.exports.getProfile = async (req, res) => {
   }
 };
 
-
 module.exports.addAds = async (req, res) => {
   try {
     const { email } = req.params;
@@ -116,8 +114,8 @@ module.exports.addAds = async (req, res) => {
 module.exports.deleteAds = async (req, res) => {
   try {
     const { i } = req.params;
-    const {ads} = await User.findOne({type: "Admin"});
-    ads.splice(i,1)
+    const { ads } = await User.findOne({ type: "Admin" });
+    ads.splice(i, 1);
     await User.updateOne({ type: "Admin" }, { $set: { ads } });
     res.send("success in deleting ads");
   } catch (error) {
