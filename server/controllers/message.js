@@ -1,12 +1,15 @@
 const Messages = require("../models/Message");
+
 module.exports.createMessages = (req, res) => {
   let { userName, email, messageContent, phoneNumber } = req.body;
+
   const message = new Messages({
     userName,
     email,
     messageContent,
     phoneNumber,
   });
+  
   message
     .save()
     .then((response) => {

@@ -1,23 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const {
-  createMessage,
-  editMessage,
-  deleteMessage,
+  createMessages,
+  editMessages,
+  deleteMessages,
   getMessage,
 } = require("../controllers/message");
 
 // @route  POST api/messages + /createMessage
 // @desc   add Message
-router.post("/createMessage", createMessage);
+router.post("/createMessage", createMessages);
 
 // @route  PATCH api/messages + /editMessage
 // @desc   Edit Message
-router.patch("/editMessage/:id", editMessage);
+router.patch("/editMessage/:id", editMessages);
 
 // @route  delete api/messages + /deleteMessage
 // @desc   Delete Message
-router.delete("/deleteMessage/:id", deleteMessage);
+router.delete("/deleteMessage/:id", deleteMessages);
 // @route  get api/messages + /getMessage
 // @desc   get Message
 router.get("/getMessage", getMessage);
