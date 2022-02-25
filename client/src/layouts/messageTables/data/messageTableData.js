@@ -8,7 +8,7 @@ import MDTypography from "components/MDTypography";
 // import MDButton from "components/MDButton";
 // import MDAvatar from "components/MDAvatar";
 // import MDBadge from "components/MDBadge";
-import axios from "axios";
+// import axios from "axios";
 
 // Images
 // import logoXD from "assets/images/small-logos/logo-xd.svg";
@@ -27,104 +27,106 @@ import axios from "axios";
 // import DialogContentText from "@mui/material/DialogContentText";
 // import DialogTitle from "@mui/material/DialogTitle";
 
-import Image from "components/ShowImage";
-
 export default function data(props) {
-  const [inputValues, setInputValues] = React.useState({
-    title: "",
-    image: "",
-    visibility: "hidden",
-  });
-
-  const deleteAds = (i) => {
-    axios
-      .delete(`/api/users/deleteAds/${i}`)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const deleteAds = (i) => {
+  //   axios
+  //     .delete(`/api/users/deleteAds/${i}`)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const a = [];
   props.forEach((e, ind) => {
     a.push({
-      title: (
+      Name: (
         <MDBox lineHeight={1}>
           <MDTypography display="block" variant="button" fontWeight="medium">
-            {e.title}
+            {(e.userName, ind)}
           </MDTypography>
         </MDBox>
       ),
-      image: (
-        <MDBox>
-          <MDTypography
-            component="a"
-            href="#"
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-            style={{ color: "#328CED" }}
-            onClick={() =>
-              setInputValues({
-                ...inputValues,
-                visibility: "visible",
-                title: e.title,
-                image: e.imageUrl,
-              })
-            }
-          >
-            Show
-          </MDTypography>
-          <Image
-            visibility={inputValues.visibility}
-            picture={inputValues.image}
-            title={inputValues.title}
-          />
-          {/* <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Ad Details</DialogTitle>
-            <DialogContent>
-              <Image />
-            </DialogContent>
-            <DialogActions>
-              <MDButton
-                onClick={handleClose}
-                style={{ backgroundColor: "#F53E36", color: "white" }}
-              >
-                Cancel
-              </MDButton>
-            </DialogActions>
-          </Dialog> */}
-        </MDBox>
-      ),
-      action: (
-        <MDTypography
-          component="a"
-          href="#"
-          variant="caption"
-          color="text"
-          fontWeight="medium"
-          style={{ color: "#F53E36" }}
-          onClick={() => deleteAds(ind)}
-        >
-          Delete
-        </MDTypography>
-      ),
+      // Email: (
+      //   <MDBox>
+      //     <MDTypography
+      //       component="a"
+      //       href="#"
+      //       variant="caption"
+      //       color="text"
+      //       fontWeight="medium"
+      //       style={{ color: "#328CED" }}
+      //     >
+      //       Show
+      //     </MDTypography>
+      //     <Image
+      //       visibility={inputValues.visibility}
+      //       picture={inputValues.image}
+      //       title={inputValues.title}
+      //     />
+      //     {/* <Dialog open={open} onClose={handleClose}>
+      //       <DialogTitle>Ad Details</DialogTitle>
+      //       <DialogContent>
+      //         <Image />
+      //       </DialogContent>
+      //       <DialogActions>
+      //         <MDButton
+      //           onClick={handleClose}
+      //           style={{ backgroundColor: "#F53E36", color: "white" }}
+      //         >
+      //           Cancel
+      //         </MDButton>
+      //       </DialogActions>
+      //     </Dialog> */}
+      //   </MDBox>
+      // ),
+      // Phone_Number: (
+      //   <MDTypography
+      //     component="a"
+      //     href="#"
+      //     variant="caption"
+      //     color="text"
+      //     fontWeight="medium"
+      //     style={{ color: "#F53E36" }}
+      //     onClick={() => deleteAds(ind)}
+      //   >
+      //     Delete
+      //   </MDTypography>
+      // ),
+      // Message: (
+      //   <MDTypography
+      //     component="a"
+      //     href="#"
+      //     variant="caption"
+      //     color="text"
+      //     fontWeight="medium"
+      //     style={{ color: "#F53E36" }}
+      //     onClick={() => deleteAds(ind)}
+      //   >
+      //     Delete
+      //   </MDTypography>
+      // ),
+      // Action: (
+      //   <MDTypography
+      //     component="a"
+      //     href="#"
+      //     variant="caption"
+      //     color="text"
+      //     fontWeight="medium"
+      //     style={{ color: "#F53E36" }}
+      //     onClick={() => deleteAds(ind)}
+      //   >
+      //     Delete
+      //   </MDTypography>
+      // ),
     });
   });
-  // const Job = ({ title, description }) => (
-  //   <MDBox lineHeight={1} textAlign="left">
-  //     <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
-  //       {title}
-  //     </MDTypography>
-  //     <MDTypography variant="caption">{description}</MDTypography>
-  //   </MDBox>
-  // );
 
   return {
     columns: [
-      { Header: "Name", accessor: "Name", width: "20%", align: "left" },
+      { Header: "User Name", accessor: "Name", width: "20%", align: "left" },
       { Header: "Email", accessor: "Email", align: "left", width: "23%" },
       { Header: "Phone Number", accessor: "Phone_Number", width: "23%", align: "left" },
       { Header: "Message", accessor: "Message", width: "18%", align: "left" },

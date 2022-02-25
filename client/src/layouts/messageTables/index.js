@@ -47,9 +47,9 @@ function Tables() {
 
   React.useEffect(() => {
     axios
-      .get("/api/users/Profile/m@gmail.com") // need to be dynamic
+      .get("/api/messages/getMessage") // need to be dynamic
       .then((res) => {
-        setInputValues({ ...inputValues, messages: res.data.messages });
+        setInputValues({ ...inputValues, messages: res.data });
       })
       .catch((err) => {
         console.log(err);
