@@ -8,7 +8,7 @@ import MDTypography from "components/MDTypography";
 // import MDButton from "components/MDButton";
 // import MDAvatar from "components/MDAvatar";
 // import MDBadge from "components/MDBadge";
-// import axios from "axios";
+import axios from "axios";
 
 // Images
 // import logoXD from "assets/images/small-logos/logo-xd.svg";
@@ -28,16 +28,16 @@ import MDTypography from "components/MDTypography";
 // import DialogTitle from "@mui/material/DialogTitle";
 
 export default function data(props) {
-  // const deleteAds = (i) => {
-  //   axios
-  //     .delete(`/api/users/deleteAds/${i}`)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const deleteMessage = (i) => {
+    axios
+      .delete(`/api/messages/deleteMessage/${i}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const a = [];
   props.forEach((e, ind) => {
@@ -45,82 +45,75 @@ export default function data(props) {
       Name: (
         <MDBox lineHeight={1}>
           <MDTypography display="block" variant="button" fontWeight="medium">
-            {(e.userName, ind)}
+            {e.userName}
           </MDTypography>
         </MDBox>
       ),
-      // Email: (
-      //   <MDBox>
-      //     <MDTypography
-      //       component="a"
-      //       href="#"
-      //       variant="caption"
-      //       color="text"
-      //       fontWeight="medium"
-      //       style={{ color: "#328CED" }}
-      //     >
-      //       Show
-      //     </MDTypography>
-      //     <Image
-      //       visibility={inputValues.visibility}
-      //       picture={inputValues.image}
-      //       title={inputValues.title}
-      //     />
-      //     {/* <Dialog open={open} onClose={handleClose}>
-      //       <DialogTitle>Ad Details</DialogTitle>
-      //       <DialogContent>
-      //         <Image />
-      //       </DialogContent>
-      //       <DialogActions>
-      //         <MDButton
-      //           onClick={handleClose}
-      //           style={{ backgroundColor: "#F53E36", color: "white" }}
-      //         >
-      //           Cancel
-      //         </MDButton>
-      //       </DialogActions>
-      //     </Dialog> */}
-      //   </MDBox>
-      // ),
-      // Phone_Number: (
-      //   <MDTypography
-      //     component="a"
-      //     href="#"
-      //     variant="caption"
-      //     color="text"
-      //     fontWeight="medium"
-      //     style={{ color: "#F53E36" }}
-      //     onClick={() => deleteAds(ind)}
-      //   >
-      //     Delete
-      //   </MDTypography>
-      // ),
-      // Message: (
-      //   <MDTypography
-      //     component="a"
-      //     href="#"
-      //     variant="caption"
-      //     color="text"
-      //     fontWeight="medium"
-      //     style={{ color: "#F53E36" }}
-      //     onClick={() => deleteAds(ind)}
-      //   >
-      //     Delete
-      //   </MDTypography>
-      // ),
-      // Action: (
-      //   <MDTypography
-      //     component="a"
-      //     href="#"
-      //     variant="caption"
-      //     color="text"
-      //     fontWeight="medium"
-      //     style={{ color: "#F53E36" }}
-      //     onClick={() => deleteAds(ind)}
-      //   >
-      //     Delete
-      //   </MDTypography>
-      // ),
+      Email: (
+        <MDBox>
+          <MDTypography display="block" variant="button" fontWeight="medium">
+            {e.email}
+          </MDTypography>
+          {/* <Image
+            visibility={inputValues.visibility}
+            picture={inputValues.image}
+            title={inputValues.title}
+          />
+          <Dialog open={open} onClose={handleClose}>
+            <DialogTitle>Ad Details</DialogTitle>
+            <DialogContent>
+              <Image />
+            </DialogContent>
+            <DialogActions>
+              <MDButton
+                onClick={handleClose}
+                style={{ backgroundColor: "#F53E36", color: "white" }}
+              >
+                Cancel
+              </MDButton>
+            </DialogActions>
+          </Dialog> */}
+        </MDBox>
+      ),
+      Phone_Number: (
+        <MDTypography
+          component="a"
+          href="#"
+          variant="caption"
+          color="text"
+          fontWeight="medium"
+          // style={{ color: "#F53E36" }}
+          // onClick={() => deleteAds(ind)}
+        >
+          {e.phoneNumber}
+        </MDTypography>
+      ),
+      Message: (
+        <MDTypography
+          component="a"
+          href="#"
+          variant="caption"
+          color="text"
+          fontWeight="medium"
+          // style={{ color: "#F53E36" }}
+          // onClick={() => deleteAds(ind)}
+        >
+          {e.messageContent}
+        </MDTypography>
+      ),
+      Action: (
+        <MDTypography
+          component="a"
+          href="#"
+          variant="caption"
+          color="text"
+          fontWeight="medium"
+          // style={{ color: "#F53E36" }}
+          onClick={() => deleteMessage(ind)}
+        >
+          delete
+        </MDTypography>
+      ),
     });
   });
 

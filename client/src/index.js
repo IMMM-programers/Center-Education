@@ -23,6 +23,7 @@ import Login from "components/login";
 import SignUp from "components/signUp";
 import LogOut from "layouts/authentication/sign-in";
 import App from "App";
+import TeacherApp from "TeacherApp";
 
 // const getRoutes = (allRoutes) =>
 //   allRoutes.map((route) => {
@@ -45,6 +46,7 @@ ReactDOM.render(
         <Route path="/login" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/dashboard/admin/*" element={<App />} />
+        <Route path="/dashboard/teacher/*" element={<TeacherApp />} />
         {/* <Route path="/dashboard/teacher/*" element={< />} /> */}
         <Route path="/authentication/Log-out" element={<LogOut />} />
       </Routes>
