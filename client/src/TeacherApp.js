@@ -29,7 +29,7 @@ import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 
 // Material Dashboard 2 React routes
-import routes from "routes";
+import teacherRoutes from "teacherRoutes";
 
 // Material Dashboard 2 React contexts
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
@@ -38,9 +38,9 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
 import TeacherDashboard from "layouts/teacherDashboard";
-import Teachers from "layouts/teachersTables";
-import Ads from "layouts/adsTables";
-import Message from "layouts/messageTables";
+import Profile from "layouts/profile";
+import Course from "layouts/coursesTables";
+import Studant from "layouts/studantsTables";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -145,7 +145,7 @@ export default function App() {
               color={sidenavColor}
               brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
               brandName="Teacher Dashboard"
-              routes={routes}
+              routes={teacherRoutes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
             />
@@ -155,21 +155,21 @@ export default function App() {
         )}
         {layout === "vr" && <Configurator />}
         <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/teacherDashboard" />} />
+          {getRoutes(teacherRoutes)}
+          <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>
       </ThemeProvider>
     </CacheProvider>
   ) : (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
-      {layout === "teacherDashboard" && (
+      {layout === "dashboard" && (
         <>
           <Sidenav
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
             brandName="Teacher Dashboard"
-            routes={routes}
+            routes={teacherRoutes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
@@ -179,11 +179,11 @@ export default function App() {
       )}
       {layout === "vr" && <Configurator />}
       <Routes>
-        {getRoutes(routes)}
+        {getRoutes(teacherRoutes)}
         <Route path="/" element={<TeacherDashboard />} />
-        <Route path="/Teachers" element={<Teachers />} />
-        <Route path="/Ads" element={<Ads />} />
-        <Route path="/Messages" element={<Message />} />
+        <Route path="/Profile" element={<Profile />} />
+        <Route path="/Course" element={<Course />} />
+        <Route path="/Studant" element={<Studant />} />
       </Routes>
     </ThemeProvider>
   );
