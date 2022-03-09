@@ -3,8 +3,8 @@
 // Soft UI Dashboard React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
-import MDBadge from "components/MDBadge";
+// import MDAvatar from "components/MDAvatar";
+// import MDBadge from "components/MDBadge";
 import axios from "axios";
 
 // Images

@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 
-import * as React from "react";
+// import * as React from "react";
 
 // Soft UI Dashboard React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+// import MDBox from "components/MDBox";
+// import MDTypography from "components/MDTypography";
 // import MDButton from "components/MDButton";
 // import MDAvatar from "components/MDAvatar";
 // import MDBadge from "components/MDBadge";
@@ -40,7 +40,7 @@ export default function data(props) {
   // };
 
   const a = [];
-  props.forEach((e, ind) => {
+  props.forEach(() => {
     a.push({
       // Name: (
       //   <MDBox lineHeight={1}>
