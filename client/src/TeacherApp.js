@@ -40,7 +40,6 @@ import brandDark from "assets/images/logo-ct-dark.png";
 import TeacherDashboard from "layouts/teacherDashboard";
 import Profile from "layouts/profile";
 import Course from "layouts/coursesTables";
-import Studant from "layouts/studantsTables";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -183,7 +182,6 @@ export default function App() {
         <Route path="/" element={<TeacherDashboard />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Course" element={<Course />} />
-        <Route path="/Studant" element={<Studant />} />
       </Routes>
     </ThemeProvider>
   );

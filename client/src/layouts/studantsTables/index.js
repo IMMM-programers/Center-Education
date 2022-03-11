@@ -24,9 +24,9 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
 // Material Dashboard 2 React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
+// import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
+// import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+// import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 // import { styled } from "@mui/material/styles";
 
@@ -40,16 +40,16 @@ function Tables() {
   // const { columns: pColumns, rows: pRows } = projectsTableData();
 
   const [inputValues, setInputValues] = React.useState({
-    messages: [],
+    students: [],
   });
-  const { messages } = inputValues;
-  const { columns, rows } = studantsTableData(messages);
+  const { students } = inputValues;
+  const { columns, rows } = studantsTableData(students);
 
   React.useEffect(() => {
     axios
-      .get("/api/messages/getMessage") // need to be dynamic
+      .get("/api/users/Students") // need to be dynamic
       .then((res) => {
-        setInputValues({ ...inputValues, messages: res.data });
+        setInputValues({ ...inputValues, students: res.data });
       })
       .catch((err) => {
         console.log(err);
@@ -57,69 +57,38 @@ function Tables() {
   }, []);
 
   return (
-    <DashboardLayout>
-      <DashboardNavbar />
-      <MDBox pt={6} pb={3}>
-        <Grid container spacing={6}>
-          <Grid item xs={12}>
-            <Card>
-              <MDBox
-                mx={2}
-                mt={-3}
-                py={3}
-                px={2}
-                variant="gradient"
-                bgColor="info"
-                borderRadius="lg"
-                coloredShadow="info"
-              >
-                <MDTypography variant="h6" color="white">
-                  Studant Table
-                </MDTypography>
-              </MDBox>
+    <MDBox pt={6} pb={3}>
+      <Grid container spacing={6}>
+        <Grid item xs={12}>
+          <Card>
+            <MDBox
+              mx={2}
+              mt={-3}
+              py={3}
+              px={2}
+              variant="gradient"
+              bgColor="info"
+              borderRadius="lg"
+              coloredShadow="info"
+            >
+              <MDTypography variant="h6" color="white">
+                Studant Table
+              </MDTypography>
+            </MDBox>
 
-              <MDBox pt={3}>
-                <DataTable
-                  table={{ columns, rows }}
-                  isSorted={false}
-                  entriesPerPage={false}
-                  showTotalEntries={false}
-                  noEndBorder
-                />
-              </MDBox>
-            </Card>
-          </Grid>
-          {/* <Grid item xs={12}>
-            <Card>
-              <MDBox
-                mx={2}
-                mt={-3}
-                py={3}
-                px={2}
-                variant="gradient"
-                bgColor="info"
-                borderRadius="lg"
-                coloredShadow="info"
-              >
-                <MDTypography variant="h6" color="white">
-                  Projects Table
-                </MDTypography>
-              </MDBox>
-              <MDBox pt={3}>
-                <DataTable
-                  table={{ columns: pColumns, rows: pRows }}
-                  isSorted={false}
-                  entriesPerPage={false}
-                  showTotalEntries={false}
-                  noEndBorder
-                />
-              </MDBox>
-            </Card>
-          </Grid> */}
+            <MDBox pt={3}>
+              <DataTable
+                table={{ columns, rows }}
+                isSorted={false}
+                entriesPerPage={false}
+                showTotalEntries={false}
+                noEndBorder
+              />
+            </MDBox>
+          </Card>
         </Grid>
-      </MDBox>
-      <Footer />
-    </DashboardLayout>
+      </Grid>
+    </MDBox>
   );
 }
 

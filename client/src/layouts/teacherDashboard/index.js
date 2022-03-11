@@ -32,7 +32,8 @@ import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatist
 // import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
 // Dashboard components
-import Projects from "layouts/teacherDashboard/components/Projects";
+// import Projects from "layouts/teacherDashboard/components/Projects";
+import Projects from "layouts/studantsTables";
 // import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
 function TeacherDashboard() {
@@ -43,35 +44,6 @@ function TeacherDashboard() {
       <DashboardNavbar />
       <MDBox py={3}>
         <Grid container spacing={3}>
-          {/* <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="dark"
-                icon="account_circle"
-                title="Teachers"
-                count={0} // number of teachers
-                percentage={{
-                  color: "success",
-                  amount: "",
-                  label: "Currently registered",
-                }}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                icon="leaderboard"
-                title="Ads"
-                count="2,300" // number of ads
-                percentage={{
-                  color: "success",
-                  amount: "",
-                  label: "Currently posted",
-                }}
-              />
-            </MDBox>
-          </Grid> */}
           <Grid item xs={12} md={6} lg={6}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
@@ -103,55 +75,11 @@ function TeacherDashboard() {
             </MDBox>
           </Grid>
         </Grid>
-        {/* <MDBox mt={4.5}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={3}>
-                <ReportsBarChart
-                  color="info"
-                  title="website views"
-                  description="Last Campaign Performance"
-                  date="campaign sent 2 days ago"
-                  chart={reportsBarChartData}
-                />
-              </MDBox>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={3}>
-                <ReportsLineChart
-                  color="success"
-                  title="daily sales"
-                  description={
-                    <>
-                      (<strong>+15%</strong>) increase in today sales.
-                    </>
-                  }
-                  date="updated 4 min ago"
-                  chart={sales}
-                />
-              </MDBox>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={3}>
-                <ReportsLineChart
-                  color="dark"
-                  title="completed tasks"
-                  description="Last Campaign Performance"
-                  date="just updated"
-                  chart={tasks}
-                />
-              </MDBox>
-            </Grid>
-          </Grid>
-        </MDBox> */}
         <MDBox>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={16}>
               <Projects />
             </Grid>
-            {/* <Grid item xs={12} md={6} lg={4}>
-              <OrdersOverview />
-            </Grid> */}
           </Grid>
         </MDBox>
       </MDBox>

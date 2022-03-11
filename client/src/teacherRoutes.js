@@ -39,7 +39,6 @@ Coded by www.creative-tim.com
 import TeacherDashboard from "layouts/teacherDashboard";
 import Profile from "layouts/teachersTables";
 import Courses from "layouts/coursesTables";
-import Studants from "layouts/studantsTables";
 // import RTL from "layouts/rtl";
 // import Notifications from "layouts/notifications";
 // import Profile from "layouts/profile";
@@ -73,14 +72,6 @@ const teacherRoutes = [
     icon: <Icon fontSize="small">menu_book</Icon>,
     route: "/dashboard/teacher/Course",
     component: <Courses />,
-  },
-  {
-    type: "collapse",
-    name: "Studant",
-    key: "Studant",
-    icon: <Icon fontSize="small">school</Icon>,
-    route: "/dashboard/teacher/Studant",
-    component: <Studants />,
   },
   // {
   //   type: "collapse",
