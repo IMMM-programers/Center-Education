@@ -5,10 +5,7 @@ const User = require("../models/User");
 module.exports.tokenUser = async (req, res) => {
   try {
     const { email } = req.user;
-    const user = await User.findOne({
-      where: { email },
-      attributes: { exclude: ["password", "updatedAt", "createdAt"] },
-    });
+    const user = await User.findOne({ email }).select("-password");
     res.json(user);
   } catch (error) {
     res.status(500).send("Server Error");

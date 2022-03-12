@@ -40,6 +40,8 @@ import Header from "layouts/profile/components/Header";
 
 // Data
 import profilesListData from "layouts/profile/data/profilesListData";
+import React from "react";
+import axios from "axios";
 
 // Images
 // import homeDecor1 from "assets/images/home-decor-1.jpg";
@@ -52,11 +54,35 @@ import profilesListData from "layouts/profile/data/profilesListData";
 // import team4 from "assets/images/team-4.jpg";
 
 function Overview() {
+  const [inputValues, setInputValues] = React.useState({
+    user: [],
+  });
+
+  const { user } = inputValues;
+
+  React.useEffect(() => {
+    const config = {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    };
+
+    axios
+      .get("/api/auth/tokenUser", config)
+      .then((res) => {
+        console.log(res);
+        setInputValues({ ...inputValues, user: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox mb={2} />
-      <Header>
+      <Header user={user}>
         <MDBox mt={5} mb={3}>
           <Grid container spacing={1}>
             {/* <Grid item xs={12} md={6} xl={4}>
@@ -68,9 +94,9 @@ function Overview() {
                 title="profile information"
                 description="Hi, I’m Omar, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term."
                 info={{
-                  fullName: "Omar K. Alzaanin",
-                  mobile: "(72) 0595154460",
-                  email: "Omar.k@mail.com",
+                  fullName: user.name,
+                  mobile: user.phoneNumber,
+                  email: user.email,
                   location: "Gaza",
                 }}
                 social={[
