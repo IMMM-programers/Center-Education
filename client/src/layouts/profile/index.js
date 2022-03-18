@@ -92,7 +92,7 @@ function Overview() {
               <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} />
               <ProfileInfoCard
                 title="profile information"
-                description="Hi, I’m Omar, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term."
+                description="Hi, I’m ahmed, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term."
                 info={{
                   fullName: user.name,
                   mobile: user.phoneNumber,

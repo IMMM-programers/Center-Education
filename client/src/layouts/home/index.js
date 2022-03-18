@@ -24,10 +24,29 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
 import CardMembershipIcon from "@mui/icons-material/CardMembership";
 import { green } from "@mui/material/colors";
+import axios from "axios";
 
 const theme = createTheme();
 
 export default function Home() {
+  const [inputValues, setInputValues] = React.useState({
+    course: [],
+  });
+  const { course } = inputValues;
+
+  React.useEffect(() => {
+    axios
+      .get("/api/courses/allCourses") // need to be dynamic
+      .then((res) => {
+        setInputValues({ ...inputValues, course: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  console.log(course);
+  const info = Course(course);
+  console.log(info);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -137,7 +156,7 @@ export default function Home() {
             sx={{ py: 8, px: 8 }}
           >
             <Grid item xs={4}>
-              <Course />
+              <Course course={{ info }} />
             </Grid>
             <Grid item xs={4}>
               <Course />

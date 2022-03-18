@@ -75,15 +75,6 @@ export default function data(props) {
       ),
     });
   });
-  // const Job = ({ title, description }) => (
-  //   <MDBox lineHeight={1} textAlign="left">
-  //     <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
-  //       {title}
-  //     </MDTypography>
-  //     <MDTypography variant="caption">{description}</MDTypography>
-  //   </MDBox>
-  // );
-
   return {
     columns: [
       { Header: "title", accessor: "title", width: "20%", align: "left" },

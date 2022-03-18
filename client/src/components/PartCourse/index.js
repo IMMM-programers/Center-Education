@@ -12,6 +12,16 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
 export default function PartCourse() {
+  // const a = [];
+  // props.forEach((e) => {
+  //   a.push({
+  //     Name: e.title,
+  //     category: e.categoryName,
+  //     description: e.description,
+  //     teacherEmail: e.teacherEmail,
+  //   });
+  // });
+  // console.log(props);
   return (
     <Card sx={{ maxWidth: 340 }}>
       <CardMedia>
@@ -25,11 +35,11 @@ export default function PartCourse() {
       </CardMedia>
       <CardContent align="left">
         <Typography variant="h6" component="h5" sx={{ fontSize: 18 }}>
-          Finance Series: Learn to Budget and Calculate your Net Worth.
+          {/* {a.Name}: {a.description}. */} Course Name: Java
         </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000 species
-        </Typography> */}
+        <Typography variant="body2" color="text.secondary">
+          description:Lizards are a widespread group of squamate reptiles, with over 6,000 species
+        </Typography>
         <Box sx={{ py: 0.5, px: 1, mt: 1 }}>
           <Grid container align="left">
             <Grid item xs={2}>
@@ -37,7 +47,7 @@ export default function PartCourse() {
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" component="h5" sx={{ pt: 1, fontSize: 16 }}>
-                Lizard
+                {/* {a.teacherEmail} */} A@gmail.com
               </Typography>
             </Grid>
             <Grid item xs={4}>
@@ -57,7 +67,7 @@ export default function PartCourse() {
                   width: "90px",
                 }}
               >
-                Category
+                {/* {a.category} */}gsdfgn
               </Typography>
             </Grid>
           </Grid>
@@ -69,7 +79,7 @@ export default function PartCourse() {
               <Typography
                 variant="h6"
                 component="h5"
-                sx={{ pt: 1, float: "left", fontSize: 16, color: "#172e88" }}
+                sx={{ pt: 1, float: "Center", fontSize: 18, color: "#172e88" }}
               >
                 40 Lecture
               </Typography>
@@ -77,10 +87,10 @@ export default function PartCourse() {
             <Grid item xs={2}>
               <Typography
                 variant="h6"
-                component="h5"
+                component="button"
                 sx={{ py: 1, float: "right", fontSize: 16, color: "#172e88" }}
               >
-                40$
+                show
               </Typography>
             </Grid>
           </Grid>

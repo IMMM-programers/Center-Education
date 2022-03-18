@@ -63,10 +63,11 @@ function Tables() {
     description: "",
     categoryName: "",
     courses: [],
+    user: [],
   });
   const { columns, rows } = coursesTableData(inputValues.courses);
 
-  const { title, description, categoryName } = inputValues;
+  const { title, description, categoryName, user } = inputValues;
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -74,7 +75,9 @@ function Tables() {
   };
 
   const addCourse = () => {
-    const t = { title, description, categoryName, type: "Courses" };
+    const teacherEmail = user.name;
+    const t = { title, description, categoryName, teacherEmail };
+    console.log(user.name, "dsada");
     axios
       .post("/api/courses/createCourse", t)
       .then(() => {
@@ -86,6 +89,20 @@ function Tables() {
   };
 
   React.useEffect(() => {
+    const config = {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    };
+
+    axios
+      .get("/api/auth/tokenUser", config)
+      .then((res) => {
+        setInputValues({ ...inputValues, user: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     axios
       .get("/api/courses/allCourses")
       .then((res) => {

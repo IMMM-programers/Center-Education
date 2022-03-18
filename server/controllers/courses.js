@@ -20,7 +20,7 @@ module.exports.createCourse = (req, res) => {
     videos,
     teacherEmail,
   });
-
+  console.log(course);
   course
     .save()
     .then((response) => {
