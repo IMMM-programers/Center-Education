@@ -11,7 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
-export default function PartCourse() {
+export default function PartCourse(props) {
   // const a = [];
   // props.forEach((e) => {
   //   a.push({
@@ -21,7 +21,7 @@ export default function PartCourse() {
   //     teacherEmail: e.teacherEmail,
   //   });
   // });
-  // console.log(props);
+  const { title, description, categoryName, teacherEmail } = props;
   return (
     <Card sx={{ maxWidth: 340 }}>
       <CardMedia>
@@ -35,19 +35,22 @@ export default function PartCourse() {
       </CardMedia>
       <CardContent align="left">
         <Typography variant="h6" component="h5" sx={{ fontSize: 18 }}>
-          {/* {a.Name}: {a.description}. */} Course Name: Java
+          {/* {a.Name}: {a.description}. */} Course Name: {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          description:Lizards are a widespread group of squamate reptiles, with over 6,000 species
+          description:{description}
         </Typography>
         <Box sx={{ py: 0.5, px: 1, mt: 1 }}>
           <Grid container align="left">
             <Grid item xs={2}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              <Avatar
+                alt="Remy Sharp"
+                src="https://cdn-icons-png.flaticon.com/512/2784/2784445.png"
+              />
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" component="h5" sx={{ pt: 1, fontSize: 16 }}>
-                {/* {a.teacherEmail} */} A@gmail.com
+                {/* {a.teacherEmail} */} {teacherEmail}
               </Typography>
             </Grid>
             <Grid item xs={4}>
@@ -59,7 +62,7 @@ export default function PartCourse() {
                   p: 0.5,
                   mt: 0.5,
                   ml: 2,
-                  fontSize: 16,
+                  fontSize: 12,
                   fontWeight: 400,
                   backgroundColor: "#3152a3",
                   color: "white",
@@ -67,7 +70,8 @@ export default function PartCourse() {
                   width: "90px",
                 }}
               >
-                {/* {a.category} */}gsdfgn
+                {/* {a.category} */}
+                {categoryName}
               </Typography>
             </Grid>
           </Grid>

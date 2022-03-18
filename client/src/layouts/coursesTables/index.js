@@ -77,7 +77,6 @@ function Tables() {
   const addCourse = () => {
     const teacherEmail = user.name;
     const t = { title, description, categoryName, teacherEmail };
-    console.log(user.name, "dsada");
     axios
       .post("/api/courses/createCourse", t)
       .then(() => {
@@ -97,16 +96,15 @@ function Tables() {
 
     axios
       .get("/api/auth/tokenUser", config)
-      .then((res) => {
-        setInputValues({ ...inputValues, user: res.data });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    axios
-      .get("/api/courses/allCourses")
-      .then((res) => {
-        setInputValues({ ...inputValues, courses: res.data });
+      .then((response) => {
+        axios
+          .get("/api/courses/allCourses")
+          .then((res) => {
+            setInputValues({ ...inputValues, courses: res.data, user: response.data });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);

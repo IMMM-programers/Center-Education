@@ -31,22 +31,27 @@ const theme = createTheme();
 export default function Home() {
   const [inputValues, setInputValues] = React.useState({
     course: [],
+    ads: [],
   });
-  const { course } = inputValues;
-
+  const { course, ads } = inputValues;
   React.useEffect(() => {
     axios
       .get("/api/courses/allCourses") // need to be dynamic
-      .then((res) => {
-        setInputValues({ ...inputValues, course: res.data });
+      .then((response) => {
+        axios
+          .get("/api/users/Profile/m@gmail.com") // need to be dynamic
+          .then((res) => {
+            setInputValues({ ...inputValues, ads: res.data.ads, course: response.data });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
   console.log(course);
-  const info = Course(course);
-  console.log(info);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -155,24 +160,12 @@ export default function Home() {
             columnSpacing={{ xs: 1, sm: 2, md: 1 }}
             sx={{ py: 8, px: 8 }}
           >
-            <Grid item xs={4}>
-              <Course course={{ info }} />
-            </Grid>
-            <Grid item xs={4}>
-              <Course />
-            </Grid>
-            <Grid item xs={4}>
-              <Course />
-            </Grid>
-            <Grid item xs={4}>
-              <Course />
-            </Grid>
-            <Grid item xs={4}>
-              <Course />
-            </Grid>
-            <Grid item xs={4}>
-              <Course />
-            </Grid>
+            {course.map((c) => (
+              <Grid key={c.title} item xs={4}>
+                {Course(c)}
+              </Grid>
+            ))}
+
             <Grid item xs={12}>
               <Stack sx={{}} direction="row" justifyContent="center" spacing={2}>
                 <Button variant="outlined" size="large" sx={{ color: "#3152a3" }}>
@@ -194,84 +187,47 @@ export default function Home() {
             Ads
           </Typography>
           <Grid container align="center" columnSpacing={{ xs: 1, sm: 2, md: 1 }}>
-            <Grid item xs={6}>
-              <Box style={{ position: "relative" }}>
-                <img
-                  src="https://image.freepik.com/free-photo/person-holding-light-bulb-with-graduation-cap_23-2148721299.jpg?w=900"
-                  alt="{item.title}"
-                  loading="lazy"
-                  width="100%"
-                  height="280px"
-                  style={{ borderRadius: 20 }}
-                />
-                <Typography
-                  component="h6"
-                  variant="h7"
-                  color="white"
-                  fontWeight={500}
-                  fontSize="14px"
-                  width="50px"
-                  sx={{ px: 1, py: 0.3 }}
-                  style={{
-                    position: "absolute",
-                    top: "20%",
-                    left: "8%",
-                    backgroundColor: "#ed8505",
-                    borderRadius: 20,
-                  }}
-                >
-                  New
-                </Typography>
-                <Typography
-                  component="h1"
-                  variant="h5"
-                  color="white"
-                  fontWeight={500}
-                  style={{ position: "absolute", top: "40%", left: "8%" }}
-                >
-                  Large educational programs
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={6}>
-              <Box style={{ position: "relative" }}>
-                <img
-                  src="https://image.freepik.com/free-photo/person-holding-light-bulb-with-graduation-cap_23-2148721299.jpg?w=900"
-                  alt="{item.title}"
-                  loading="lazy"
-                  width="100%"
-                  height="280px"
-                  style={{ borderRadius: 20 }}
-                />
-                <Typography
-                  component="h6"
-                  variant="h7"
-                  color="white"
-                  fontWeight={500}
-                  fontSize="14px"
-                  width="50px"
-                  sx={{ px: 1, py: 0.3 }}
-                  style={{
-                    position: "absolute",
-                    top: "20%",
-                    left: "8%",
-                    backgroundColor: "#ed8505",
-                    borderRadius: 20,
-                  }}
-                >
-                  New
-                </Typography>
-                <Typography
-                  component="h1"
-                  variant="h5"
-                  color="white"
-                  fontWeight={500}
-                  style={{ position: "absolute", top: "40%", left: "8%" }}
-                >
-                  Large educational programs
-                </Typography>
-              </Box>
-            </Grid>
+            {ads.map((e) => (
+              <Grid key={e.title} item xs={6}>
+                <Box style={{ position: "relative" }}>
+                  <img
+                    src={e.imageUrl}
+                    alt={e.title}
+                    loading="lazy"
+                    width="100%"
+                    height="280px"
+                    style={{ borderRadius: 20 }}
+                  />
+                  <Typography
+                    component="h6"
+                    variant="h7"
+                    color="white"
+                    fontWeight={500}
+                    fontSize="14px"
+                    width="50px"
+                    sx={{ px: 1, py: 0.3 }}
+                    style={{
+                      position: "absolute",
+                      top: "20%",
+                      left: "8%",
+                      backgroundColor: "#ed8505",
+                      borderRadius: 20,
+                    }}
+                  >
+                    New
+                  </Typography>
+                  {/* <Typography
+                    component="h1"
+                    variant="h5"
+                    color="white"
+                    fontWeight={500}
+                    style={{ position: "absolute", top: "40%", left: "8%" }}
+                  >
+                    Large educational programs
+                  </Typography> */}
+                </Box>
+              </Grid>
+            ))}
           </Grid>
         </Box>
 

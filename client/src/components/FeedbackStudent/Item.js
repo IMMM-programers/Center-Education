@@ -26,7 +26,7 @@ export default function PartCourse() {
           <Box style={{ borderRadius: "50%", border: `1px solid #172e88` }} sx={{ p: 0.5 }}>
             <Avatar
               alt="Travis Howard"
-              src="/static/images/avatar/2.jpg"
+              src="https://cdn-icons-png.flaticon.com/512/2784/2784445.png"
               sx={{ width: 56, height: 56 }}
             />
           </Box>
