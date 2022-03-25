@@ -13,8 +13,38 @@ import NearMeIcon from "@mui/icons-material/NearMe";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import Button from "@mui/material/Button";
+// import { useMaterialUIController } from "context";
+import axios from "axios";
 
-export default function PartCourse() {
+export default function Contact() {
+  // const [controller] = useMaterialUIController();
+  // const { sidenavColor } = controller;
+
+  const [inputValues, setInputValues] = React.useState({
+    userName: "",
+    email: "",
+    messageContent: "",
+    phoneNumber: "",
+  });
+
+  const { userName, email, messageContent, phoneNumber } = inputValues;
+
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setInputValues({ ...inputValues, [name]: value });
+  };
+
+  const addMessage = () => {
+    const m = { userName, email, messageContent, phoneNumber };
+    axios
+      .post("/api/messages/createMessage", m)
+      .then(() => {
+        // handleClose();
+      })
+      .catch(() => {
+        // handleClose();
+      });
+  };
   return (
     <Box sx={{ py: 10, px: 12, mt: 14 }} bgcolor="#f0f1f9">
       <Grid container columnSpacing={{ xs: 1, sm: 2, md: 1 }}>
@@ -108,6 +138,9 @@ export default function PartCourse() {
                   id="outlined-basic"
                   label="Full Name"
                   variant="outlined"
+                  name="userName"
+                  value={userName}
+                  onChange={handleOnChange}
                   hiddenLabel
                   sx={{ width: "100%", bgcolor: "white" }}
                   // style={{ borderRadius: "30px", border: `1px solid blue` }}
@@ -118,6 +151,9 @@ export default function PartCourse() {
                   id="outlined-basic"
                   label="Your Email"
                   variant="outlined"
+                  name="email"
+                  value={email}
+                  onChange={handleOnChange}
                   sx={{ width: "100%", bgcolor: "white" }}
                 />
               </Grid>
@@ -126,6 +162,9 @@ export default function PartCourse() {
                   id="outlined-basic"
                   label="Your Phone"
                   variant="outlined"
+                  name="phoneNumber"
+                  value={phoneNumber}
+                  onChange={handleOnChange}
                   sx={{ width: "100%", bgcolor: "white" }}
                 />
               </Grid>
@@ -142,11 +181,14 @@ export default function PartCourse() {
                   aria-label="minimum height"
                   minRows={6}
                   placeholder="Your Message"
+                  name="messageContent"
+                  value={messageContent}
+                  onChange={handleOnChange}
                   style={{ width: "100%", bgcolor: "white" }}
                 />
               </Grid>
               <Grid item xs={12} sx={{ mt: 2 }}>
-                <Button variant="contained" size="large">
+                <Button variant="contained" size="large" onClick={addMessage}>
                   Send Message
                 </Button>
               </Grid>

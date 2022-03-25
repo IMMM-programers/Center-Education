@@ -2,14 +2,14 @@ import * as React from "react";
 import Navbar from "components/NavHome";
 import Course from "components/VideoCourse";
 import FooterHome from "components/FooterHome";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import Stack from "@mui/material/Stack";
+// import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
+// import axios from "axios";
 
 const theme = createTheme();
 

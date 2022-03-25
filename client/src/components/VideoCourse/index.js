@@ -3,7 +3,7 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
-export default function VideoCourse(props) {
+export default function VideoCourse() {
   //   const a = [];
   //   props.forEach((e) => {
   //     a.push({
@@ -24,7 +24,7 @@ export default function VideoCourse(props) {
       </Box>
       <Box align="left">
         <Typography variant="h7" component="h3">
-          {/* {a.Name}: {a.description}. */} Course Name {/*title*/}
+          Course Name
         </Typography>
       </Box>
     </Box>
