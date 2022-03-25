@@ -12,6 +12,7 @@ import TextareaAutosize from "@mui/material/TextareaAutosize";
 import NearMeIcon from "@mui/icons-material/NearMe";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
+import Button from "@mui/material/Button";
 
 export default function PartCourse() {
   return (
@@ -143,6 +144,11 @@ export default function PartCourse() {
                   placeholder="Your Message"
                   style={{ width: "100%", bgcolor: "white" }}
                 />
+              </Grid>
+              <Grid item xs={12} sx={{ mt: 2 }}>
+                <Button variant="contained" size="large">
+                  Send Message
+                </Button>
               </Grid>
             </Grid>
           </form>

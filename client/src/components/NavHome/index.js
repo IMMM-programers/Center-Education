@@ -6,8 +6,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
-// import IconButton from "@mui/material/IconButton";
-// import MenuIcon from "@mui/icons-material/Menu";
+import Link from "@mui/material/Link";
 
 export default function ButtonAppBar() {
   return (
@@ -33,12 +32,22 @@ export default function ButtonAppBar() {
               </Typography>
             </Grid>
           </Grid>
-          <Stack direction="row" spacing={1}>
-            <Button color="inherit">Home</Button>
-            <Button color="inherit">Courses</Button>
-            <Button color="inherit">Contact</Button>
-            <Button color="inherit">Login</Button>
-            <Button color="inherit">Register</Button>
+          <Stack direction="row" spacing={3}>
+            <Link href="/" color="inherit" underline="hover">
+              Home
+            </Link>
+            <Link href="/all-courses" color="inherit" underline="hover">
+              Courses
+            </Link>
+            <Link href="/" color="inherit" underline="hover">
+              Contact
+            </Link>
+            <Link href="/login" color="inherit" underline="hover">
+              Login
+            </Link>
+            <Link href="/SignUp" color="inherit" underline="hover">
+              Register
+            </Link>
           </Stack>
         </Toolbar>
       </AppBar>

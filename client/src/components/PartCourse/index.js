@@ -89,12 +89,22 @@ export default function PartCourse(props) {
               </Typography>
             </Grid>
             <Grid item xs={2}>
+              {/* <Button variant="contained" size="large">
+                Register
+              </Button> */}
               <Typography
                 variant="h6"
                 component="button"
-                sx={{ py: 1, float: "right", fontSize: 16, color: "#172e88" }}
+                sx={{
+                  py: 1,
+                  float: "right",
+                  fontSize: 16,
+                  color: "#172e88",
+                  border: "none",
+                  cursor: "pointer",
+                }}
               >
-                show
+                Show
               </Typography>
             </Grid>
           </Grid>
