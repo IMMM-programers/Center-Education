@@ -91,7 +91,7 @@ export default function Home() {
             entirely.
           </Typography>
           <Stack sx={{ pt: 4 }} direction="row" spacing={2}>
-            <Button variant="contained" size="large">
+            <Button href="/SignUp" variant="contained" size="large">
               Register
             </Button>
             <Button variant="outlined" size="large" startIcon={<PlayArrowIcon />}>
@@ -134,7 +134,7 @@ export default function Home() {
                 it entirely.
               </Typography>
               <Stack sx={{ pt: 2 }} direction="row">
-                <Button variant="contained" size="large">
+                <Button href="/SignUp" variant="contained" size="large">
                   Register
                 </Button>
               </Stack>
@@ -168,7 +168,12 @@ export default function Home() {
 
             <Grid item xs={12}>
               <Stack sx={{}} direction="row" justifyContent="center" spacing={2}>
-                <Button variant="outlined" size="large" sx={{ color: "#3152a3" }}>
+                <Button
+                  href="/all-courses"
+                  variant="outlined"
+                  size="large"
+                  sx={{ color: "#3152a3" }}
+                >
                   Other Course
                 </Button>
               </Stack>
@@ -281,7 +286,7 @@ export default function Home() {
                 size="large"
                 sx={{ width: "180px", height: "50px", fontSize: 16 }}
               >
-                Other Course
+                From Here
               </Button>
             </Grid>
           </Grid>

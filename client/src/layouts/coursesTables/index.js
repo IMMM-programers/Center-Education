@@ -176,7 +176,7 @@ function Tables() {
       <MDBox p={2} mt="auto">
         <MDButton
           // component="a"
-          href="" // add new teacher
+          href="" // add new course
           rel="noreferrer"
           variant="gradient"
           color={sidenavColor}

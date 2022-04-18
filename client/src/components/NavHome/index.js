@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Link from "@mui/material/Link";
+import PersonIcon from "@mui/icons-material/Person";
 
 export default function ButtonAppBar() {
   return (
@@ -26,29 +27,47 @@ export default function ButtonAppBar() {
                 height="50px"
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={6}>
               <Typography variant="h6" component="div" sx={{ pt: 1.5 }}>
                 Center Education
               </Typography>
             </Grid>
+            <Grid item xs={5} sx={{ pt: 2 }}>
+              <Stack direction="row" spacing={4}>
+                <Link href="/" color="inherit" underline="hover">
+                  Home
+                </Link>
+                <Link href="/all-courses" color="inherit" underline="hover">
+                  Courses
+                </Link>
+                <Link href="/" color="inherit" underline="hover">
+                  Contact
+                </Link>
+
+                <Link href="/login" color="inherit" underline="hover" sx={{ mr: 5 }}>
+                  <Grid container>
+                    <Grid item xs={4}>
+                      <PersonIcon sx={{ my: 0.3, mr: 1, fontSize: 18 }} />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography variant="h7" component="">
+                        Login
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Link>
+                <Link href="/SignUp" color="inherit" underline="hover" sx={{}}>
+                  <Grid container>
+                    <Grid item xs={6}>
+                      <Typography variant="h7" component="">
+                        Register
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Link>
+              </Stack>
+            </Grid>
           </Grid>
-          <Stack direction="row" spacing={3}>
-            <Link href="/" color="inherit" underline="hover">
-              Home
-            </Link>
-            <Link href="/all-courses" color="inherit" underline="hover">
-              Courses
-            </Link>
-            <Link href="/" color="inherit" underline="hover">
-              Contact
-            </Link>
-            <Link href="/login" color="inherit" underline="hover">
-              Login
-            </Link>
-            <Link href="/SignUp" color="inherit" underline="hover">
-              Register
-            </Link>
-          </Stack>
         </Toolbar>
       </AppBar>
     </Box>

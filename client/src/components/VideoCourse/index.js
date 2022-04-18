@@ -1,32 +1,81 @@
 import * as React from "react";
+import TableVidoes from "components/TableVideos";
 
 import Typography from "@mui/material/Typography";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import FileDownloadOffIcon from "@mui/icons-material/FileDownloadOff";
+import FolderOpenIcon from "@mui/icons-material/FolderOpen";
+import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 
-export default function VideoCourse() {
-  //   const a = [];
-  //   props.forEach((e) => {
-  //     a.push({
-  //       Name: e.title,
-  //     });
-  //   });
-  //   const { title } = props;
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
   return (
-    <Box sx={{ maxWidth: 340 }}>
-      <Box>
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiMxqFiYQ4S-GGwI1EywQeRRy6dJ0AO4KJcw&usqp=CAU"
-          alt="{item.title}"
-          loading="lazy"
-          width="100%"
-          height="200"
-        />
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+export default function PartCourse() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  return (
+    <Box sx={{ width: "100%" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab label="Material" icon={<FolderOpenIcon />} iconPosition="start" />
+          <Tab label="Vidoes" icon={<VideoLibraryIcon />} iconPosition="start" />
+        </Tabs>
       </Box>
-      <Box align="left">
-        <Typography variant="h7" component="h3">
-          Course Name
-        </Typography>
-      </Box>
+      <TabPanel value={value} index={0}>
+        <Box sx={{}} width="58%">
+          <Typography component="h3" variant="h7" sx={{ mb: 2, fontWeight: 600 }}>
+            To download the material from here
+          </Typography>
+
+          <Button
+            variant="outlined"
+            size="large"
+            startIcon={<FileDownloadOffIcon sx={{ mr: 1 }} />}
+          >
+            Download
+          </Button>
+        </Box>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <TableVidoes />
+      </TabPanel>
     </Box>
   );
 }

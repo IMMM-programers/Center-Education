@@ -10,6 +10,7 @@ import Avatar from "@mui/material/Avatar";
 // import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
 
 export default function PartCourse(props) {
   // const a = [];
@@ -104,7 +105,9 @@ export default function PartCourse(props) {
                   cursor: "pointer",
                 }}
               >
-                Show
+                <Link href="/course" color="inherit" underline="none">
+                  Show
+                </Link>
               </Typography>
             </Grid>
           </Grid>

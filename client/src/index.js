@@ -26,6 +26,7 @@ import SignUp from "components/signUp";
 import LogOut from "layouts/authentication/sign-in";
 import App from "App";
 import TeacherApp from "TeacherApp";
+import ProfileStudent from "layouts/profileStudent";
 
 // const getRoutes = (allRoutes) =>
 //   allRoutes.map((route) => {
@@ -46,6 +47,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/course" element={<PageCourse />} />
+        <Route path="/profile" element={<ProfileStudent />} />
         <Route path="/all-courses" element={<PageAllCourses />} />
         <Route path="/login" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />

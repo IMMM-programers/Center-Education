@@ -1,10 +1,20 @@
 /* eslint-disable react/prop-types */
 
 // Soft UI Dashboard React components
+import * as React from "react";
+
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-// import MDAvatar from "components/MDAvatar";
-// import MDBadge from "components/MDBadge";
+
+import Icon from "@mui/material/Icon";
+import Dialog from "@mui/material/Dialog";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+
 import axios from "axios";
 
 // Images
@@ -31,6 +41,69 @@ export default function data(props) {
       });
   };
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const dialog = (
+    <Dialog open={open} onClose={handleClose}>
+      <Grid>
+        <Card>
+          <CardContent>
+            <Typography gutterBottom variant="h5" pb={3}>
+              Add Videos
+            </Typography>
+            <form>
+              <Grid container spacing={1}>
+                <Grid xs={12} sm={12} item>
+                  <TextField
+                    placeholder="Enter Title"
+                    name="title"
+                    label="Title"
+                    variant="outlined"
+                    //   value={firstName}
+                    //   onChange={handleOnChange}
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    type="link"
+                    placeholder="Enter video link"
+                    name="link"
+                    //   value={password}
+                    //   onChange={handleOnChange}
+                    label="Link"
+                    variant="outlined"
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button variant="contained" color="primary" fullWidth>
+                    Add
+                  </Button>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button variant="contained" color="primary" fullWidth onClick={handleClose}>
+                    Cancel
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </CardContent>
+        </Card>
+      </Grid>
+    </Dialog>
+  );
+
   const a = [];
   props.forEach((e) => {
     a.push({
@@ -50,15 +123,11 @@ export default function data(props) {
         </MDBox>
       ),
       edit: (
-        <MDTypography
-          component="a"
-          href="#"
-          variant="caption"
-          color="text"
-          fontWeight="medium"
-          // onClick={() => deleteCourse(e.title)}
-        >
-          Edit
+        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+          <Icon fontSize="small" onClick={handleClickOpen} color="primary">
+            add_circle
+          </Icon>
+          {dialog}
         </MDTypography>
       ),
       action: (
