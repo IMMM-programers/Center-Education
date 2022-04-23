@@ -11,24 +11,24 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Avatar from "@mui/material/Avatar";
-import Divider from "@mui/material/Divider";
+// import Avatar from "@mui/material/Avatar";
+// import Divider from "@mui/material/Divider";
 import GradeIcon from "@mui/icons-material/Grade";
 import CheckIcon from "@mui/icons-material/Check";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
+// import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+// import Tabs from "@mui/material/Tabs";
+// import Tab from "@mui/material/Tab";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import axios from "axios";
 
-import backgroundImage from "assets/images/bg-profile.jpeg";
+// import backgroundImage from "assets/images/bg-profile.jpeg";
 
 const theme = createTheme();
 
@@ -47,7 +47,7 @@ export default function PageCourse() {
                 color="black"
                 sx={{ fontSize: 14, fontWeight: 500, mb: 2 }}
               >
-                Computer Engineering > Programming > Java
+                Computer Engineering Programming Java
               </Typography>
               <Typography
                 component="h2"
@@ -59,7 +59,7 @@ export default function PageCourse() {
               </Typography>
               <Typography component="p" variant="p" color="#ffffff" width="80%" sx={{ mb: 2 }}>
                 Something short and leading about the collection below—its contents, the creator,
-                etc. Make it short and sweet, but not too short so folks don't simply skip over it
+                etc. Make it short and sweet, but not too short so folks dont simply skip over it
                 entirely.
               </Typography>
               <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 1 }}>
@@ -97,8 +97,7 @@ export default function PageCourse() {
 
         <Box sx={{ mt: -36, mb: 10 }}>
           <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 1 }}>
-            <Grid item xs={8}></Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12} sx={{ ml: "70%" }}>
               <Card sx={{ maxWidth: 340 }}>
                 <CardMedia>
                   <img
@@ -142,7 +141,7 @@ export default function PageCourse() {
           width="58%"
         >
           <Typography component="h4" variant="h5" sx={{ mt: 2, fontWeight: 600 }}>
-            What you'll learn
+            What youll learn
           </Typography>
           <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 1 }}>
             <Grid item xs={6}>
@@ -171,7 +170,7 @@ export default function PageCourse() {
                 </Typography>
                 <Typography component="p" variant="p" sx={{ mt: 2 }}>
                   <CheckIcon sx={{ mr: 1, fontSize: 18 }} />
-                  Learn industry "best practices" in Java software development from a professional
+                  Learn industry best practices in Java software development from a professional
                   Java developer who has worked in the language for 18 years.
                 </Typography>
                 <Typography component="p" variant="p" sx={{ mt: 2 }}>
@@ -207,7 +206,7 @@ export default function PageCourse() {
               <ListItemText>
                 <Typography component="p" variant="p" sx={{}}>
                   A strong work ethic, willingness to learn, and plenty of excitement about the
-                  awesome new programs you’re about to build.
+                  awesome new programs youre about to build.
                 </Typography>
               </ListItemText>
             </ListItem>
@@ -217,7 +216,7 @@ export default function PageCourse() {
               </ListItemIcon>
               <ListItemText>
                 <Typography component="p" variant="p" sx={{}}>
-                  Nothing else! It’s just you, your computer and your hunger to get started today.
+                  Nothing else! Its just you, your computer and your hunger to get started today.
                 </Typography>
               </ListItemText>
             </ListItem>
@@ -229,12 +228,12 @@ export default function PageCourse() {
             Description
           </Typography>
           <Typography component="p" variant="p" sx={{}}>
-            You’ve just stumbled upon the most complete, in-depth Java programming course online.
+            Youve just stumbled upon the most complete, in-depth Java programming course online.
             With close to 600,000 students enrolled and over one hundred and forty thousand reviews
             (with tens of thousands of those 5-star) to date, these comprehensive java tutorials
-            cover everything you’ll ever need. Whether you want to: - build the skills you need to
+            cover everything youll ever need. Whether you want to: - build the skills you need to
             get your first Java programming job - move to a more senior software developer position
-            - pass the oracle java certification exam - or just learn java to be able to create your
+            pass the oracle java certification exam - or just learn java to be able to create your
             own java apps quickly. ...this complete Java Masterclass is the course you need to do
             all of this, and more.
           </Typography>

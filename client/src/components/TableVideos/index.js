@@ -15,8 +15,8 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import DialogContentText from "@mui/material/DialogContentText";
-import CardMedia from "@mui/material/CardMedia";
+// import DialogContentText from "@mui/material/DialogContentText";
+// import CardMedia from "@mui/material/CardMedia";
 
 function createData(name, time) {
   return { name, time };
@@ -71,10 +71,11 @@ export default function BasicTable() {
         <DialogTitle id="alert-dialog-title">Video Title</DialogTitle>
         <DialogContent>
           <iframe
+            title={rows[0].name}
             width="100%"
             height="350"
             src="https://www.youtube.com/embed/zSH15dIl7D0?controls=1"
-          ></iframe>
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>
