@@ -71,3 +71,13 @@ module.exports.allCourses = async (req, res) => {
     res.status(500).send("Server error");
   }
 };
+
+module.exports.addVideo = async (req, res) => {
+  try {
+    const { title } = req.params;
+    await Course.updateOne({ title }, { $push: { videos: req.body } });
+    res.send("success in adding ads");
+  } catch (error) {
+    res.send("Error in updating" + error.message);
+  }
+};

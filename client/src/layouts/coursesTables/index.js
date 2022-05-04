@@ -98,7 +98,7 @@ function Tables() {
       .get("/api/auth/tokenUser", config)
       .then((response) => {
         axios
-          .get("/api/courses/allCourses")
+          .get(`/api/courses/teacherCourses/${response.data.email}`)
           .then((res) => {
             setInputValues({ ...inputValues, courses: res.data, user: response.data });
           })

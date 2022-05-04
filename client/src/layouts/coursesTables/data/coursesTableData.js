@@ -30,6 +30,19 @@ import axios from "axios";
 
 // export default function data({props}) {
 export default function data(props) {
+  const [inputValues, setInputValues] = React.useState({
+    videoTitle: "",
+    link: "",
+    t: "",
+  });
+
+  const { videoTitle, link, t } = inputValues;
+
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setInputValues({ ...inputValues, [name]: value });
+  };
+
   const deleteCourse = (title) => {
     axios
       .delete(`/api/courses/deleteCourse/${title}`)
@@ -51,6 +64,19 @@ export default function data(props) {
     setOpen(false);
   };
 
+  const addVideo = () => {
+    const video = { videoTitle, link };
+    axios
+      .patch(`/api/courses/addVideo/${t}`, video)
+      .then(() => {
+        handleClose();
+        setInputValues({ videoTitle: "", link: "", t: "" });
+      })
+      .catch(() => {
+        handleClose();
+      });
+  };
+
   const dialog = (
     <Dialog open={open} onClose={handleClose}>
       <Grid>
@@ -64,11 +90,11 @@ export default function data(props) {
                 <Grid xs={12} sm={12} item>
                   <TextField
                     placeholder="Enter Title"
-                    name="title"
+                    name="videoTitle"
                     label="Title"
                     variant="outlined"
-                    //   value={firstName}
-                    //   onChange={handleOnChange}
+                    value={videoTitle}
+                    onChange={handleOnChange}
                     fullWidth
                     required
                   />
@@ -78,8 +104,8 @@ export default function data(props) {
                     type="link"
                     placeholder="Enter video link"
                     name="link"
-                    //   value={password}
-                    //   onChange={handleOnChange}
+                    value={link}
+                    onChange={handleOnChange}
                     label="Link"
                     variant="outlined"
                     fullWidth
@@ -87,7 +113,7 @@ export default function data(props) {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <Button variant="contained" color="primary" fullWidth>
+                  <Button variant="contained" color="primary" fullWidth onClick={addVideo}>
                     Add
                   </Button>
                 </Grid>
@@ -124,7 +150,14 @@ export default function data(props) {
       ),
       edit: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          <Icon fontSize="small" onClick={handleClickOpen} color="primary">
+          <Icon
+            fontSize="small"
+            onClick={() => {
+              handleClickOpen();
+              setInputValues({ ...inputValues, t: e.title });
+            }}
+            color="primary"
+          >
             add_circle
           </Icon>
           {dialog}
