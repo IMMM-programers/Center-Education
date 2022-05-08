@@ -167,7 +167,7 @@ export default function SignInSide() {
                 sx={{ mt: 3, mb: 2 }}
                 onClick={handleSubmit}
               >
-                Sign In
+                Sign Up
               </Button>
               <Grid container>
                 {/* <Grid item xs>

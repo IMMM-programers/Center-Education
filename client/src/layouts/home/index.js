@@ -1,5 +1,5 @@
 import * as React from "react";
-import Navbar from "components/NavHome";
+import Navbar from "components/NavLogin";
 import Course from "components/PartCourse";
 import ContactHome from "components/ContactHome";
 import FeedbackStudent from "components/FeedbackStudent";

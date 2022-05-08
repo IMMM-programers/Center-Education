@@ -146,7 +146,9 @@ export default function ProfileStudent() {
               <Grid item>
                 <Box height="100%" mt={0.5} lineHeight={1}>
                   {/* {student[1].name} */}
-                  mm
+                  <Typography variant="h5" fontWeight="medium">
+                    Ahmed
+                  </Typography>
                   {/* {student.map((s) => (
                     <Typography key={s.id} variant="h5" fontWeight="medium">
                       {s.name}

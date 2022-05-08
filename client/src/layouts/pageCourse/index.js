@@ -121,7 +121,7 @@ export default function PageCourse() {
                       Last updated 3/2020
                     </Typography>
                     <Button
-                      href="/all-courses"
+                      href="/SignUp"
                       variant="contained"
                       size="large"
                       align="center"
