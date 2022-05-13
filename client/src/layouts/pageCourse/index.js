@@ -29,10 +29,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import axios from "axios";
 
 // import backgroundImage from "assets/images/bg-profile.jpeg";
+import { useLocation } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function PageCourse() {
+  const location = useLocation();
+  console.log(location);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
