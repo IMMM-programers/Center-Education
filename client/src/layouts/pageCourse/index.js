@@ -30,9 +30,14 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // import backgroundImage from "assets/images/bg-profile.jpeg";
 
+import { useLocation } from "react-router-dom";
+
 const theme = createTheme();
 
 export default function PageCourse() {
+  const location = useLocation();
+  // const { state } = this.props.location;
+  console.log(location.state);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

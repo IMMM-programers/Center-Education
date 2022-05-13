@@ -10,7 +10,8 @@ import Avatar from "@mui/material/Avatar";
 // import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
+// import Link from "@mui/material/Link";
+import { Link } from "react-router-dom";
 
 export default function PartCourse(props) {
   // const a = [];
@@ -105,7 +106,14 @@ export default function PartCourse(props) {
                   cursor: "pointer",
                 }}
               >
-                <Link href="/course" color="inherit" underline="none">
+                <Link
+                  to={{
+                    pathname: "/course",
+                    state: description, // your data array of objects
+                  }}
+                  color="inherit"
+                  underline="none"
+                >
                   Show
                 </Link>
               </Typography>
