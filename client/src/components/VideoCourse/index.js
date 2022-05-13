@@ -24,7 +24,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component="span">{children}</Typography>
         </Box>
       )}
     </div>
@@ -60,7 +60,7 @@ export default function PartCourse() {
       </Box>
       <TabPanel value={value} index={0}>
         <Box sx={{}} width="58%">
-          <Typography component="h3" variant="h7" sx={{ mb: 2, fontWeight: 600 }}>
+          <Typography component="span" variant="h7" sx={{ mb: 2, fontWeight: 600 }}>
             To download the material from here
           </Typography>
 
