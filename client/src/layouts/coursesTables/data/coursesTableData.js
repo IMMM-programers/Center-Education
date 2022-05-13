@@ -34,9 +34,12 @@ export default function data(props) {
     videoTitle: "",
     link: "",
     t: "",
+    materialTitle: "",
+    materialLink: "",
   });
 
-  const { videoTitle, link, t } = inputValues;
+  const { videoTitle, link, t, materialTitle, materialLink } = inputValues;
+  console.log(t);
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -77,7 +80,20 @@ export default function data(props) {
       });
   };
 
-  const dialog = (
+  const addMaterial = () => {
+    const material = { materialTitle, materialLink };
+    axios
+      .patch(`/api/courses/addMaterial/${t}`, material)
+      .then(() => {
+        handleClose();
+        setInputValues({ materialTitle: "", materialLink: "", t: "" });
+      })
+      .catch(() => {
+        handleClose();
+      });
+  };
+
+  const dialogAddVideos = (
     <Dialog open={open} onClose={handleClose}>
       <Grid>
         <Card>
@@ -129,6 +145,58 @@ export default function data(props) {
       </Grid>
     </Dialog>
   );
+  const dialogAddMaterial = (
+    <Dialog open={open} onClose={handleClose}>
+      <Grid>
+        <Card>
+          <CardContent>
+            <Typography gutterBottom variant="h5" pb={3}>
+              Add Material
+            </Typography>
+            <form>
+              <Grid container spacing={1}>
+                <Grid xs={12} sm={12} item>
+                  <TextField
+                    placeholder="Enter Material Title"
+                    name="materialTitle"
+                    label="Title"
+                    variant="outlined"
+                    value={materialTitle}
+                    onChange={handleOnChange}
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    type="link"
+                    placeholder="Enter material link"
+                    name="link"
+                    value={link}
+                    onChange={handleOnChange}
+                    label="Link"
+                    variant="outlined"
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button variant="contained" color="primary" fullWidth onClick={addMaterial}>
+                    Add
+                  </Button>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button variant="contained" color="primary" fullWidth onClick={handleClose}>
+                    Cancel
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </CardContent>
+        </Card>
+      </Grid>
+    </Dialog>
+  );
 
   const a = [];
   props.forEach((e) => {
@@ -148,7 +216,7 @@ export default function data(props) {
           </MDTypography>
         </MDBox>
       ),
-      edit: (
+      addMaterial: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
           <Icon
             fontSize="small"
@@ -160,7 +228,22 @@ export default function data(props) {
           >
             add_circle
           </Icon>
-          {dialog}
+          {dialogAddVideos}
+        </MDTypography>
+      ),
+      addVideo: (
+        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+          <Icon
+            fontSize="small"
+            onClick={() => {
+              handleClickOpen();
+              setInputValues({ ...inputValues, t: e.title });
+            }}
+            color="primary"
+          >
+            add_circle
+          </Icon>
+          {dialogAddMaterial}
         </MDTypography>
       ),
       action: (
@@ -179,10 +262,11 @@ export default function data(props) {
   });
   return {
     columns: [
-      { Header: "title", accessor: "title", width: "20%", align: "left" },
-      { Header: "description", accessor: "description", width: "30%", align: "left" },
+      { Header: "title", accessor: "title", width: "18%", align: "left" },
+      { Header: "description", accessor: "description", width: "28%", align: "left" },
       { Header: "category name", accessor: "categoryName", align: "center" },
-      { Header: "edit", accessor: "edit", align: "center" },
+      { Header: "Add Material", accessor: "addMaterial", align: "center" },
+      { Header: "Add Video", accessor: "addVideo", align: "center" },
       { Header: "action", accessor: "action", align: "center" },
     ],
 
