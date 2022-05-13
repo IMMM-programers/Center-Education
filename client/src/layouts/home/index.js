@@ -51,7 +51,6 @@ export default function Home() {
         console.log(err);
       });
   }, []);
-  console.log(course);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
