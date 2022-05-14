@@ -22,7 +22,7 @@ export default function PartCourse(props) {
   //     teacherEmail: e.teacherEmail,
   //   });
   // });
-  const { title, description, categoryName, teacherEmail } = props;
+  const { title, description, categoryName, teacherEmail, videos } = props;
   return (
     <Card sx={{ maxWidth: 340 }}>
       <CardMedia>
@@ -110,7 +110,7 @@ export default function PartCourse(props) {
                 </Link> */}
                 <Link
                   to={{ pathname: "/course" }}
-                  state={{ title, description, categoryName, teacherEmail }}
+                  state={{ title, description, categoryName, teacherEmail, videos }}
                   style={{ color: "inherit", textDecoration: "none" }}
                 >
                   Show

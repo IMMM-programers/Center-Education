@@ -75,7 +75,7 @@ function Tables() {
   };
 
   const addCourse = () => {
-    const teacherEmail = user.name;
+    const teacherEmail = user.email;
     const t = { title, description, categoryName, teacherEmail };
     axios
       .post("/api/courses/createCourse", t)

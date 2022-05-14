@@ -35,7 +35,7 @@ const theme = createTheme();
 
 export default function PageCourse() {
   const location = useLocation();
-  console.log(location);
+  const c = location.state;
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -45,25 +45,23 @@ export default function PageCourse() {
           <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 1 }}>
             <Grid item xs={8}>
               <Typography
-                variant="p"
-                component="p"
-                color="black"
-                sx={{ fontSize: 14, fontWeight: 500, mb: 2 }}
-              >
-                Computer Engineering Programming Java
-              </Typography>
-              <Typography
                 component="h2"
                 variant="h4"
                 color="#ffffff"
-                sx={{ fontWeight: 500, fontSize: 26, mb: 2 }}
+                sx={{ fontWeight: 500, fontSize: 28, mb: 2 }}
               >
-                Course Name: C++
+                Course Name: {c.title}
               </Typography>
-              <Typography component="p" variant="p" color="#ffffff" width="80%" sx={{ mb: 2 }}>
-                Something short and leading about the collection below—its contents, the creator,
-                etc. Make it short and sweet, but not too short so folks dont simply skip over it
-                entirely.
+              <Typography
+                variant="p"
+                component="p"
+                color="orange"
+                sx={{ fontSize: 16, fontWeight: 500, mb: 2 }}
+              >
+                Category Course: {c.categoryName}
+              </Typography>
+              <Typography component="p" variant="p" color="lightgray" width="80%" sx={{ mb: 2 }}>
+                {c.description}
               </Typography>
               <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 1 }}>
                 <Grid item xs={2.5}>
@@ -89,8 +87,12 @@ export default function PageCourse() {
                   </Typography>
                 </Grid>
                 <Grid item xs={4}>
-                  <Typography variant="h4" color="black" sx={{ fontSize: 16, fontWeight: 500 }}>
-                    Teacher Name
+                  <Typography
+                    variant="h4"
+                    color="lightgreen"
+                    sx={{ fontSize: 16, fontWeight: 500 }}
+                  >
+                    {c.teacherEmail.split("@")[0]}
                   </Typography>
                 </Grid>
               </Grid>
@@ -252,9 +254,9 @@ export default function PageCourse() {
           >
             Course Videos
           </Typography>
-          <Course />
+          <Course videos={c.videos} />
         </Box>
-        {/* commited */}
+        {/* commited before */}
         {/* <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
