@@ -44,6 +44,8 @@ import Typography from "@mui/material/Typography";
 
 import axios from "axios";
 
+import swal from "sweetalert";
+
 function Tables() {
   // const { columns: pColumns, rows: pRows } = projectsTableData();
   const [controller] = useMaterialUIController();
@@ -77,9 +79,13 @@ function Tables() {
     axios
       .patch(`/api/users/addAds/m@gmail.com`, ad) // need to be dynamic
       .then(() => {
+        swal("Good job!", "The Ad has been added successfully", "success").then(() => {
+          window.location.reload();
+        });
         handleClose();
       })
       .catch(() => {
+        swal("OoOps!", " Please fill all the fields correctly.", "error");
         handleClose();
       });
   };

@@ -16,6 +16,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+import swal from "sweetalert";
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -51,9 +53,8 @@ export default function SignInSide() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { token, type } = await (
-        await axios.post("/api/auth/loginUser", { email, password })
-      ).data;
+      const { token, type } = await (await axios.post("/api/auth/loginUser", { email, password }))
+        .data;
       localStorage.setItem("token", token);
       if (type === "Admin") {
         navigate("/dashboard/admin");
@@ -63,8 +64,8 @@ export default function SignInSide() {
         navigate("/");
       }
     } catch (error) {
-      console.log(error);
-      // swal("OoOps!", " Invalid email or password.", "error");
+      // console.log(error);
+      await swal("OoOps!", " Invalid email or password.", "error");
       setInputValues({
         email: "",
         password: "",

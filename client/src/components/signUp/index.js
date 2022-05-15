@@ -14,6 +14,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+import swal from "sweetalert";
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -62,14 +64,14 @@ export default function SignInSide() {
       localStorage.setItem("token", token);
       navigate("/");
     } catch (error) {
-      console.log(error);
-      // swal("OoOps!", " Please fill all the fields correctly.", "error");
-      // setInputValues({
-      //   userName: "",
-      //   email: "",
-      //   password: "",
-      //   phoneNumber: "",
-      // });
+      // console.log(error);
+      swal("OoOps!", " Please fill all the fields correctly.", "error");
+      setInputValues({
+        userName: "",
+        email: "",
+        password: "",
+        phoneNumber: "",
+      });
     }
   };
 

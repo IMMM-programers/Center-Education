@@ -43,6 +43,8 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 
+import swal from "sweetalert";
+
 function Tables() {
   // const { columns: pColumns, rows: pRows } = projectsTableData();
   const [controller] = useMaterialUIController();
@@ -80,9 +82,13 @@ function Tables() {
     axios
       .post("/api/users/createUser", t)
       .then(() => {
+        swal("Good job!", "The teacher has been added successfully", "success").then(() => {
+          window.location.reload();
+        });
         handleClose();
       })
       .catch(() => {
+        swal("OoOps!", " Please fill all the fields correctly.", "error");
         handleClose();
       });
   };
