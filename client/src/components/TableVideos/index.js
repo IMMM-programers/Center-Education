@@ -18,20 +18,21 @@ import DialogActions from "@mui/material/DialogActions";
 // import DialogContentText from "@mui/material/DialogContentText";
 // import CardMedia from "@mui/material/CardMedia";
 
-function createData(name, time) {
-  return { name, time };
-}
+// function createData(name, time) {
+//   return { name, time };
+// }
 
-const rows = [
-  createData("1- First Video", "8 min"),
-  createData("2- Second Video", "18 min"),
-  createData("3- Third Video", "14 min"),
-  createData("4- Forth Video", "23 min"),
-  createData("5- Fifth Video", "31 min"),
-];
+// const rows = [
+//   createData("1- First Video", "8 min"),
+//   createData("2- Second Video", "18 min"),
+//   createData("3- Third Video", "14 min"),
+//   createData("4- Forth Video", "23 min"),
+//   createData("5- Fifth Video", "31 min"),
+// ];
 
-export default function BasicTable() {
+export default function BasicTable({ videos }) {
   const [open, setOpen] = React.useState(false);
+  const [video, setVideo] = React.useState();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -43,12 +44,17 @@ export default function BasicTable() {
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableBody>
-          {rows.map((row) => (
+          {videos.map((v) => (
             <TableRow
-              key={row.name}
+              key={v.videoTitle}
               hover
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              onClick={handleClickOpen}
+              // onClick={handleClickOpen}
+              onClick={() => {
+                handleClickOpen();
+                console.log("v", v);
+                setVideo(v);
+              }}
             >
               <TableCell component="th" scope="row">
                 <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 1 }} sx={{}}>
@@ -57,25 +63,27 @@ export default function BasicTable() {
                   </Grid>
                   <Grid item xs={5}>
                     <Typography component="h3" variant="h7">
-                      {row.name}
+                      {v.videoTitle}
                     </Typography>
                   </Grid>
                 </Grid>
               </TableCell>
-              <TableCell align="right">{row.time}</TableCell>
+              <TableCell align="right">20 min</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <Dialog open={open} onClose={handleClose} fullWidth="900" height="100%">
+      <Dialog open={open} onClose={handleClose} fullWidth height="100%">
         <DialogTitle id="alert-dialog-title">Video Title</DialogTitle>
         <DialogContent>
           <iframe
-            title={rows[0].name}
+            title={video ? video.videoTitle : ""}
             width="100%"
             height="350"
-            src="https://www.youtube.com/embed/zSH15dIl7D0?controls=1"
+            // src={video ? video.link : ""}
+            src="https://www.youtube.com/embed?v=K8-YqMAdyq4&list=PLq5FW85cJhv5wkNk8ngddqoaK47jGQxBY&index=2"
           />
+          {console.log(video ? video.link : "")}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>

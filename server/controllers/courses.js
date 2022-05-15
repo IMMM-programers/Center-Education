@@ -20,7 +20,7 @@ module.exports.createCourse = (req, res) => {
     videos,
     teacherEmail,
   });
-  console.log(course);
+  // console.log(course);
   course
     .save()
     .then((response) => {
@@ -76,7 +76,18 @@ module.exports.addVideo = async (req, res) => {
   try {
     const { title } = req.params;
     await Course.updateOne({ title }, { $push: { videos: req.body } });
-    res.send("success in adding ads");
+    res.send("success in adding video");
+  } catch (error) {
+    res.send("Error in updating" + error.message);
+  }
+};
+
+module.exports.addMaterial = async (req, res) => {
+  try {
+    const { title } = req.params;
+    const { material } = req.body;
+    await Course.updateOne({ title }, { $set: { material } });
+    res.send("success in adding material");
   } catch (error) {
     res.send("Error in updating" + error.message);
   }

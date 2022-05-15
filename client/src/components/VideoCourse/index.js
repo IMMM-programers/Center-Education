@@ -13,7 +13,6 @@ import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -32,7 +31,7 @@ function TabPanel(props) {
 }
 
 // TabPanel.propTypes = {
-//   children: PropTypes.node,
+// children: PropTypes.node,
 //   index: PropTypes.number.isRequired,
 //   value: PropTypes.number.isRequired,
 // };
@@ -44,9 +43,8 @@ function TabPanel(props) {
 //   };
 // }
 
-export default function PartCourse() {
+export default function PartCourse({ videos }) {
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -74,7 +72,7 @@ export default function PartCourse() {
         </Box>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <TableVidoes />
+        <TableVidoes videos={videos} />
       </TabPanel>
     </Box>
   );

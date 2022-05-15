@@ -34,12 +34,10 @@ export default function data(props) {
     videoTitle: "",
     link: "",
     t: "",
-    materialTitle: "",
-    materialLink: "",
+    material: "",
   });
 
-  const { videoTitle, link, t, materialTitle, materialLink } = inputValues;
-  console.log(t);
+  const { videoTitle, link, t, material } = inputValues;
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -58,6 +56,7 @@ export default function data(props) {
   };
 
   const [open, setOpen] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -65,6 +64,14 @@ export default function data(props) {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = () => {
+    setOpen2(false);
   };
 
   const addVideo = () => {
@@ -81,15 +88,15 @@ export default function data(props) {
   };
 
   const addMaterial = () => {
-    const material = { materialTitle, materialLink };
+    console.log(t, material);
     axios
-      .patch(`/api/courses/addMaterial/${t}`, material)
+      .patch(`/api/courses/addMaterial/${t}`, { material })
       .then(() => {
-        handleClose();
-        setInputValues({ materialTitle: "", materialLink: "", t: "" });
+        handleClose2();
+        // setInputValues({ material: "", t: "" });
       })
       .catch(() => {
-        handleClose();
+        handleClose2();
       });
   };
 
@@ -146,7 +153,7 @@ export default function data(props) {
     </Dialog>
   );
   const dialogAddMaterial = (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open2} onClose={handleClose2}>
       <Grid>
         <Card>
           <CardContent>
@@ -157,25 +164,12 @@ export default function data(props) {
               <Grid container spacing={1}>
                 <Grid xs={12} sm={12} item>
                   <TextField
-                    placeholder="Enter Material Title"
-                    name="materialTitle"
-                    label="Title"
+                    placeholder="Enter Material link"
+                    name="material"
+                    label="material"
                     variant="outlined"
-                    value={materialTitle}
+                    value={material}
                     onChange={handleOnChange}
-                    fullWidth
-                    required
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    type="link"
-                    placeholder="Enter material link"
-                    name="link"
-                    value={link}
-                    onChange={handleOnChange}
-                    label="Link"
-                    variant="outlined"
                     fullWidth
                     required
                   />
@@ -186,7 +180,7 @@ export default function data(props) {
                   </Button>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button variant="contained" color="primary" fullWidth onClick={handleClose}>
+                  <Button variant="contained" color="primary" fullWidth onClick={handleClose2}>
                     Cancel
                   </Button>
                 </Grid>
@@ -221,14 +215,14 @@ export default function data(props) {
           <Icon
             fontSize="small"
             onClick={() => {
-              handleClickOpen();
+              handleClickOpen2();
               setInputValues({ ...inputValues, t: e.title });
             }}
             color="primary"
           >
             add_circle
           </Icon>
-          {dialogAddVideos}
+          {dialogAddMaterial}
         </MDTypography>
       ),
       addVideo: (
@@ -243,7 +237,7 @@ export default function data(props) {
           >
             add_circle
           </Icon>
-          {dialogAddMaterial}
+          {dialogAddVideos}
         </MDTypography>
       ),
       action: (
