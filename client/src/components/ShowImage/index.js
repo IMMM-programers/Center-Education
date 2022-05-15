@@ -4,7 +4,7 @@ import "./style.css";
 const img = ({ visibility, picture, title }) => (
   <div>
     <div id="myModal" className="modal" style={{ visibility }}>
-      <a href="/dashboard/Ads">
+      <a href="/dashboard/admin/Ads">
         <span
           role="button"
           tabIndex={0}

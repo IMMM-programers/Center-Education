@@ -28,6 +28,7 @@ import axios from "axios";
 // import DialogTitle from "@mui/material/DialogTitle";
 
 import Image from "components/ShowImage";
+import swal from "sweetalert";
 
 export default function data(props) {
   const [inputValues, setInputValues] = React.useState({
@@ -39,11 +40,13 @@ export default function data(props) {
   const deleteAds = (i) => {
     axios
       .delete(`/api/users/deleteAds/${i}`)
-      .then((res) => {
-        console.log(res.data);
+      .then(() => {
+        swal("Good job!", "The Ad deleted successfully", "success").then(() => {
+          window.location.reload();
+        });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        swal("OoOps!", "Error in deleting the Ad", "error");
       });
   };
 

@@ -6,6 +6,7 @@ import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
 import axios from "axios";
+import swal from "sweetalert";
 
 // Images
 // import logoXD from "assets/images/small-logos/logo-xd.svg";
@@ -39,11 +40,13 @@ export default function data(props) {
   const deleteTeacher = (email) => {
     axios
       .delete(`/api/users/deleteUser/${email}`)
-      .then((res) => {
-        console.log(res.data);
+      .then(() => {
+        swal("Good job!", "The Teacher deleted successfully", "success").then(() => {
+          window.location.reload();
+        });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        swal("OoOps!", "Error in deleting the Teacher", "error");
       });
   };
 

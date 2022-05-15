@@ -76,18 +76,25 @@ function Tables() {
 
   const addAd = () => {
     const ad = { title, imageUrl };
-    axios
-      .patch(`/api/users/addAds/m@gmail.com`, ad) // need to be dynamic
-      .then(() => {
-        swal("Good job!", "The Ad has been added successfully", "success").then(() => {
-          window.location.reload();
-        });
-        handleClose();
-      })
-      .catch(() => {
-        swal("OoOps!", " Please fill all the fields correctly.", "error");
-        handleClose();
+    if (title === "" || imageUrl === "") {
+      swal("OoOps!", " Please fill all the fields correctly.", "error").then(() => {
+        window.location.reload();
+        return;
       });
+    } else {
+      axios
+        .patch(`/api/users/addAds/m@gmail.com`, ad) // need to be dynamic
+        .then(() => {
+          swal("Good job!", "The Ad has been added successfully", "success").then(() => {
+            window.location.reload();
+          });
+          handleClose();
+        })
+        .catch(() => {
+          swal("OoOps!", " Please fill all the fields correctly.", "error");
+          handleClose();
+        });
+    }
   };
 
   React.useEffect(() => {
