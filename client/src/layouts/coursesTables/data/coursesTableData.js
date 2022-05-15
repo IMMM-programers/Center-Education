@@ -34,11 +34,10 @@ export default function data(props) {
     videoTitle: "",
     link: "",
     t: "",
-    // materialTitle: "",
-    // materialLink: "",
+    material: "",
   });
 
-  const { videoTitle, link, t } = inputValues;
+  const { videoTitle, link, t, material } = inputValues;
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -57,6 +56,7 @@ export default function data(props) {
   };
 
   const [open, setOpen] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -64,6 +64,14 @@ export default function data(props) {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = () => {
+    setOpen2(false);
   };
 
   const addVideo = () => {
@@ -79,18 +87,18 @@ export default function data(props) {
       });
   };
 
-  // const addMaterial = () => {
-  //   const material = { materialTitle, materialLink };
-  //   axios
-  //     .patch(`/api/courses/addMaterial/${t}`, material)
-  //     .then(() => {
-  //       handleClose();
-  //       setInputValues({ materialTitle: "", materialLink: "", t: "" });
-  //     })
-  //     .catch(() => {
-  //       handleClose();
-  //     });
-  // };
+  const addMaterial = () => {
+    console.log(t, material);
+    axios
+      .patch(`/api/courses/addMaterial/${t}`, { material })
+      .then(() => {
+        handleClose2();
+        // setInputValues({ material: "", t: "" });
+      })
+      .catch(() => {
+        handleClose2();
+      });
+  };
 
   const dialogAddVideos = (
     <Dialog open={open} onClose={handleClose}>
@@ -144,58 +152,45 @@ export default function data(props) {
       </Grid>
     </Dialog>
   );
-  // const dialogAddMaterial = (
-  //   <Dialog open={open} onClose={handleClose}>
-  //     <Grid>
-  //       <Card>
-  //         <CardContent>
-  //           <Typography gutterBottom variant="h5" pb={3}>
-  //             Add Material
-  //           </Typography>
-  //           <form>
-  //             <Grid container spacing={1}>
-  //               <Grid xs={12} sm={12} item>
-  //                 <TextField
-  //                   placeholder="Enter Material Title"
-  //                   name="materialTitle"
-  //                   label="Title"
-  //                   variant="outlined"
-  //                   value={materialTitle}
-  //                   onChange={handleOnChange}
-  //                   fullWidth
-  //                   required
-  //                 />
-  //               </Grid>
-  //               <Grid item xs={12}>
-  //                 <TextField
-  //                   type="link"
-  //                   placeholder="Enter material link"
-  //                   name="link"
-  //                   value={link}
-  //                   onChange={handleOnChange}
-  //                   label="Link"
-  //                   variant="outlined"
-  //                   fullWidth
-  //                   required
-  //                 />
-  //               </Grid>
-  //               <Grid item xs={12}>
-  //                 <Button variant="contained" color="primary" fullWidth onClick={addMaterial}>
-  //                   Add
-  //                 </Button>
-  //               </Grid>
-  //               <Grid item xs={12}>
-  //                 <Button variant="contained" color="primary" fullWidth onClick={handleClose}>
-  //                   Cancel
-  //                 </Button>
-  //               </Grid>
-  //             </Grid>
-  //           </form>
-  //         </CardContent>
-  //       </Card>
-  //     </Grid>
-  //   </Dialog>
-  // );
+  const dialogAddMaterial = (
+    <Dialog open={open2} onClose={handleClose2}>
+      <Grid>
+        <Card>
+          <CardContent>
+            <Typography gutterBottom variant="h5" pb={3}>
+              Add Material
+            </Typography>
+            <form>
+              <Grid container spacing={1}>
+                <Grid xs={12} sm={12} item>
+                  <TextField
+                    placeholder="Enter Material link"
+                    name="material"
+                    label="material"
+                    variant="outlined"
+                    value={material}
+                    onChange={handleOnChange}
+                    fullWidth
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button variant="contained" color="primary" fullWidth onClick={addMaterial}>
+                    Add
+                  </Button>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button variant="contained" color="primary" fullWidth onClick={handleClose2}>
+                    Cancel
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </CardContent>
+        </Card>
+      </Grid>
+    </Dialog>
+  );
 
   const a = [];
   props.forEach((e) => {
@@ -220,14 +215,14 @@ export default function data(props) {
           <Icon
             fontSize="small"
             onClick={() => {
-              handleClickOpen();
+              handleClickOpen2();
               setInputValues({ ...inputValues, t: e.title });
             }}
             color="primary"
           >
             add_circle
           </Icon>
-          {dialogAddVideos}
+          {dialogAddMaterial}
         </MDTypography>
       ),
       addVideo: (
@@ -242,7 +237,7 @@ export default function data(props) {
           >
             add_circle
           </Icon>
-          {/* {dialogAddMaterial} */}
+          {dialogAddVideos}
         </MDTypography>
       ),
       action: (
