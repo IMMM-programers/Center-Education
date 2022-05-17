@@ -80,8 +80,8 @@ export default function BasicTable({ videos }) {
             title={video ? video.videoTitle : ""}
             width="100%"
             height="350"
-            // src={video ? video.link : ""}
-            src="https://www.youtube.com/embed?v=K8-YqMAdyq4&list=PLq5FW85cJhv5wkNk8ngddqoaK47jGQxBY&index=2"
+            src={video ? video.link : ""}
+            // src="https://www.youtube.com/embed?v=K8-YqMAdyq4&list=PLq5FW85cJhv5wkNk8ngddqoaK47jGQxBY&index=2"
           />
           {console.log(video ? video.link : "")}
         </DialogContent>

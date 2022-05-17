@@ -16,6 +16,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 import axios from "axios";
+import swal from "sweetalert";
 
 // Images
 // import logoXD from "assets/images/small-logos/logo-xd.svg";
@@ -34,10 +35,10 @@ export default function data(props) {
     videoTitle: "",
     link: "",
     t: "",
-    material: "",
+    materialLink: "",
   });
 
-  const { videoTitle, link, t, material } = inputValues;
+  const { videoTitle, link, t, materialLink } = inputValues;
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -48,9 +49,13 @@ export default function data(props) {
     axios
       .delete(`/api/courses/deleteCourse/${title}`)
       .then((res) => {
+        swal("Good job!", "The Course deleted successfully", "success").then(() => {
+          window.location.reload();
+        });
         console.log(res.data);
       })
       .catch((err) => {
+        swal("OoOps!", "Error in deleting the Course", "error");
         console.log(err);
       });
   };
@@ -76,28 +81,51 @@ export default function data(props) {
 
   const addVideo = () => {
     const video = { videoTitle, link };
-    axios
-      .patch(`/api/courses/addVideo/${t}`, video)
-      .then(() => {
-        handleClose();
-        setInputValues({ videoTitle: "", link: "", t: "" });
-      })
-      .catch(() => {
-        handleClose();
+    if (videoTitle === "" || link === "") {
+      swal("OoOps!", " Please fill all the fields correctly.", "error").then(() => {
+        window.location.reload();
+        return;
       });
+    } else {
+      axios
+        .patch(`/api/courses/addVideo/${t}`, video)
+        .then(() => {
+          swal("Good job!", "The Video has been added successfully", "success").then(() => {
+            window.location.reload();
+          });
+          handleClose();
+          setInputValues({ videoTitle: "", link: "", t: "" });
+        })
+        .catch(() => {
+          swal("OoOps!", " Please fill all the fields correctly.", "error");
+          handleClose();
+        });
+    }
   };
 
+  console.log(materialLink);
   const addMaterial = () => {
-    console.log(t, material);
-    axios
-      .patch(`/api/courses/addMaterial/${t}`, { material })
-      .then(() => {
-        handleClose2();
-        // setInputValues({ material: "", t: "" });
-      })
-      .catch(() => {
-        handleClose2();
+    const material = { materialLink };
+    if (materialLink === "") {
+      swal("OoOps!", " Please fill all the fields correctly.", "error").then(() => {
+        window.location.reload();
+        return;
       });
+    } else {
+      axios
+        .patch(`/api/courses/addMaterial/${t}`, material)
+        .then(() => {
+          swal("Good job!", "The Material has been added successfully", "success").then(() => {
+            window.location.reload();
+          });
+          handleClose2();
+          setInputValues({ material: "", t: "" });
+        })
+        .catch(() => {
+          swal("OoOps!", " Please fill all the fields correctly.", "error");
+          handleClose2();
+        });
+    }
   };
 
   const dialogAddVideos = (
@@ -165,10 +193,10 @@ export default function data(props) {
                 <Grid xs={12} sm={12} item>
                   <TextField
                     placeholder="Enter Material link"
-                    name="material"
+                    name="materialLink"
                     label="material"
                     variant="outlined"
-                    value={material}
+                    value={materialLink}
                     onChange={handleOnChange}
                     fullWidth
                     required
