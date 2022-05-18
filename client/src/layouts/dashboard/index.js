@@ -13,6 +13,8 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import * as React from "react";
+
 // @mui material components
 import Grid from "@mui/material/Grid";
 
@@ -35,8 +37,59 @@ import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatist
 import Projects from "layouts/dashboard/components/Projects";
 // import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
+// import Data from "layouts/dashboard/components/Projects/data";
+
+import axios from "axios";
+
 function Dashboard() {
   // const { sales, tasks } = reportsLineChartData;
+
+  const [inputValues, setInputValues] = React.useState({
+    teachers: [],
+    courses: [],
+    ads: [],
+    students: [],
+  });
+
+  const { teachers, courses, ads, students } = inputValues;
+
+  React.useEffect(() => {
+    axios
+      .get("/api/users/Teachers") // need to be dynamic
+      .then((res1) => {
+        axios
+          .get("/api/courses/allCourses") // need to be dynamic
+          .then((res2) => {
+            axios
+              .get("/api/users/Profile/m@gmail.com") // need to be dynamic
+              .then((res3) => {
+                axios
+                  .get("/api/users/Students") // need to be dynamic
+                  .then((res4) => {
+                    setInputValues({
+                      ...inputValues,
+                      teachers: res1.data,
+                      courses: res2.data,
+                      ads: res3.data.ads,
+                      students: res4.data,
+                    });
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <DashboardLayout>
@@ -49,7 +102,7 @@ function Dashboard() {
                 color="dark"
                 icon="account_circle"
                 title="Teachers"
-                count={0} // number of teachers
+                count={teachers.length} // number of teachers
                 percentage={{
                   color: "success",
                   amount: "",
@@ -63,7 +116,7 @@ function Dashboard() {
               <ComplexStatisticsCard
                 icon="leaderboard"
                 title="Ads"
-                count="2,300" // number of ads
+                count={ads.length} // number of ads
                 percentage={{
                   color: "success",
                   amount: "",
@@ -78,7 +131,7 @@ function Dashboard() {
                 color="success"
                 icon="menu_book"
                 title="Courses"
-                count="34k"
+                count={courses.length}
                 percentage={{
                   color: "success",
                   amount: "",
@@ -93,7 +146,7 @@ function Dashboard() {
                 color="primary"
                 icon="school"
                 title="Students"
-                count="+91" // number of stidents
+                count={students.length} // number of stidents
                 percentage={{
                   color: "success",
                   amount: "",
