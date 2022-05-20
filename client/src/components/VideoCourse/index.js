@@ -68,7 +68,7 @@ export default function videoCourse({ videos, material }) {
             startIcon={<FileDownloadOffIcon sx={{ mr: 1 }} />}
             href={material}
             target="_blank"
-            style={{ marginLeft: "15px"}}
+            style={{ marginLeft: "15px" }}
           >
             Download
           </Button>
