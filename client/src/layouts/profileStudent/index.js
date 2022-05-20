@@ -27,15 +27,18 @@ export default function ProfileStudent() {
   const loc = useLocation();
   const u = loc.state;
   const [open, setOpen] = React.useState(false);
+  // const [user, setUser] = React.useState(u);
+  // const { major, profileInfo, username, phoneNumber, location, email } = user;
   const [inputValues, setInputValues] = React.useState({
-    major: u.major,
-    profileInfo: u.profileInfo,
-    username: u.name,
-    phoneNumber: u.phoneNumber,
-    location: u.location,
+    major: "",
+    profileInfo: "",
+    username: "",
+    phoneNumber: "",
+    location: "",
+    email: "",
     user: "",
   });
-  const { major, profileInfo, username, phoneNumber, location, user } = inputValues;
+  const { major, profileInfo, username, phoneNumber, location, email, user } = inputValues;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -43,6 +46,7 @@ export default function ProfileStudent() {
 
   const handleClose = () => {
     setOpen(false);
+    window.location.reload();
   };
 
   const handleOnChange = (event) => {
@@ -54,7 +58,16 @@ export default function ProfileStudent() {
     axios
       .get(`/api/users/Profile/${u.email}`)
       .then((response) => {
-        setInputValues({ ...inputValues, user: response.data });
+        setInputValues({
+          ...inputValues,
+          major: response.data.major,
+          profileInfo: response.data.profileInfo,
+          username: response.data.name,
+          phoneNumber: response.data.phoneNumber,
+          location: response.data.location,
+          email: response.data.email,
+          user: response.data,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -115,7 +128,7 @@ export default function ProfileStudent() {
 
   const updateUser = () => {
     axios
-      .patch(`/api/users/editUser/${user.email}`, {
+      .patch(`/api/users/editUser/${email}`, {
         major,
         profileInfo,
         name: username,
@@ -125,14 +138,14 @@ export default function ProfileStudent() {
       .then(() => {
         swal("Good job!", "Profile information has been updated successfully", "success").then(
           () => {
-            window.location.reload();
+            handleClose();
           }
         );
-        handleClose();
       })
       .catch(() => {
-        swal("OoOps!", " Failed to update profile information.", "error");
-        handleClose();
+        swal("OoOps!", " Failed to update profile information.", "error").then(() => {
+          handleClose();
+        });
       });
   };
 
@@ -217,7 +230,7 @@ export default function ProfileStudent() {
                 <Box p={2}>
                   <Box mb={2} lineHeight={1.5}>
                     <Typography variant="p" color="text" fontWeight="light">
-                      {user.profile_info}
+                      {user.profileInfo}
                     </Typography>
                   </Box>
                   <Box>{renderItems}</Box>
