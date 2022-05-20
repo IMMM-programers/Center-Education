@@ -53,8 +53,9 @@ export default function SignInSide() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { token, type } = await (await axios.post("/api/auth/loginUser", { email, password }))
-        .data;
+      const { token, type } = await (
+        await axios.post("/api/auth/loginUser", { email, password })
+      ).data;
       localStorage.setItem("token", token);
       if (type === "Admin") {
         navigate("/dashboard/admin");

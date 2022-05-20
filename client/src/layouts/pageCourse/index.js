@@ -1,6 +1,6 @@
 import * as React from "react";
 import Navbar from "components/NavHome";
-import Course from "components/videoCourse";
+import Video from "components/videoCourse";
 import FooterHome from "components/FooterHome";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -254,7 +254,7 @@ export default function PageCourse() {
           >
             Course Videos
           </Typography>
-          <Course videos={c.videos} />
+          <Video videos={c.videos} />
         </Box>
         {/* commited before */}
         {/* <Box sx={{ width: "100%" }}>

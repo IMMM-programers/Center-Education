@@ -104,7 +104,6 @@ module.exports.getProfile = async (req, res) => {
 module.exports.addAds = async (req, res) => {
   try {
     const { email } = req.params
-    const { title, imageUrl } = req.body
     await User.updateOne({ email }, { $push: { ads: req.body } })
     res.send('success in adding ads')
   } catch (error) {

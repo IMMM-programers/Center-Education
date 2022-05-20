@@ -79,7 +79,6 @@ function Tables() {
     if (title === "" || imageUrl === "") {
       swal("OoOps!", " Please fill all the fields correctly.", "error").then(() => {
         window.location.reload();
-        return;
       });
     } else {
       axios

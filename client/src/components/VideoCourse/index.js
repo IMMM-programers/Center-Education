@@ -43,7 +43,7 @@ function TabPanel(props) {
 //   };
 // }
 
-export default function PartCourse({ videos }) {
+export default function videoCourse({ videos }) {
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
