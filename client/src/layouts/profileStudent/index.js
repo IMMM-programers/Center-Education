@@ -13,11 +13,11 @@ import Icon from "@mui/material/Icon";
 import Button from "@mui/material/Button";
 import Navbar from "components/NavHome";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Dialog from "@mui/material/Dialog";
 import TextField from "@mui/material/TextField";
-// import axios from "axios";
+import axios from "axios";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -29,6 +29,35 @@ export default function ProfileStudent() {
   //     });
   //   });
   //   const { title } = props;
+
+  // const history = useHistory();
+  // if (!localStorage.getItem("auth_token")) {
+  //   history.push("/");
+  // }
+
+  const [inputValues, setInputValues] = React.useState({
+    // name: "",
+    // email: "",
+    // phoneNumber: "",
+    // location: "",
+    student: [],
+  });
+
+  const { student } = inputValues;
+
+  React.useEffect(() => {
+    axios
+      .get("/api/users/Students", localStorage.getItem("token")) // need to be dynamic
+      .then((res) => {
+        setInputValues({ ...inputValues, student: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // console.log(localStorage.getItem("token"));
+  // console.log(student);
 
   const obj = {
     Name: "Mohammed",
@@ -71,9 +100,12 @@ export default function ProfileStudent() {
           Hi! I need more information..
         </Typography>
       </Box>
-      <Box ml="auto">
+      <Box ml={6}>
         <Button component={Link} to="/course" variant="text" color="info">
           Show
+        </Button>
+        <Button component={Link} to="/course" variant="text" color="info">
+          UnRegister
         </Button>
       </Box>
     </Box>
@@ -130,7 +162,8 @@ export default function ProfileStudent() {
               position: "relative",
               mt: -8,
               mx: 3,
-              py: 2,
+              mb: 3,
+              py: 4,
               px: 2,
             }}
           >
@@ -161,7 +194,7 @@ export default function ProfileStudent() {
               </Grid>
             </Grid>
             <Grid container spacing={3} alignItems="center">
-              <Grid item xs={12} md={8} xl={8}>
+              <Grid item xs={12} md={7} xl={8}>
                 <Box
                   display="flex"
                   justifyContent="space-between"
@@ -191,7 +224,7 @@ export default function ProfileStudent() {
                   <Box>{renderItems}</Box>
                 </Box>
               </Grid>
-              <Grid item xs={12} md={4} xl={8}>
+              <Grid item xs={12} md={5} xl={8}>
                 <Card sx={{ height: "100%" }}>
                   <Box pt={2} px={2}>
                     <Typography variant="h6" fontWeight="medium" textTransform="capitalize">

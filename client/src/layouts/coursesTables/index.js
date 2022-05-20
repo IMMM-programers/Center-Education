@@ -42,6 +42,7 @@ import TextField from "@mui/material/TextField";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
+import swal from "sweetalert";
 
 function Tables() {
   // const { columns: pColumns, rows: pRows } = projectsTableData();
@@ -80,9 +81,13 @@ function Tables() {
     axios
       .post("/api/courses/createCourse", t)
       .then(() => {
+        swal("Good job!", "The Course has been added successfully", "success").then(() => {
+          window.location.reload();
+        });
         handleClose();
       })
       .catch(() => {
+        swal("OoOps!", " Please fill all the fields correctly.", "error");
         handleClose();
       });
   };

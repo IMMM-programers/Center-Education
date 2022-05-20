@@ -13,6 +13,8 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import * as React from "react";
+
 // @mui material components
 import Grid from "@mui/material/Grid";
 
@@ -36,8 +38,39 @@ import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatist
 import Projects from "layouts/studantsTables";
 // import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
+import axios from "axios";
+
 function TeacherDashboard() {
   // const { sales, tasks } = reportsLineChartData;
+
+  const [inputValues, setInputValues] = React.useState({
+    courses: [],
+    students: [],
+  });
+
+  const { courses, students } = inputValues;
+
+  React.useEffect(() => {
+    axios
+      .get("/api/courses/allCourses") // need to be dynamic
+      .then((res2) => {
+        axios
+          .get("/api/users/Students") // need to be dynamic
+          .then((res4) => {
+            setInputValues({
+              ...inputValues,
+              courses: res2.data,
+              students: res4.data,
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <DashboardLayout>
@@ -50,7 +83,7 @@ function TeacherDashboard() {
                 color="success"
                 icon="menu_book"
                 title="Courses"
-                count="34k"
+                count={courses.length}
                 percentage={{
                   color: "success",
                   amount: "",
@@ -65,7 +98,7 @@ function TeacherDashboard() {
                 color="primary"
                 icon="school"
                 title="Students"
-                count="+91" // number of stidents
+                count={students.length} // number of stidents
                 percentage={{
                   color: "success",
                   amount: "",

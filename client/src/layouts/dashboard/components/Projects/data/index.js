@@ -2,11 +2,15 @@
 // @mui material components
 // import Tooltip from "@mui/material/Tooltip";
 
+import * as React from "react";
+
 // Soft UI Dashboard React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 // import MDAvatar from "components/MDAvatar";
 // import MDProgress from "components/MDProgress";
+
+import axios from "axios";
 
 // Images
 // import logoXD from "assets/images/small-logos/logo-xd.svg";
@@ -64,7 +68,7 @@ export default function data() {
 
     rows: [
       {
-        title: <Title name="Java course" />,
+        title: <Title name="java" />,
         students: (
           <MDBox display="flex" py={1}>
             10

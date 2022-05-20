@@ -16,6 +16,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 import axios from "axios";
+import swal from "sweetalert";
 
 // Images
 // import logoXD from "assets/images/small-logos/logo-xd.svg";
@@ -28,16 +29,19 @@ import axios from "axios";
 // import team3 from "assets/images/team-3.jpg";
 // import team4 from "assets/images/team-4.jpg";
 
+import { green, orange } from "@mui/material/colors";
+import { styled } from "@mui/material/styles";
+
 // export default function data({props}) {
 export default function data(props) {
   const [inputValues, setInputValues] = React.useState({
     videoTitle: "",
     link: "",
     t: "",
-    material: "",
+    materialLink: "",
   });
 
-  const { videoTitle, link, t, material } = inputValues;
+  const { videoTitle, link, t, materialLink } = inputValues;
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -48,9 +52,13 @@ export default function data(props) {
     axios
       .delete(`/api/courses/deleteCourse/${title}`)
       .then((res) => {
+        swal("Good job!", "The Course deleted successfully", "success").then(() => {
+          window.location.reload();
+        });
         console.log(res.data);
       })
       .catch((err) => {
+        swal("OoOps!", "Error in deleting the Course", "error");
         console.log(err);
       });
   };
@@ -76,29 +84,67 @@ export default function data(props) {
 
   const addVideo = () => {
     const video = { videoTitle, link };
-    axios
-      .patch(`/api/courses/addVideo/${t}`, video)
-      .then(() => {
-        handleClose();
-        setInputValues({ videoTitle: "", link: "", t: "" });
-      })
-      .catch(() => {
-        handleClose();
+    if (videoTitle === "" || link === "") {
+      swal("OoOps!", " Please fill all the fields correctly.", "error").then(() => {
+        window.location.reload();
+        return;
       });
+    } else {
+      axios
+        .patch(`/api/courses/addVideo/${t}`, video)
+        .then(() => {
+          swal("Good job!", "The Video has been added successfully", "success").then(() => {
+            window.location.reload();
+          });
+          handleClose();
+          setInputValues({ videoTitle: "", link: "", t: "" });
+        })
+        .catch(() => {
+          swal("OoOps!", " Please fill all the fields correctly.", "error");
+          handleClose();
+        });
+    }
   };
 
+  console.log(materialLink);
   const addMaterial = () => {
-    console.log(t, material);
-    axios
-      .patch(`/api/courses/addMaterial/${t}`, { material })
-      .then(() => {
-        handleClose2();
-        // setInputValues({ material: "", t: "" });
-      })
-      .catch(() => {
-        handleClose2();
+    const material = { materialLink };
+    if (materialLink === "") {
+      swal("OoOps!", " Please fill all the fields correctly.", "error").then(() => {
+        window.location.reload();
+        return;
       });
+    } else {
+      axios
+        .patch(`/api/courses/addMaterial/${t}`, material)
+        .then(() => {
+          swal("Good job!", "The Material has been added successfully", "success").then(() => {
+            window.location.reload();
+          });
+          handleClose2();
+          setInputValues({ material: "", t: "" });
+        })
+        .catch(() => {
+          swal("OoOps!", " Please fill all the fields correctly.", "error");
+          handleClose2();
+        });
+    }
   };
+
+  const ColorButtonAdd = styled(Button)(() => ({
+    color: "white",
+    backgroundColor: green[500],
+    "&:hover": {
+      backgroundColor: green[700],
+    },
+  }));
+  const ColorButtonCancel = styled(Button)(() => ({
+    color: "white",
+    backgroundColor: orange[500],
+    "&:hover": {
+      backgroundColor: orange[700],
+    },
+  }));
 
   const dialogAddVideos = (
     <Dialog open={open} onClose={handleClose}>
@@ -136,14 +182,14 @@ export default function data(props) {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <Button variant="contained" color="primary" fullWidth onClick={addVideo}>
+                  <ColorButtonAdd variant="contained" fullWidth onClick={addVideo}>
                     Add
-                  </Button>
+                  </ColorButtonAdd>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button variant="contained" color="primary" fullWidth onClick={handleClose}>
+                  <ColorButtonCancel variant="contained" fullWidth onClick={handleClose}>
                     Cancel
-                  </Button>
+                  </ColorButtonCancel>
                 </Grid>
               </Grid>
             </form>
@@ -152,6 +198,7 @@ export default function data(props) {
       </Grid>
     </Dialog>
   );
+
   const dialogAddMaterial = (
     <Dialog open={open2} onClose={handleClose2}>
       <Grid>
@@ -165,24 +212,24 @@ export default function data(props) {
                 <Grid xs={12} sm={12} item>
                   <TextField
                     placeholder="Enter Material link"
-                    name="material"
+                    name="materialLink"
                     label="material"
                     variant="outlined"
-                    value={material}
+                    value={materialLink}
                     onChange={handleOnChange}
                     fullWidth
                     required
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <Button variant="contained" color="primary" fullWidth onClick={addMaterial}>
+                  <ColorButtonAdd variant="contained" fullWidth onClick={addMaterial}>
                     Add
-                  </Button>
+                  </ColorButtonAdd>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button variant="contained" color="primary" fullWidth onClick={handleClose2}>
+                  <ColorButtonCancel variant="contained" fullWidth onClick={handleClose2}>
                     Cancel
-                  </Button>
+                  </ColorButtonCancel>
                 </Grid>
               </Grid>
             </form>
