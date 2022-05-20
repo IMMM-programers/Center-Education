@@ -1,5 +1,6 @@
 import * as React from "react";
-import Navbar from "components/NavLogin";
+import NavbarHome from "components/NavHome";
+import NavbarLogin from "components/NavLogin";
 import Course from "components/PartCourse";
 import ContactHome from "components/ContactHome";
 import FeedbackStudent from "components/FeedbackStudent";
@@ -32,16 +33,42 @@ export default function Home() {
   const [inputValues, setInputValues] = React.useState({
     course: [],
     ads: [],
+    user: null,
   });
-  const { course, ads } = inputValues;
+  const { course, ads, user } = inputValues;
   React.useEffect(() => {
+    const config = {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    };
     axios
-      .get("/api/courses/allCourses") // need to be dynamic
+      .get("/api/courses/allCourses")
       .then((response) => {
         axios
-          .get("/api/users/Profile/m@gmail.com") // need to be dynamic
+          .get("/api/users/Profile/m@gmail.com")
           .then((res) => {
-            setInputValues({ ...inputValues, ads: res.data.ads, course: response.data });
+            if (localStorage.getItem("token")) {
+              axios
+                .get("/api/auth/tokenUser", config)
+                .then((re) => {
+                  setInputValues({
+                    ...inputValues,
+                    ads: res.data.ads,
+                    course: response.data,
+                    user: re.data,
+                  });
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            } else {
+              setInputValues({
+                ...inputValues,
+                ads: res.data.ads,
+                course: response.data,
+              });
+            }
           })
           .catch((err) => {
             console.log(err);
@@ -54,7 +81,7 @@ export default function Home() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Navbar />
+      {user ? <NavbarLogin user={user} /> : <NavbarHome />}
       <main>
         <Box
           sx={{
@@ -386,7 +413,7 @@ export default function Home() {
 
         <FeedbackStudent />
 
-        <ContactHome />
+        <ContactHome id="contact" />
 
         <FooterHome />
       </main>

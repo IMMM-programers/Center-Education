@@ -11,59 +11,61 @@ import backgroundImage from "assets/images/bg-profile.jpeg";
 import Tooltip from "@mui/material/Tooltip";
 import Icon from "@mui/material/Icon";
 import Button from "@mui/material/Button";
-import Navbar from "components/NavHome";
+import NavbarLoing from "components/NavLogin";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Dialog from "@mui/material/Dialog";
 import TextField from "@mui/material/TextField";
 // import axios from "axios";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
+import swal from "sweetalert";
 
 export default function ProfileStudent() {
-  //   const a = [];
-  //   props.forEach((e) => {
-  //     a.push({
-  //       Name: e.title,
-  //     });
-  //   });
-  //   const { title } = props;
+  const loc = useLocation();
+  const u = loc.state;
+  const [open, setOpen] = React.useState(false);
+  const [inputValues, setInputValues] = React.useState({
+    major: u.major,
+    profileInfo: u.profileInfo,
+    username: u.name,
+    phoneNumber: u.phoneNumber,
+    location: u.location,
+    user: "",
+  });
+  const { major, profileInfo, username, phoneNumber, location, user } = inputValues;
 
-  // const history = useHistory();
-  // if (!localStorage.getItem("auth_token")) {
-  //   history.push("/");
-  // }
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-  // const [inputValues, setInputValues] = React.useState({
-  // name: "",
-  // email: "",
-  // phoneNumber: "",
-  // location: "",
-  //   student: [],
-  // });
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-  // const { student } = inputValues;
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setInputValues({ ...inputValues, [name]: value });
+  };
 
-  // React.useEffect(() => {
-  //   axios
-  //     .get("/api/users/Students", localStorage.getItem("token")) // need to be dynamic
-  //     .then((res) => {
-  //       setInputValues({ ...inputValues, student: res.data });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
-
-  // console.log(localStorage.getItem("token"));
-  // console.log(student);
+  React.useEffect(() => {
+    axios
+      .get(`/api/users/Profile/${u.email}`)
+      .then((response) => {
+        setInputValues({ ...inputValues, user: response.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const obj = {
-    Name: "Mohammed",
-    Mobile: "0592369124",
-    Email: "mohammed@gmail.com",
-    Locaion: "Gaza",
+    Name: user.name,
+    Mobile: user.phoneNumber,
+    Email: user.email,
+    Locaion: user.location,
   };
   const arrKeys = [];
   const arrValues = [];
@@ -72,7 +74,7 @@ export default function ProfileStudent() {
   Object.values(obj).forEach((el) => arrValues.push(el));
 
   const renderItems = arrKeys.map((label, key) => (
-    <Box display="flex" py={1} pr={2}>
+    <Box key={(key, key + 1)} display="flex" py={1} pr={2}>
       <Typography variant="h7" fontWeight="bold">
         {label}: &nbsp;
       </Typography>
@@ -110,38 +112,36 @@ export default function ProfileStudent() {
       </Box>
     </Box>
   );
-  const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const updateUser = () => {
+    axios
+      .patch(`/api/users/editUser/${user.email}`, {
+        major,
+        profileInfo,
+        name: username,
+        phoneNumber,
+        location,
+      })
+      .then(() => {
+        swal("Good job!", "Profile information has been updated successfully", "success").then(
+          () => {
+            window.location.reload();
+          }
+        );
+        handleClose();
+      })
+      .catch(() => {
+        swal("OoOps!", " Failed to update profile information.", "error");
+        handleClose();
+      });
   };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  //   const [inputValues, setInputValues] = React.useState({
-  //     students: [],
-  //   });
-  //   const { student } = inputValues;
-  //   React.useEffect(() => {
-  //     axios
-  //       .get("/api/users/Students") // need to be dynamic
-  //       .then((response) => {
-  //         setInputValues({ ...inputValues, student: response.data });
-  //         // axios.get("/api/users/Profile/z@gmail.com"); // need to be dynamic
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }, []);
 
   const theme = createTheme();
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Navbar />
+      <NavbarLoing user={user} />
       <main>
         <Box sx={{ mt: 8 }}>
           <Box
@@ -180,7 +180,7 @@ export default function ProfileStudent() {
                 <Box height="100%" mt={0.5} lineHeight={1}>
                   {/* {student[1].name} */}
                   <Typography variant="h5" fontWeight="medium">
-                    Ahmed
+                    {user.name}
                   </Typography>
                   {/* {student.map((s) => (
                     <Typography key={s.id} variant="h5" fontWeight="medium">
@@ -188,7 +188,7 @@ export default function ProfileStudent() {
                     </Typography>
                   ))} */}
                   <Typography variant="button" color="text" fontWeight="regular">
-                    prof / Computer Programming
+                    major / {user.major}
                   </Typography>
                 </Box>
               </Grid>
@@ -202,11 +202,11 @@ export default function ProfileStudent() {
                   pt={2}
                   px={2}
                 >
-                  <Typography variant="h6" fontWeight="medium" textTransform="capitalize">
+                  <Typography variant="h6" fontWeight="medium">
                     Profile Information
                   </Typography>
                   <Typography variant="body2" color="secondary">
-                    <Tooltip placement="top">
+                    <Tooltip placement="top" title="edit">
                       {/* <Button variant="contained" fullWidth onClick={handleClickOpen}>
                       </Button> */}
                       <Icon onClick={handleClickOpen}>edit</Icon>
@@ -217,8 +217,7 @@ export default function ProfileStudent() {
                 <Box p={2}>
                   <Box mb={2} lineHeight={1.5}>
                     <Typography variant="p" color="text" fontWeight="light">
-                      Hi, I’m ahmed, Decisions: If you can’t decide, the answer is no. If two
-                      equally difficult paths, choose the one more painful in the short term.
+                      {user.profile_info}
                     </Typography>
                   </Box>
                   <Box>{renderItems}</Box>
@@ -227,7 +226,7 @@ export default function ProfileStudent() {
               <Grid item xs={12} md={5} xl={8}>
                 <Card sx={{ height: "100%" }}>
                   <Box pt={2} px={2}>
-                    <Typography variant="h6" fontWeight="medium" textTransform="capitalize">
+                    <Typography variant="h6" fontWeight="medium">
                       My Courses
                     </Typography>
                   </Box>
@@ -260,25 +259,36 @@ export default function ProfileStudent() {
                     <Grid container spacing={1}>
                       <Grid xs={12} sm={12} item>
                         <TextField
-                          placeholder="Enter full name"
-                          name="fullName"
-                          label="Full Name"
+                          placeholder="Enter your major"
+                          name="major"
+                          label="Major"
                           variant="outlined"
-                          //   value={firstName}
-                          //   onChange={handleOnChange}
+                          value={major}
+                          onChange={handleOnChange}
                           fullWidth
                           required
                         />
                       </Grid>
-                      <Grid item xs={12}>
+                      <Grid xs={12} sm={12} item>
                         <TextField
-                          type="email"
-                          placeholder="Enter email"
-                          name="email"
-                          //   value={email}
-                          //   onChange={handleOnChange}
-                          label="Email"
+                          placeholder="Enter profile information"
+                          name="profileInfo"
+                          label="Profile Infromation"
                           variant="outlined"
+                          value={profileInfo}
+                          onChange={handleOnChange}
+                          fullWidth
+                          required
+                        />
+                      </Grid>
+                      <Grid xs={12} sm={12} item>
+                        <TextField
+                          placeholder="Enter full Name"
+                          name="username"
+                          label="Full Name"
+                          variant="outlined"
+                          value={username}
+                          onChange={handleOnChange}
                           fullWidth
                           required
                         />
@@ -288,8 +298,8 @@ export default function ProfileStudent() {
                           type="number"
                           placeholder="Enter phone number"
                           name="phoneNumber"
-                          //   value={phoneNumber}
-                          //   onChange={handleOnChange}
+                          value={phoneNumber}
+                          onChange={handleOnChange}
                           label="Phone"
                           variant="outlined"
                           fullWidth
@@ -301,8 +311,8 @@ export default function ProfileStudent() {
                           type="location"
                           placeholder="Enter your location"
                           name="location"
-                          //   value={password}
-                          //   onChange={handleOnChange}
+                          value={location}
+                          onChange={handleOnChange}
                           label="Location"
                           variant="outlined"
                           fullWidth
@@ -310,7 +320,7 @@ export default function ProfileStudent() {
                         />
                       </Grid>
                       <Grid item xs={12}>
-                        <Button variant="contained" color="success" fullWidth>
+                        <Button variant="contained" color="success" fullWidth onClick={updateUser}>
                           Upadte
                         </Button>
                       </Grid>

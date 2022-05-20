@@ -20,7 +20,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { MaterialUIControllerProvider } from "context";
 import Home from "layouts/home";
 import PageCourse from "layouts/pageCourse";
-import PageAllCourses from "layouts/PageAllCourses";
+// import PageAllCourses from "layouts/PageAllCourses";
 import Login from "components/login";
 import SignUp from "components/signUp";
 import LogOut from "layouts/authentication/sign-in";
@@ -47,7 +47,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/course" element={<PageCourse />} />
-        <Route path="/all-courses" element={<PageAllCourses />} />
+        {/* <Route path="/all-courses" element={<PageAllCourses />} /> */}
         <Route path="/profile" element={<ProfileStudent />} />
         <Route path="/login" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />
