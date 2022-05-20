@@ -254,7 +254,7 @@ export default function PageCourse() {
           >
             Course Videos
           </Typography>
-          <Video videos={c.videos} />
+          <Video videos={c.videos} material={c.material} />
         </Box>
         {/* commited before */}
         {/* <Box sx={{ width: "100%" }}>
