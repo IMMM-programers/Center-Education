@@ -13,7 +13,7 @@ import Icon from "@mui/material/Icon";
 import Button from "@mui/material/Button";
 import NavbarLoing from "components/NavLogin";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import Dialog from "@mui/material/Dialog";
 import TextField from "@mui/material/TextField";
@@ -24,6 +24,7 @@ import axios from "axios";
 import swal from "sweetalert";
 
 export default function ProfileStudent() {
+  const navigate = useNavigate();
   const loc = useLocation();
   const u = loc.state;
   const [open, setOpen] = React.useState(false);
@@ -55,23 +56,27 @@ export default function ProfileStudent() {
   };
 
   React.useEffect(() => {
-    axios
-      .get(`/api/users/Profile/${u.email}`)
-      .then((response) => {
-        setInputValues({
-          ...inputValues,
-          major: response.data.major,
-          profileInfo: response.data.profileInfo,
-          username: response.data.name,
-          phoneNumber: response.data.phoneNumber,
-          location: response.data.location,
-          email: response.data.email,
-          user: response.data,
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    } else {
+      axios
+        .get(`/api/users/Profile/${u.email}`)
+        .then((response) => {
+          setInputValues({
+            ...inputValues,
+            major: response.data.major,
+            profileInfo: response.data.profileInfo,
+            username: response.data.name,
+            phoneNumber: response.data.phoneNumber,
+            location: response.data.location,
+            email: response.data.email,
+            user: response.data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }
   }, []);
 
   const obj = {
