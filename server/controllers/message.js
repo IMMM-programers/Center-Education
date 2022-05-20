@@ -31,14 +31,14 @@ module.exports.editMessages = async (req, res) => {
 };
 
 module.exports.deleteMessages = (req, res) => {
-  //   const { title } = req.params;
-  //   Messages.deleteOne({ title })
-  //     .then(() => {
-  //       res.send("deleting done");
-  //     })
-  //     .catch((err) => {
-  //       res.send("Error in delete: " + err.message);
-  //     });
+    const { email } = req.params;
+    Messages.deleteOne({ email })
+      .then(() => {
+        res.send("deleting done");
+      })
+      .catch((err) => {
+        res.send("Error in delete: " + err.message);
+      });
 };
 
 module.exports.getMessage = async (req, res) => {

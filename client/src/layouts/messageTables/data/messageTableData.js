@@ -9,7 +9,7 @@ import MDTypography from "components/MDTypography";
 // import MDAvatar from "components/MDAvatar";
 // import MDBadge from "components/MDBadge";
 import axios from "axios";
-
+import swal from "sweetalert";
 // Images
 // import logoXD from "assets/images/small-logos/logo-xd.svg";
 // import logoAtlassian from "assets/images/small-logos/logo-atlassian.svg";
@@ -28,19 +28,21 @@ import axios from "axios";
 // import DialogTitle from "@mui/material/DialogTitle";
 
 export default function data(props) {
-  const deleteMessage = (i) => {
+  const deleteMessage = (email) => {
     axios
-      .delete(`/api/messages/deleteMessage/${i}`)
-      .then((res) => {
-        console.log(res.data);
+      .delete(`/api/messages/deleteMessage/${email}`)
+      .then(() => {
+        swal("Good job!", "The Message deleted successfully", "success").then(() => {
+          window.location.reload();
+        });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        swal("OoOps!", "Error in deleting the Ad", "error");
       });
   };
 
   const a = [];
-  props.forEach((e, ind) => {
+  props.forEach((e) => {
     a.push({
       Name: (
         <MDBox lineHeight={1}>
@@ -109,7 +111,7 @@ export default function data(props) {
           color="text"
           fontWeight="medium"
           // style={{ color: "#F53E36" }}
-          onClick={() => deleteMessage(ind)}
+          onClick={() => deleteMessage(e.email)}
         >
           delete
         </MDTypography>

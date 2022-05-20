@@ -10,7 +10,7 @@ import MDTypography from "components/MDTypography";
 // import MDAvatar from "components/MDAvatar";
 // import MDProgress from "components/MDProgress";
 
-import axios from "axios";
+// import axios from "axios";
 
 // Images
 // import logoXD from "assets/images/small-logos/logo-xd.svg";

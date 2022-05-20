@@ -13,11 +13,11 @@ import Icon from "@mui/material/Icon";
 import Button from "@mui/material/Button";
 import Navbar from "components/NavHome";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Dialog from "@mui/material/Dialog";
 import TextField from "@mui/material/TextField";
-import axios from "axios";
+// import axios from "axios";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -35,26 +35,26 @@ export default function ProfileStudent() {
   //   history.push("/");
   // }
 
-  const [inputValues, setInputValues] = React.useState({
-    // name: "",
-    // email: "",
-    // phoneNumber: "",
-    // location: "",
-    student: [],
-  });
+  // const [inputValues, setInputValues] = React.useState({
+  // name: "",
+  // email: "",
+  // phoneNumber: "",
+  // location: "",
+  //   student: [],
+  // });
 
-  const { student } = inputValues;
+  // const { student } = inputValues;
 
-  React.useEffect(() => {
-    axios
-      .get("/api/users/Students", localStorage.getItem("token")) // need to be dynamic
-      .then((res) => {
-        setInputValues({ ...inputValues, student: res.data });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // React.useEffect(() => {
+  //   axios
+  //     .get("/api/users/Students", localStorage.getItem("token")) // need to be dynamic
+  //     .then((res) => {
+  //       setInputValues({ ...inputValues, student: res.data });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   // console.log(localStorage.getItem("token"));
   // console.log(student);

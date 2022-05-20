@@ -87,7 +87,6 @@ export default function data(props) {
     if (videoTitle === "" || link === "") {
       swal("OoOps!", " Please fill all the fields correctly.", "error").then(() => {
         window.location.reload();
-        return;
       });
     } else {
       axios
@@ -112,7 +111,6 @@ export default function data(props) {
     if (materialLink === "") {
       swal("OoOps!", " Please fill all the fields correctly.", "error").then(() => {
         window.location.reload();
-        return;
       });
     } else {
       axios

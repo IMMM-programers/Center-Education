@@ -17,7 +17,7 @@ router.patch("/editMessage/:id", editMessages);
 
 // @route  delete api/messages + /deleteMessage
 // @desc   Delete Message
-router.delete("/deleteMessage/:id", deleteMessages);
+router.delete("/deleteMessage/:email", deleteMessages);
 // @route  get api/messages + /getMessage
 // @desc   get Message
 router.get("/getMessage", getMessage);
