@@ -13,15 +13,6 @@ import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
 
 export default function PartCourse(props) {
-  // const a = [];
-  // props.forEach((e) => {
-  //   a.push({
-  //     Name: e.title,
-  //     category: e.categoryName,
-  //     description: e.description,
-  //     teacherEmail: e.teacherEmail,
-  //   });
-  // });
   const { title, description, categoryName, teacherEmail, videos, material } = props;
   return (
     <Card sx={{ maxWidth: 340 }}>

@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
   phoneNumber: { type: String, default: null },
   type: { type: String, required: true },
   status: { type: Number, default: 0 },
-  coursesNum: { type: Number, default: 0 },
+  coursesReg: { type: [Object], default: [] },
   ads: { type: [Object], default: [] },
   major: { type: String, default: "" },
   profileInfo: { type: String, default: "" },

@@ -99,6 +99,10 @@ export default function ButtonAppBar(props) {
                       <Link
                         to="/"
                         style={{ color: "inherit", textDecoration: "none", underline: "hover" }}
+                        onClick={() => {
+                          localStorage.removeItem("token");
+                          window.location.reload();
+                        }}
                       >
                         Logout
                       </Link>
