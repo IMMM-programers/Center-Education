@@ -28,8 +28,6 @@ export default function ProfileStudent() {
   const loc = useLocation();
   const u = loc.state;
   const [open, setOpen] = React.useState(false);
-  // const [user, setUser] = React.useState(u);
-  // const { major, profileInfo, username, phoneNumber, location, email } = user;
   const [inputValues, setInputValues] = React.useState({
     major: "",
     profileInfo: "",
@@ -101,35 +99,6 @@ export default function ProfileStudent() {
       </Typography>
     </Box>
   ));
-
-  const renderProfiles = (
-    <Box component="li" display="flex" alignItems="center" py={1} mb={1}>
-      <Box mr={2}>
-        <Avatar
-          src="https://cdn-icons-png.flaticon.com/512/2784/2784445.png"
-          alt="profile-image"
-          size="xl"
-          shadow="md"
-        />
-      </Box>
-      <Box display="flex" flexDirection="column" alignItems="flex-start" justifyContent="center">
-        <Typography variant="button" fontWeight="medium">
-          Java
-        </Typography>
-        <Typography variant="caption" color="text">
-          Hi! I need more information..
-        </Typography>
-      </Box>
-      <Box ml={6}>
-        <Button component={Link} to="/course" variant="text" color="info">
-          Show
-        </Button>
-        <Button component={Link} to="/course" variant="text" color="info">
-          UnRegister
-        </Button>
-      </Box>
-    </Box>
-  );
 
   const updateUser = () => {
     axios
@@ -249,18 +218,63 @@ export default function ProfileStudent() {
                     </Typography>
                   </Box>
                   <Box p={2}>
-                    <Box component="ul" display="flex" flexDirection="column" p={0} m={0}>
-                      {renderProfiles}
-                    </Box>
-                    <Box component="ul" display="flex" flexDirection="column" p={0} m={0}>
-                      {renderProfiles}
-                    </Box>
-                    <Box component="ul" display="flex" flexDirection="column" p={0} m={0}>
-                      {renderProfiles}
-                    </Box>
-                    <Box component="ul" display="flex" flexDirection="column" p={0} m={0}>
-                      {renderProfiles}
-                    </Box>
+                    {user && user.coursesReg.length > 0 ? (
+                      <Box component="ul" display="flex" flexDirection="column" p={0} m={0}>
+                        {/* course  */}
+                        {user.coursesReg.map((e) => (
+                          <Box
+                            key={e.title}
+                            component="li"
+                            display="flex"
+                            alignItems="center"
+                            py={1}
+                            mb={1}
+                          >
+                            <Box mr={2}>
+                              <Avatar
+                                src="https://cdn-icons-png.flaticon.com/512/2784/2784445.png"
+                                alt="profile-image"
+                                size="xl"
+                                shadow="md"
+                              />
+                            </Box>
+                            <Box
+                              display="flex"
+                              flexDirection="column"
+                              alignItems="flex-start"
+                              justifyContent="center"
+                            >
+                              <Typography variant="button" fontWeight="medium">
+                                {e.title}
+                              </Typography>
+                              <Typography variant="caption" color="text">
+                                {e.description}
+                              </Typography>
+                            </Box>
+                            <Box ml={6}>
+                              <Link
+                                to={{ pathname: "/course" }}
+                                state={{
+                                  title: e.title,
+                                  description: e.description,
+                                  categoryName: e.categoryName,
+                                  teacherEmail: e.teacherEmail,
+                                  videos: e.videos,
+                                  material: e.material,
+                                }}
+                                style={{ color: "inherit", textDecoration: "none" }}
+                              >
+                                Show
+                              </Link>
+                            </Box>
+                          </Box>
+                        ))}
+                      </Box>
+                    ) : (
+                      <Typography variant="h6" fontWeight="medium">
+                        You have to register in a course in order to show it
+                      </Typography>
+                    )}
                   </Box>
                 </Card>
               </Grid>
