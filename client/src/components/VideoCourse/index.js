@@ -43,7 +43,7 @@ function TabPanel(props) {
 //   };
 // }
 
-export default function videoCourse({ videos }) {
+export default function videoCourse({ videos, material }) {
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -66,6 +66,9 @@ export default function videoCourse({ videos }) {
             variant="outlined"
             size="large"
             startIcon={<FileDownloadOffIcon sx={{ mr: 1 }} />}
+            href={material}
+            target="_blank"
+            style={{ marginLeft: "15px" }}
           >
             Download
           </Button>

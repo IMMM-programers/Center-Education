@@ -15,6 +15,7 @@ import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import Button from "@mui/material/Button";
 // import { useMaterialUIController } from "context";
 import axios from "axios";
+import swal from "sweetalert";
 
 export default function Contact() {
   // const [controller] = useMaterialUIController();
@@ -39,10 +40,12 @@ export default function Contact() {
     axios
       .post("/api/messages/createMessage", m)
       .then(() => {
-        // handleClose();
+        swal("Good job!", "The Message has been sent successfully", "success").then(() => {
+          window.location.reload();
+        });
       })
       .catch(() => {
-        // handleClose();
+        swal("OoOps!", "Error in sending the message.", "error");
       });
   };
   return (

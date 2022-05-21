@@ -1,5 +1,6 @@
 import * as React from "react";
-import Navbar from "components/NavHome";
+import NavbarHome from "components/NavHome";
+import NavbarLogin from "components/NavLogin";
 import Video from "components/videoCourse";
 import FooterHome from "components/FooterHome";
 import Button from "@mui/material/Button";
@@ -30,16 +31,66 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // import backgroundImage from "assets/images/bg-profile.jpeg";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
+import swal from "sweetalert";
 
 const theme = createTheme();
 
 export default function PageCourse() {
   const location = useLocation();
   const c = location.state;
+  const [user, setUser] = React.useState(null);
+  React.useEffect(() => {
+    const config = {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    };
+    if (localStorage.getItem("token")) {
+      axios
+        .get("/api/auth/tokenUser", config)
+        .then((response) => {
+          setUser(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
+
+  const registerCourse = () => {
+    axios
+      .patch(`/api/users/registerCourse/${user.email}`, c)
+      .then(() => {
+        swal("Good job!", "The course has been registered successfully", "success").then(() => {
+          window.location.reload();
+        });
+      })
+      .catch(() => {
+        swal("OoOps!", " Soory error in registering the course", "error").then(() => {
+          window.location.reload();
+        });
+      });
+  };
+
+  const unRegisterCourse = () => {
+    axios
+      .patch(`/api/users/unRegisterCourse/${user.email}`, c)
+      .then(() => {
+        swal("Good job!", "The course has been unregistered successfully", "success").then(() => {
+          window.location.reload();
+        });
+      })
+      .catch(() => {
+        swal("OoOps!", " Soory error in unregistering the course", "error").then(() => {
+          window.location.reload();
+        });
+      });
+  };
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Navbar />
+      {user ? <NavbarLogin user={user} /> : <NavbarHome />}
       <main>
         <Box sx={{ backgroundColor: "#3152a3", py: 6, px: 12, mt: 8 }}>
           <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 1 }}>
@@ -125,15 +176,27 @@ export default function PageCourse() {
                     <Typography component="p" variant="p" width="60%" sx={{ mt: 1 }}>
                       Last updated 3/2020
                     </Typography>
-                    <Button
-                      href="/SignUp"
-                      variant="contained"
-                      size="large"
-                      align="center"
-                      sx={{ mt: 2, color: "#ffffff", width: "100%", fontSize: 18 }}
-                    >
-                      Register
-                    </Button>
+                    {user && user.coursesReg.filter((e) => e.title === c.title).length > 0 ? (
+                      <Button
+                        variant="contained"
+                        size="large"
+                        align="center"
+                        sx={{ mt: 2, color: "#ffffff", width: "100%", fontSize: 18 }}
+                        onClick={unRegisterCourse}
+                      >
+                        Unregister
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        size="large"
+                        align="center"
+                        sx={{ mt: 2, color: "#ffffff", width: "100%", fontSize: 18 }}
+                        onClick={registerCourse}
+                      >
+                        Register
+                      </Button>
+                    )}
                   </Box>
                 </CardContent>
               </Card>
@@ -254,7 +317,19 @@ export default function PageCourse() {
           >
             Course Videos
           </Typography>
-          <Video videos={c.videos} />
+          {user && user.coursesReg.filter((e) => e.title === c.title).length > 0 ? (
+            <Video videos={c.videos} material={c.material} />
+          ) : (
+            <Typography
+              component="p"
+              variant="p"
+              align="center"
+              color="black"
+              sx={{ fontWeight: 700 }}
+            >
+              You must register the coure in order to obtain the material and videos
+            </Typography>
+          )}
         </Box>
         {/* commited before */}
         {/* <Box sx={{ width: "100%" }}>

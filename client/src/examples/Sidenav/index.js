@@ -179,6 +179,23 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
         }
       />
       <List>{renderRoutes}</List>
+      <List>
+        <Link
+          href="/"
+          key="log-out"
+          // target="_blank"
+          rel="noreferrer"
+          sx={{ textDecoration: "none" }}
+        >
+          <SidenavCollapse
+            name="Log out"
+            icon={<Icon fontSize="small">logout</Icon>}
+            active={false}
+            noCollapse="false"
+            onClick={() => localStorage.removeItem("token")}
+          />
+        </Link>
+      </List>
       {/* <MDBox p={2} mt="auto">
         <MDButton
           component="a"

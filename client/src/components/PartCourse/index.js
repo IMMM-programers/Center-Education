@@ -11,18 +11,14 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
+// import swal from "sweetalert";
 
 export default function PartCourse(props) {
-  // const a = [];
-  // props.forEach((e) => {
-  //   a.push({
-  //     Name: e.title,
-  //     category: e.categoryName,
-  //     description: e.description,
-  //     teacherEmail: e.teacherEmail,
-  //   });
-  // });
   const { title, description, categoryName, teacherEmail, videos, material } = props;
+  const loginRequried = () => {
+    swal("OoOps!", " Please login to show the course.", "error");
+  };
   return (
     <Card sx={{ maxWidth: 340 }}>
       <CardMedia>
@@ -108,13 +104,24 @@ export default function PartCourse(props) {
                 {/* <Link href="/course" color="inherit" underline="none">
                   Show
                 </Link> */}
-                <Link
-                  to={{ pathname: "/course" }}
-                  state={{ title, description, categoryName, teacherEmail, videos, material }}
-                  style={{ color: "inherit", textDecoration: "none" }}
-                >
-                  Show
-                </Link>
+                {localStorage.getItem("token") ? (
+                  <Link
+                    to={{ pathname: "/course" }}
+                    state={{ title, description, categoryName, teacherEmail, videos, material }}
+                    style={{ color: "inherit", textDecoration: "none" }}
+                  >
+                    Show
+                  </Link>
+                ) : (
+                  <Link
+                    to={{ pathname: "/" }}
+                    state={{ title, description, categoryName, teacherEmail, videos, material }}
+                    style={{ color: "inherit", textDecoration: "none" }}
+                    onClick={loginRequried}
+                  >
+                    Show
+                  </Link>
+                )}
               </Typography>
             </Grid>
           </Grid>

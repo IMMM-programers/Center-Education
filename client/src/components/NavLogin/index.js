@@ -23,6 +23,10 @@ export default function ButtonAppBar(props) {
     setAnchorEl(null);
   };
   const { user } = props;
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
   return (
     <Box>
       <AppBar sx={{ backgroundColor: "#172e88", px: 10 }}>
@@ -99,6 +103,7 @@ export default function ButtonAppBar(props) {
                       <Link
                         to="/"
                         style={{ color: "inherit", textDecoration: "none", underline: "hover" }}
+                        onClick={logout}
                       >
                         Logout
                       </Link>
