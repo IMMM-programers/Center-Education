@@ -23,6 +23,7 @@ import MDTypography from "components/MDTypography";
 // import team2 from "assets/images/team-2.jpg";
 // import team3 from "assets/images/team-3.jpg";
 // import team4 from "assets/images/team-4.jpg";
+import axios from "axios";
 
 export default function data() {
   // const avatars = (members) =>
@@ -50,6 +51,25 @@ export default function data() {
   //     </Tooltip>
   //   ));
 
+  const [inputValues, setInputValues] = React.useState({
+    courses: [],
+  });
+  const { courses } = inputValues;
+
+  React.useEffect(() => {
+    axios
+      .get("/api/courses/allCourses")
+      .then((response) => {
+        setInputValues({
+          ...inputValues,
+          courses: response.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const Title = ({ name }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <MDTypography variant="button" fontWeight="medium" ml={1} lineHeight={1}>
@@ -58,33 +78,36 @@ export default function data() {
     </MDBox>
   );
 
+  const a = [];
+  courses.forEach((e) => {
+    a.push({
+      title: <Title name={e.title} />,
+      categoryName: (
+        <MDBox display="flex" py={1}>
+          {e.categoryName}
+        </MDBox>
+      ),
+      teacherName: (
+        <MDTypography variant="caption" color="text" fontWeight="medium">
+          {e ? e.teacherEmail.match(/\w+/)[0] : 0}
+        </MDTypography>
+      ),
+      videosNumber: (
+        <MDBox display="flex" py={1}>
+          {e ? e.videos.length : 0}
+        </MDBox>
+      ),
+    });
+  });
+
   return {
     columns: [
-      { Header: "title", accessor: "title", width: "40%", align: "left" },
-      { Header: "students", accessor: "students", width: "15%", align: "left" },
-      { Header: "budget", accessor: "budget", align: "center" },
-      { Header: "videos", accessor: "videos", align: "center" },
+      { Header: "title", accessor: "title", width: "26%", align: "left" },
+      { Header: "categoryName", accessor: "categoryName", width: "15%", align: "left" },
+      { Header: "teacherName", accessor: "teacherName", width: "32%", align: "center" },
+      { Header: "videosNumber", accessor: "videosNumber", align: "center" },
     ],
 
-    rows: [
-      {
-        title: <Title name="java" />,
-        students: (
-          <MDBox display="flex" py={1}>
-            10
-          </MDBox>
-        ),
-        budget: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            $14,000
-          </MDTypography>
-        ),
-        videos: (
-          <MDBox display="flex" py={1}>
-            10
-          </MDBox>
-        ),
-      },
-    ],
+    rows: a,
   };
 }
