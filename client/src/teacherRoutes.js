@@ -42,7 +42,7 @@ import Courses from "layouts/coursesTables";
 // import RTL from "layouts/rtl";
 // import Notifications from "layouts/notifications";
 // import Profile from "layouts/profile";
-import LogOut from "layouts/authentication/sign-in";
+// import LogOut from "layouts/authentication/sign-in";
 // import SignUp from "layouts/authentication/sign-up";
 
 // @mui icons
@@ -97,14 +97,14 @@ const teacherRoutes = [
   //   route: "/profile",
   //   component: <Profile />,
   // },
-  {
-    type: "collapse",
-    name: "Log out",
-    key: "Log-out",
-    icon: <Icon fontSize="small">logout</Icon>,
-    route: "/authentication/Log-out",
-    component: <LogOut />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Log out",
+  //   key: "Log-out",
+  //   icon: <Icon fontSize="small">logout</Icon>,
+  //   route: "/authentication/Log-out",
+  //   component: <LogOut />,
+  // },
   // {
   //   type: "collapse",
   //   name: "Sign Up",

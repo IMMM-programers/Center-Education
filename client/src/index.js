@@ -23,7 +23,7 @@ import PageCourse from "layouts/pageCourse";
 // import PageAllCourses from "layouts/PageAllCourses";
 import Login from "components/login";
 import SignUp from "components/signUp";
-import LogOut from "layouts/authentication/sign-in";
+// import LogOut from "layouts/authentication/sign-in";
 import App from "App";
 import TeacherApp from "TeacherApp";
 import ProfileStudent from "layouts/profileStudent";
@@ -54,7 +54,7 @@ ReactDOM.render(
         <Route path="/dashboard/admin/*" element={<App />} />
         <Route path="/dashboard/teacher/*" element={<TeacherApp />} />
         {/* <Route path="/dashboard/teacher/*" element={< />} /> */}
-        <Route path="/authentication/Log-out" element={<LogOut />} />
+        {/* <Route path="/authentication/Log-out" element={<LogOut />} /> */}
       </Routes>
     </MaterialUIControllerProvider>
   </BrowserRouter>,
