@@ -60,7 +60,14 @@ export default function SignInSide() {
       if (type === "Admin") {
         navigate("/dashboard/admin");
       } else if (type === "Teacher") {
-        navigate("/dashboard/teacher");
+        axios
+          .patch(`/api/users/editUser/${email}`, { status: 1 })
+          .then(() => {
+            navigate("/dashboard/teacher");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       } else {
         navigate("/");
       }
@@ -84,7 +91,8 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random)",
+            backgroundImage:
+              "url(https://images.pexels.com/photos/1236421/pexels-photo-1236421.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light" ? t.palette.grey[50] : t.palette.grey[900],

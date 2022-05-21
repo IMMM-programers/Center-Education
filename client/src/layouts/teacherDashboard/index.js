@@ -51,17 +51,26 @@ function TeacherDashboard() {
   const { courses, students } = inputValues;
 
   React.useEffect(() => {
+    const config = {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    };
+
     axios
-      .get("/api/courses/allCourses") // need to be dynamic
-      .then((res2) => {
+      .get("/api/auth/tokenUser", config)
+      .then((response) => {
         axios
-          .get("/api/users/Students") // need to be dynamic
-          .then((res4) => {
-            setInputValues({
-              ...inputValues,
-              courses: res2.data,
-              students: res4.data,
-            });
+          .get(`/api/courses/teacherCourses/${response.data.email}`)
+          .then((res) => {
+            axios
+              .get("/api/users/Students")
+              .then((r) => {
+                setInputValues({ ...inputValues, courses: res.data, students: r.data });
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           })
           .catch((err) => {
             console.log(err);

@@ -46,6 +46,7 @@ import {
   setTransparentSidenav,
   setWhiteSidenav,
 } from "context";
+import axios from "axios";
 
 function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const [controller, dispatch] = useMaterialUIController();
@@ -82,6 +83,28 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
     // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleMiniSidenav);
   }, [dispatch, location]);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    const config = {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    };
+    axios
+      .get("/api/auth/tokenUser", config)
+      .then((response) => {
+        axios
+          .patch(`/api/users/editUser/${response.data.email}`, { status: 0 })
+          .then(() => {})
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   // Render all the routes from the routes.js (All the visible items on the Sidenav)
   const renderRoutes = routes.map(({ type, name, icon, title, noCollapse, key, href, route }) => {
@@ -192,7 +215,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             icon={<Icon fontSize="small">logout</Icon>}
             active={false}
             noCollapse="false"
-            onClick={() => localStorage.removeItem("token")}
+            onClick={logout}
           />
         </Link>
       </List>

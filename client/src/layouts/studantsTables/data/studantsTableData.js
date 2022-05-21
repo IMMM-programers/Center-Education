@@ -37,7 +37,7 @@ export default function data(props) {
       Name: e.name,
       Email: e.email,
       Phone_Number: e.phoneNumber,
-      Course: e.coursesNum,
+      Course: e.coursesReg.length,
     });
   });
 
