@@ -36,9 +36,10 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React layouts
-import TeacherDashboard from "layouts/teacherDashboard";
-import Profile from "layouts/teachersTables";
-import Courses from "layouts/coursesTables";
+import Icon from "@mui/material/Icon";
+import TeacherDashboard from "./layouts/teacherDashboard";
+import Profile from "./layouts/teachersTables";
+import Courses from "./layouts/coursesTables";
 // import RTL from "layouts/rtl";
 // import Notifications from "layouts/notifications";
 // import Profile from "layouts/profile";
@@ -46,7 +47,6 @@ import Courses from "layouts/coursesTables";
 // import SignUp from "layouts/authentication/sign-up";
 
 // @mui icons
-import Icon from "@mui/material/Icon";
 
 const teacherRoutes = [
   {

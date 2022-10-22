@@ -20,21 +20,20 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
 // Material Dashboard 2 React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import axios from "axios";
+import MDBox from "../../components/MDBox";
+import MDTypography from "../../components/MDTypography";
 
 // Material Dashboard 2 React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
-import DataTable from "examples/Tables/DataTable";
+import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
+import Footer from "../../examples/Footer";
+import DataTable from "../../examples/Tables/DataTable";
 // import { styled } from "@mui/material/styles";
 
 // Data
-import messageTableData from "layouts/messageTables/data/messageTableData";
+import messageTableData from "./data/messageTableData";
 // import projectsTableData from "layouts/tables/data/projectsTableData";
-
-import axios from "axios";
 
 function Tables() {
   // const { columns: pColumns, rows: pRows } = projectsTableData();

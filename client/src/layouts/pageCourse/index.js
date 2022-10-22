@@ -1,8 +1,4 @@
 import * as React from "react";
-import NavbarHome from "components/NavHome";
-import NavbarLogin from "components/NavLogin";
-import Video from "components/videoCourse";
-import FooterHome from "components/FooterHome";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 // import Stack from "@mui/material/Stack";
@@ -33,6 +29,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import NavbarHome from "../../components/NavHome";
+import NavbarLogin from "../../components/NavLogin";
+import Video from "../../components/VideoCourse";
+import FooterHome from "../../components/FooterHome";
 
 const theme = createTheme();
 

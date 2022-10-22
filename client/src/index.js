@@ -17,16 +17,16 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Soft UI Context Provider
-import { MaterialUIControllerProvider } from "context";
-import Home from "layouts/home";
-import PageCourse from "layouts/pageCourse";
+import { MaterialUIControllerProvider } from "./context";
+import Home from "./layouts/home";
+import PageCourse from "./layouts/pageCourse";
 // import PageAllCourses from "layouts/PageAllCourses";
-import Login from "components/login";
-import SignUp from "components/signUp";
+import Login from "./components/login";
+import SignUp from "./components/signUp";
 // import LogOut from "layouts/authentication/sign-in";
-import App from "App";
-import TeacherApp from "TeacherApp";
-import ProfileStudent from "layouts/profileStudent";
+import App from "./App";
+import TeacherApp from "./TeacherApp";
+import ProfileStudent from "./layouts/profileStudent";
 
 // const getRoutes = (allRoutes) =>
 //   allRoutes.map((route) => {

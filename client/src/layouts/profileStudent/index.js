@@ -6,12 +6,10 @@ import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
-import backgroundImage from "assets/images/bg-profile.jpeg";
 
 import Tooltip from "@mui/material/Tooltip";
 import Icon from "@mui/material/Icon";
 import Button from "@mui/material/Button";
-import NavbarLoing from "components/NavLogin";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -22,6 +20,8 @@ import TextField from "@mui/material/TextField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import swal from "sweetalert";
+import backgroundImage from "../../assets/images/bg-profile.jpeg";
+import NavbarLoing from "../../components/NavLogin";
 
 export default function ProfileStudent() {
   const navigate = useNavigate();

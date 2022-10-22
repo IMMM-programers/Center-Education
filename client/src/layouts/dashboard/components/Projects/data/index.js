@@ -5,8 +5,9 @@
 import * as React from "react";
 
 // Soft UI Dashboard React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import axios from "axios";
+import MDBox from "../../../../../components/MDBox";
+import MDTypography from "../../../../../components/MDTypography";
 // import MDAvatar from "components/MDAvatar";
 // import MDProgress from "components/MDProgress";
 
@@ -23,7 +24,6 @@ import MDTypography from "components/MDTypography";
 // import team2 from "assets/images/team-2.jpg";
 // import team3 from "assets/images/team-3.jpg";
 // import team4 from "assets/images/team-4.jpg";
-import axios from "axios";
 
 export default function data() {
   // const avatars = (members) =>

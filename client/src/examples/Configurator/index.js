@@ -30,14 +30,6 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 
 // Material Dashboard 2 React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
-
-// Custom styles for the Configurator
-import ConfiguratorRoot from "examples/Configurator/ConfiguratorRoot";
-
-// Material Dashboard 2 PRO React context
 import {
   useMaterialUIController,
   setOpenConfigurator,
@@ -46,7 +38,15 @@ import {
   setFixedNavbar,
   setSidenavColor,
   setDarkMode,
-} from "context";
+} from "../../context";
+import MDBox from "../../components/MDBox";
+import MDTypography from "../../components/MDTypography";
+import MDButton from "../../components/MDButton";
+
+// Custom styles for the Configurator
+import ConfiguratorRoot from "./ConfiguratorRoot";
+
+// Material Dashboard 2 PRO React context
 
 function Configurator() {
   const [controller, dispatch] = useMaterialUIController();

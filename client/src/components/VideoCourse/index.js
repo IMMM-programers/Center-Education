@@ -1,5 +1,4 @@
 import * as React from "react";
-import TableVidoes from "components/TableVideos";
 
 import Typography from "@mui/material/Typography";
 // import PropTypes from "prop-types";
@@ -10,6 +9,7 @@ import Button from "@mui/material/Button";
 import FileDownloadOffIcon from "@mui/icons-material/FileDownloadOff";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
+import TableVidoes from "../TableVideos";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

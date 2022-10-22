@@ -20,30 +20,29 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
 // Material Dashboard 2 React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-
-// Material Dashboard 2 React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
-import DataTable from "examples/Tables/DataTable";
-// import { styled } from "@mui/material/styles";
-
-// Data
-import teachersTableData from "layouts/teachersTables/data/teachersTableData";
-import MDButton from "components/MDButton";
-// import projectsTableData from "layouts/tables/data/projectsTableData";
-import { useMaterialUIController } from "context";
-
-// Dialog Teacher
 import Dialog from "@mui/material/Dialog";
 import TextField from "@mui/material/TextField";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
-
 import swal from "sweetalert";
+import { useMaterialUIController } from "../../context";
+import MDBox from "../../components/MDBox";
+import MDTypography from "../../components/MDTypography";
+
+// Material Dashboard 2 React example components
+import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
+import Footer from "../../examples/Footer";
+import DataTable from "../../examples/Tables/DataTable";
+// import { styled } from "@mui/material/styles";
+
+// Data
+import teachersTableData from "./data/teachersTableData";
+import MDButton from "../../components/MDButton";
+// import projectsTableData from "layouts/tables/data/projectsTableData";
+
+// Dialog Teacher
 
 function Tables() {
   // const { columns: pColumns, rows: pRows } = projectsTableData();

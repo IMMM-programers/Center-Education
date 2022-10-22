@@ -3,8 +3,8 @@
 // import Tooltip from "@mui/material/Tooltip";
 
 // Soft UI Dashboard React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "../../../../../components/MDBox";
+import MDTypography from "../../../../../components/MDTypography";
 // import MDAvatar from "components/MDAvatar";
 // import MDProgress from "components/MDProgress";
 

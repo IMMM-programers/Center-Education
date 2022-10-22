@@ -3,9 +3,6 @@
 // Soft UI Dashboard React components
 import * as React from "react";
 
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-
 import Icon from "@mui/material/Icon";
 import Dialog from "@mui/material/Dialog";
 import TextField from "@mui/material/TextField";
@@ -31,6 +28,8 @@ import swal from "sweetalert";
 
 import { green, orange } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
+import MDTypography from "../../../components/MDTypography";
+import MDBox from "../../../components/MDBox";
 
 // export default function data({props}) {
 export default function data(props) {

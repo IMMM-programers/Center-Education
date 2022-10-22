@@ -36,10 +36,11 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React layouts
-import Dashboard from "layouts/dashboard";
-import Teachers from "layouts/teachersTables";
-import Ads from "layouts/adsTables";
-import Message from "layouts/messageTables";
+import Icon from "@mui/material/Icon";
+import Dashboard from "./layouts/dashboard";
+import Teachers from "./layouts/teachersTables";
+import Ads from "./layouts/adsTables";
+import Message from "./layouts/messageTables";
 // import RTL from "layouts/rtl";
 // import Notifications from "layouts/notifications";
 // import Profile from "layouts/profile";
@@ -47,7 +48,6 @@ import Message from "layouts/messageTables";
 // import SignUp from "layouts/authentication/sign-up";
 
 // @mui icons
-import Icon from "@mui/material/Icon";
 
 const routes = [
   {

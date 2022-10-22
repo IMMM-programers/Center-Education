@@ -3,12 +3,13 @@
 import * as React from "react";
 
 // Soft UI Dashboard React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import axios from "axios";
+import swal from "sweetalert";
+import MDBox from "../../../components/MDBox";
+import MDTypography from "../../../components/MDTypography";
 // import MDButton from "components/MDButton";
 // import MDAvatar from "components/MDAvatar";
 // import MDBadge from "components/MDBadge";
-import axios from "axios";
 
 // Images
 // import logoXD from "assets/images/small-logos/logo-xd.svg";
@@ -27,8 +28,7 @@ import axios from "axios";
 // import DialogContentText from "@mui/material/DialogContentText";
 // import DialogTitle from "@mui/material/DialogTitle";
 
-import Image from "components/ShowImage";
-import swal from "sweetalert";
+import Image from "../../../components/ShowImage";
 
 export default function data(props) {
   const [inputValues, setInputValues] = React.useState({

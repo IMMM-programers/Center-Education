@@ -1,10 +1,4 @@
 import * as React from "react";
-import NavbarHome from "components/NavHome";
-import NavbarLogin from "components/NavLogin";
-import Course from "components/PartCourse";
-import ContactHome from "components/ContactHome";
-import FeedbackStudent from "components/FeedbackStudent";
-import FooterHome from "components/FooterHome";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Stack from "@mui/material/Stack";
@@ -26,6 +20,12 @@ import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
 import CardMembershipIcon from "@mui/icons-material/CardMembership";
 import { green } from "@mui/material/colors";
 import axios from "axios";
+import FooterHome from "../../components/FooterHome";
+import FeedbackStudent from "../../components/FeedbackStudent";
+import ContactHome from "../../components/ContactHome";
+import Course from "../../components/PartCourse";
+import NavbarLogin from "../../components/NavLogin";
+import NavbarHome from "../../components/NavHome";
 
 const theme = createTheme();
 

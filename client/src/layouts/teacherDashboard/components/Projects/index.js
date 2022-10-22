@@ -7,14 +7,14 @@ import Card from "@mui/material/Card";
 // import MenuItem from "@mui/material/MenuItem";
 
 // Soft UI Dashboard React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import MDBox from "../../../../components/MDBox";
+import MDTypography from "../../../../components/MDTypography";
 
 // Soft UI Dashboard Materail-UI example components
-import DataTable from "examples/Tables/DataTable";
+import DataTable from "../../../../examples/Tables/DataTable";
 
 // Data
-import data from "layouts/teacherDashboard/components/Projects/data";
+import data from "./data";
 
 function Projects() {
   const { columns, rows } = data();

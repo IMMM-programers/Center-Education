@@ -23,25 +23,25 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 
 // Material Dashboard 2 React components
-import MDBox from "components/MDBox";
+import React from "react";
+import axios from "axios";
+import MDBox from "../../components/MDBox";
 // import MDTypography from "components/MDTypography";
 
 // Material Dashboard 2 React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
-import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
-// import ProfilesList from "examples/Lists/ProfilesList";
-// import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
+import DashboardLayout from "../../examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "../../examples/Navbars/DashboardNavbar";
+import Footer from "../../examples/Footer";
+import ProfileInfoCard from "../../examples/Cards/InfoCards/ProfileInfoCard";
+// import ProfilesList from "../../examples/Lists/ProfilesList";
+// import DefaultProjectCard from "../../examples/Cards/ProjectCards/DefaultProjectCard";
 
 // Overview page components
-import Header from "layouts/profile/components/Header";
+import Header from "./components/Header";
 // import PlatformSettings from "layouts/profile/components/PlatformSettings";
 
 // Data
 // import profilesListData from "layouts/profile/data/profilesListData";
-import React from "react";
-import axios from "axios";
 
 // Images
 // import homeDecor1 from "assets/images/home-decor-1.jpg";

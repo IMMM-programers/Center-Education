@@ -3,13 +3,13 @@
 import * as React from "react";
 
 // Soft UI Dashboard React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import axios from "axios";
+import swal from "sweetalert";
+import MDBox from "../../../components/MDBox";
+import MDTypography from "../../../components/MDTypography";
 // import MDButton from "components/MDButton";
 // import MDAvatar from "components/MDAvatar";
 // import MDBadge from "components/MDBadge";
-import axios from "axios";
-import swal from "sweetalert";
 // Images
 // import logoXD from "assets/images/small-logos/logo-xd.svg";
 // import logoAtlassian from "assets/images/small-logos/logo-atlassian.svg";
