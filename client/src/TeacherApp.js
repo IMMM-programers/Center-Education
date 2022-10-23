@@ -139,7 +139,7 @@ export default function App() {
       <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
         <CssBaseline />
         {layout === "teacherDashboard" && (
-          <>
+          <div>
             <Sidenav
               color={sidenavColor}
               brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
@@ -150,7 +150,7 @@ export default function App() {
             />
             <Configurator />
             {configsButton}
-          </>
+          </div>
         )}
         {layout === "vr" && <Configurator />}
         <Routes>
@@ -163,7 +163,7 @@ export default function App() {
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
       {layout === "dashboard" && (
-        <>
+        <div>
           <Sidenav
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
@@ -174,7 +174,7 @@ export default function App() {
           />
           <Configurator />
           {configsButton}
-        </>
+        </div>
       )}
       {layout === "vr" && <Configurator />}
       <Routes>

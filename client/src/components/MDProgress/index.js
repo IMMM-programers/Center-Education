@@ -25,7 +25,7 @@ import MDTypography from "../MDTypography";
 import MDProgressRoot from "./MDProgressRoot";
 
 const MDProgress = forwardRef(({ variant, color, value, label, ...rest }, ref) => (
-  <>
+  <div>
     {label && (
       <MDTypography variant="button" fontWeight="medium" color="text">
         {value}%
@@ -38,7 +38,7 @@ const MDProgress = forwardRef(({ variant, color, value, label, ...rest }, ref) =
       value={value}
       ownerState={{ color, value, variant }}
     />
-  </>
+  </div>
 ));
 
 // Setting default values for the props of MDProgress

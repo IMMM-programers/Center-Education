@@ -135,9 +135,9 @@ function RTL() {
                   color="success"
                   title="المبيعات اليومية"
                   description={
-                    <>
+                    <div>
                       (<strong>+15%</strong>) زيادة في مبيعات اليوم..
-                    </>
+                    </div>
                   }
                   date="تم التحديث منذ 4 دقائق"
                   chart={sales}

@@ -28,7 +28,7 @@ import MDTypography from "../../../components/MDTypography";
 
 function DefaultNavbarLink({ icon, name, route, light }) {
   return (
-    <>
+    <div>
       <MDBox
         component={Link}
         to={route}
@@ -56,7 +56,7 @@ function DefaultNavbarLink({ icon, name, route, light }) {
           &nbsp;{name}
         </MDTypography>
       </MDBox>
-    </>
+    </div>
   );
 }
 
