@@ -17,14 +17,14 @@ app.use("/api/courses", require("./routes/Courses"));
 app.use("/api/messages", require("./routes/messages.js"));
 // app.use("/api/ads", require("./routes/ads.js"));
 
-if (process.env.NODE_ENV === "production") {
-  // Set static folder
-  app.use(express.static("client/build"));
+// if (process.env.NODE_ENV === "production") {
+//   // Set static folder
+//   app.use(express.static("client/build"));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
+//   });
+// }
 
 const port = process.env.PORT || 5000;
 
