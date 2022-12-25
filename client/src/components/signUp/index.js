@@ -52,7 +52,7 @@ export default function SignInSide() {
     e.preventDefault();
     try {
       const { token } = await (
-        await axios.post("/api/users/createUser", {
+        await axios.post("https://center-education.onrender.com/api/users/createUser", {
           name: username,
           email,
           password,

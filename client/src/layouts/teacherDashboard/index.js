@@ -57,13 +57,15 @@ function TeacherDashboard() {
     };
 
     axios
-      .get("/api/auth/tokenUser", config)
+      .get("https://center-education.onrender.com/api/auth/tokenUser", config)
       .then((response) => {
         axios
-          .get(`/api/courses/teacherCourses/${response.data.email}`)
+          .get(
+            `https://center-education.onrender.com/api/courses/teacherCourses/${response.data.email}`
+          )
           .then((res) => {
             axios
-              .get("/api/users/Students")
+              .get("https://center-education.onrender.com/api/users/Students")
               .then((r) => {
                 setInputValues({ ...inputValues, courses: res.data, students: r.data });
               })

@@ -38,7 +38,7 @@ export default function Contact() {
   const addMessage = () => {
     const m = { userName, email, messageContent, phoneNumber };
     axios
-      .post("/api/messages/createMessage", m)
+      .post("https://center-education.onrender.com/api/messages/createMessage", m)
       .then(() => {
         swal("Good job!", "The Message has been sent successfully", "success").then(() => {
           window.location.reload();

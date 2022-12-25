@@ -39,7 +39,7 @@ export default function data(props) {
 
   const deleteTeacher = (email) => {
     axios
-      .delete(`/api/users/deleteUser/${email}`)
+      .delete(`https://center-education.onrender.com/api/users/deleteUser/${email}`)
       .then(() => {
         swal("Good job!", "The Teacher deleted successfully", "success").then(() => {
           window.location.reload();

@@ -53,14 +53,17 @@ export default function SignInSide() {
     e.preventDefault();
     try {
       const { token, type } = await (
-        await axios.post("/api/auth/loginUser", { email, password })
+        await axios.post("https://center-education.onrender.com/api/auth/loginUser", {
+          email,
+          password,
+        })
       ).data;
       localStorage.setItem("token", token);
       if (type === "Admin") {
         navigate("/dashboard/admin");
       } else if (type === "Teacher") {
         axios
-          .patch(`/api/users/editUser/${email}`, { status: 1 })
+          .patch(`https://center-education.onrender.com/api/users/editUser/${email}`, { status: 1 })
           .then(() => {
             navigate("/dashboard/teacher");
           })

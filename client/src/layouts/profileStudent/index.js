@@ -58,7 +58,7 @@ export default function ProfileStudent() {
       navigate("/");
     } else {
       axios
-        .get(`/api/users/Profile/${u.email}`)
+        .get(`https://center-education.onrender.com/api/users/Profile/${u.email}`)
         .then((response) => {
           setInputValues({
             ...inputValues,
@@ -102,7 +102,7 @@ export default function ProfileStudent() {
 
   const updateUser = () => {
     axios
-      .patch(`/api/users/editUser/${email}`, {
+      .patch(`https://center-education.onrender.com/api/users/editUser/${email}`, {
         major,
         profileInfo,
         name: username,

@@ -30,7 +30,7 @@ import MDTypography from "../../../components/MDTypography";
 export default function data(props) {
   const deleteMessage = (email) => {
     axios
-      .delete(`/api/messages/deleteMessage/${email}`)
+      .delete(`https://center-education.onrender.com/api/messages/deleteMessage/${email}`)
       .then(() => {
         swal("Good job!", "The Message deleted successfully", "success").then(() => {
           window.location.reload();

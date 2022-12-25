@@ -58,7 +58,7 @@ export default function data() {
 
   React.useEffect(() => {
     axios
-      .get("/api/courses/allCourses")
+      .get("https://center-education.onrender.com/api/courses/allCourses")
       .then((response) => {
         setInputValues({
           ...inputValues,

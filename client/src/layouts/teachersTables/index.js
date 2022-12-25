@@ -79,7 +79,7 @@ function Tables() {
   const addTeacher = () => {
     const t = { name: `${firstName} ${lastName}`, email, password, phoneNumber, type: "Teacher" };
     axios
-      .post("/api/users/createUser", t)
+      .post("https://center-education.onrender.com/api/users/createUser", t)
       .then(() => {
         swal("Good job!", "The teacher has been added successfully", "success").then(() => {
           window.location.reload();
@@ -94,7 +94,7 @@ function Tables() {
 
   React.useEffect(() => {
     axios
-      .get("/api/users/Teachers")
+      .get("https://center-education.onrender.com/api/users/Teachers")
       .then((res) => {
         setInputValues({ ...inputValues, teachers: res.data });
       })

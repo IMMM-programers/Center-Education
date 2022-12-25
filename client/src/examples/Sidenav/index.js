@@ -92,10 +92,13 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       },
     };
     axios
-      .get("/api/auth/tokenUser", config)
+      .get("https://center-education.onrender.com/api/auth/tokenUser", config)
       .then((response) => {
         axios
-          .patch(`/api/users/editUser/${response.data.email}`, { status: 0 })
+          .patch(
+            `https://center-education.onrender.com/api/users/editUser/${response.data.email}`,
+            { status: 0 }
+          )
           .then(() => {})
           .catch((err) => {
             console.log(err);

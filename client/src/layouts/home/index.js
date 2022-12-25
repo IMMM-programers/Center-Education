@@ -43,14 +43,14 @@ export default function Home() {
       },
     };
     axios
-      .get("/api/courses/allCourses")
+      .get("https://center-education.onrender.com/api/courses/allCourses")
       .then((response) => {
         axios
-          .get("/api/users/Profile/m@gmail.com")
+          .get("https://center-education.onrender.com/api/users/Profile/m@gmail.com")
           .then((res) => {
             if (localStorage.getItem("token")) {
               axios
-                .get("/api/auth/tokenUser", config)
+                .get("https://center-education.onrender.com/api/auth/tokenUser", config)
                 .then((re) => {
                   setInputValues({
                     ...inputValues,
@@ -186,12 +186,12 @@ export default function Home() {
             columnSpacing={{ xs: 1, sm: 2, md: 1 }}
             sx={{ py: 8, px: 8 }}
           >
+            {console.log(course)}
             {course.map((c) => (
               <Grid key={c.title} item xs={4}>
                 {Course(c)}
               </Grid>
             ))}
-
             <Grid item xs={12}>
               <Stack sx={{}} direction="row" justifyContent="center" spacing={2}>
                 <Button

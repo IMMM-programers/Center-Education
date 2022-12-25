@@ -48,7 +48,7 @@ export default function PageCourse() {
     };
     if (localStorage.getItem("token")) {
       axios
-        .get("/api/auth/tokenUser", config)
+        .get("https://center-education.onrender.com/api/auth/tokenUser", config)
         .then((response) => {
           setUser(response.data);
         })
@@ -60,7 +60,7 @@ export default function PageCourse() {
 
   const registerCourse = () => {
     axios
-      .patch(`/api/users/registerCourse/${user.email}`, c)
+      .patch(`https://center-education.onrender.com/api/users/registerCourse/${user.email}`, c)
       .then(() => {
         swal("Good job!", "The course has been registered successfully", "success").then(() => {
           window.location.reload();
@@ -75,7 +75,7 @@ export default function PageCourse() {
 
   const unRegisterCourse = () => {
     axios
-      .patch(`/api/users/unRegisterCourse/${user.email}`, c)
+      .patch(`https://center-education.onrender.com/api/users/unRegisterCourse/${user.email}`, c)
       .then(() => {
         swal("Good job!", "The course has been unregistered successfully", "success").then(() => {
           window.location.reload();

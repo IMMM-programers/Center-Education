@@ -79,7 +79,7 @@ function Tables() {
     const teacherEmail = user.email;
     const t = { title, description, categoryName, teacherEmail };
     axios
-      .post("/api/courses/createCourse", t)
+      .post("https://center-education.onrender.com/api/courses/createCourse", t)
       .then(() => {
         swal("Good job!", "The Course has been added successfully", "success").then(() => {
           window.location.reload();
@@ -100,10 +100,12 @@ function Tables() {
     };
 
     axios
-      .get("/api/auth/tokenUser", config)
+      .get("https://center-education.onrender.com/api/auth/tokenUser", config)
       .then((response) => {
         axios
-          .get(`/api/courses/teacherCourses/${response.data.email}`)
+          .get(
+            `https://center-education.onrender.com/api/courses/teacherCourses/${response.data.email}`
+          )
           .then((res) => {
             setInputValues({ ...inputValues, courses: res.data, user: response.data });
           })

@@ -21,10 +21,10 @@ export default function PageCourse() {
 
   React.useEffect(() => {
     axios
-      .get("/api/courses/allCourses") // need to be dynamic
+      .get("https://center-education.onrender.com/api/courses/allCourses") // need to be dynamic
       .then((response) => {
         setInputValues({ ...inputValues, course: response.data });
-        axios.get("/api/users/Profile/m@gmail.com"); // need to be dynamic
+        axios.get("https://center-education.onrender.com/api/users/Profile/m@gmail.com"); // need to be dynamic
       })
       .catch((err) => {
         console.log(err);

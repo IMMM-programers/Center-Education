@@ -68,7 +68,7 @@ function Overview() {
     };
 
     axios
-      .get("/api/auth/tokenUser", config)
+      .get("https://center-education.onrender.com/api/auth/tokenUser", config)
       .then((res) => {
         console.log(res);
         setInputValues({ ...inputValues, user: res.data });

@@ -39,7 +39,7 @@ export default function data(props) {
 
   const deleteAds = (i) => {
     axios
-      .delete(`/api/users/deleteAds/${i}`)
+      .delete(`https://center-education.onrender.com/api/users/deleteAds/${i}`)
       .then(() => {
         swal("Good job!", "The Ad deleted successfully", "success").then(() => {
           window.location.reload();

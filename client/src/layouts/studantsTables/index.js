@@ -46,7 +46,7 @@ function Tables() {
 
   React.useEffect(() => {
     axios
-      .get("/api/users/Students") // need to be dynamic
+      .get("https://center-education.onrender.com/api/users/Students") // need to be dynamic
       .then((res) => {
         setInputValues({ ...inputValues, students: res.data });
       })

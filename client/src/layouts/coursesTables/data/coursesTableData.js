@@ -49,7 +49,7 @@ export default function data(props) {
 
   const deleteCourse = (title) => {
     axios
-      .delete(`/api/courses/deleteCourse/${title}`)
+      .delete(`https://center-education.onrender.com/api/courses/deleteCourse/${title}`)
       .then((res) => {
         swal("Good job!", "The Course deleted successfully", "success").then(() => {
           window.location.reload();
@@ -89,7 +89,7 @@ export default function data(props) {
       });
     } else {
       axios
-        .patch(`/api/courses/addVideo/${t}`, video)
+        .patch(`https://center-education.onrender.com/api/courses/addVideo/${t}`, video)
         .then(() => {
           swal("Good job!", "The Video has been added successfully", "success").then(() => {
             window.location.reload();
@@ -113,7 +113,7 @@ export default function data(props) {
       });
     } else {
       axios
-        .patch(`/api/courses/addMaterial/${t}`, material)
+        .patch(`https://center-education.onrender.com/api/courses/addMaterial/${t}`, material)
         .then(() => {
           swal("Good job!", "The Material has been added successfully", "success").then(() => {
             window.location.reload();

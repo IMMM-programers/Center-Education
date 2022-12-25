@@ -54,16 +54,16 @@ function Dashboard() {
 
   React.useEffect(() => {
     axios
-      .get("/api/users/Teachers") // need to be dynamic
+      .get("https://center-education.onrender.com/api/users/Teachers") // need to be dynamic
       .then((res1) => {
         axios
-          .get("/api/courses/allCourses") // need to be dynamic
+          .get("https://center-education.onrender.com/api/courses/allCourses") // need to be dynamic
           .then((res2) => {
             axios
-              .get("/api/users/Profile/m@gmail.com") // need to be dynamic
+              .get("https://center-education.onrender.com/api/users/Profile/m@gmail.com") // need to be dynamic
               .then((res3) => {
                 axios
-                  .get("/api/users/Students") // need to be dynamic
+                  .get("https://center-education.onrender.com/api/users/Students") // need to be dynamic
                   .then((res4) => {
                     setInputValues({
                       ...inputValues,

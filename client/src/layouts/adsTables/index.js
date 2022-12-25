@@ -80,7 +80,7 @@ function Tables() {
       });
     } else {
       axios
-        .patch(`/api/users/addAds/m@gmail.com`, ad) // need to be dynamic
+        .patch(`https://center-education.onrender.com/api/users/addAds/m@gmail.com`, ad) // need to be dynamic
         .then(() => {
           swal("Good job!", "The Ad has been added successfully", "success").then(() => {
             window.location.reload();
@@ -96,7 +96,7 @@ function Tables() {
 
   React.useEffect(() => {
     axios
-      .get("/api/users/Profile/m@gmail.com") // need to be dynamic
+      .get("https://center-education.onrender.com/api/users/Profile/m@gmail.com") // need to be dynamic
       .then((res) => {
         setInputValues({ ...inputValues, ads: res.data.ads });
       })
