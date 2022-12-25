@@ -141,7 +141,7 @@ function Header({ children, user }) {
             </AppBar>
           </Grid> */}
         </Grid>
-        {children}
+        <Grid item>{children}</Grid>
       </Card>
     </MDBox>
   );
